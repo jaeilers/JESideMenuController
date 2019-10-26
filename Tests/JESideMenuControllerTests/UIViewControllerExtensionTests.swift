@@ -20,6 +20,7 @@ class UIViewControllerExtensionTests: XCTestCase {
     }
 
     func testSideMenuControllerExtension() {
+        // Given
         let rootViewController = UIViewController()
         let menuViewController = UIViewController()
         let sideMenuController = JESideMenuController(rootViewController: rootViewController,
@@ -27,10 +28,12 @@ class UIViewControllerExtensionTests: XCTestCase {
         let tabBarController = UITabBarController()
         let viewController = UIViewController()
 
+        // When
         rootViewController.addChild(tabBarController)
         tabBarController.didMove(toParent: rootViewController)
         tabBarController.setViewControllers([viewController], animated: false)
 
+        // Then
         XCTAssertNotNil(viewController.sideMenuController)
         XCTAssertNotNil(rootViewController.sideMenuController)
         XCTAssertNotNil(menuViewController.sideMenuController)

@@ -20,17 +20,26 @@ class JESideMenuControllerTests: XCTestCase {
     }
 
     func testInitialization() {
+        // Given
         let rootViewController = UIViewController()
         let menuTableViewController = UITableViewController(style: .plain)
         let sideMenuController = JESideMenuController(rootViewController: rootViewController,
                                                       menuViewController: menuTableViewController)
+        // When
         _ = sideMenuController.view
+
+        // Then
         XCTAssertEqual(sideMenuController.children.count, 2)
     }
 
     func testStoryboardInitialization() {
+        // Given
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: JESideMenuControllerTests.self))
+
+        // When
         let sideMenuController = storyboard.instantiateInitialViewController() as? JESideMenuController
+
+        // Then
         XCTAssertNotNil(sideMenuController)
         XCTAssertNotNil(sideMenuController?.rootId)
         XCTAssertNotNil(sideMenuController?.menuId)
@@ -40,32 +49,103 @@ class JESideMenuControllerTests: XCTestCase {
     }
 
     func testSettingViewController() {
+        // Given
         let rootViewController = UIViewController()
         let menuViewController = UITableViewController(style: .plain)
+
+        // When
         let sideMenuController = JESideMenuController(rootViewController: rootViewController,
                                                       menuViewController: menuViewController,
                                                       style: .slideOutInline, isLeft: false)
         _ = sideMenuController.view
+
+        // Then
         XCTAssertEqual(sideMenuController.children.count, 2)
 
+        // Given: set view controller
         let viewController = UIViewController()
+
+        // When
         sideMenuController.setViewController(viewController, animated: false)
+
+        // Then
         XCTAssertEqual(sideMenuController.children.count, 2)
     }
 
     func testImageBuilder() {
+        // Given
         let builder = ImageBuilder()
-        let image = builder.shadowImage(isFadingLeft: true)
-        XCTAssertNotNil(image)
 
+        // When
+        let image = builder.shadowImage(isFadingLeft: true)
+
+        // Then
+        XCTAssertNotNil(image)
         XCTAssertTrue(image!.size.width == 12.0)
         XCTAssertTrue(image!.size.height == 3.0)
 
+        // When
         let rightImage = builder.shadowImage(isFadingLeft: false)
-        XCTAssertNotNil(rightImage)
 
+        // Then
+        XCTAssertNotNil(rightImage)
         XCTAssertTrue(rightImage!.size.width == 12.0)
         XCTAssertTrue(rightImage!.size.height == 3.0)
+    }
+
+    func testSliderPositionHiddenAtLaunch() {
+        // Given
+        let rootController = UIViewController()
+        let menuController = UITableViewController(style: .grouped)
+
+        let sideMenuController = JESideMenuController(rootViewController: rootController,
+                                                      menuViewController: menuController,
+                                                      style: .slideOutInline,
+                                                      isLeft: false)
+        // When
+        _ = sideMenuController.view
+        sideMenuController.view.layoutIfNeeded()
+
+        // Then
+        XCTAssertFalse(sideMenuController.isMenuVisible)
+        XCTAssertTrue(rootController === sideMenuController.visibleViewController)
+
+        // When: toggle the menu
+        sideMenuController.toggle(animated: false)
+
+        // Then
+        XCTAssertTrue(sideMenuController.isMenuVisible)
+
+        // When: Hide menu
+        sideMenuController.setMenuHidden(true, animated: false)
+
+        // Then
+        XCTAssertFalse(sideMenuController.isMenuVisible)
+    }
+
+    func testSetViewController() {
+        // Given
+        let rootController = UIViewController()
+        let menuController = UITableViewController(style: .plain)
+        let sideMenuController = JESideMenuController(rootViewController: rootController,
+                                                      menuViewController: menuController,
+                                                      style: .slideOut,
+                                                      isLeft: true)
+
+        // When
+        _ = sideMenuController.view
+
+        // Then
+        XCTAssertTrue(sideMenuController.visibleViewController === rootController)
+
+        // Given: set new root view controller
+        let newController = UIViewController()
+
+        // When
+        sideMenuController.setViewController(newController, animated: false)
+
+        // Then
+        XCTAssertTrue(sideMenuController.visibleViewController === newController)
     }
 
 }
