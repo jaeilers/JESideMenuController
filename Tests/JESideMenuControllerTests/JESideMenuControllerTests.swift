@@ -100,7 +100,7 @@ class JESideMenuControllerTests: XCTestCase {
 
         let sideMenuController = JESideMenuController(rootViewController: rootController,
                                                       menuViewController: menuController,
-                                                      style: .slideOutInline,
+                                                      style: .slideOut,
                                                       isLeft: false)
         // When
         _ = sideMenuController.view
@@ -146,6 +146,25 @@ class JESideMenuControllerTests: XCTestCase {
 
         // Then
         XCTAssertTrue(sideMenuController.visibleViewController === newController)
+    }
+
+    func testDisableScrolling() {
+        // Given
+        let rootController = UIViewController()
+        let menuController = UITableViewController(style: .plain)
+        let sideMenuController = JESideMenuController(rootViewController: rootController,
+                                                      menuViewController: menuController)
+
+        // When
+        _ = sideMenuController.view
+
+        // Then
+        XCTAssertTrue(sideMenuController.isScrollEnabled)
+
+        // When: Disable scrolling
+        sideMenuController.isScrollEnabled = false
+
+        XCTAssertFalse(sideMenuController.isScrollEnabled)
     }
 
 }
