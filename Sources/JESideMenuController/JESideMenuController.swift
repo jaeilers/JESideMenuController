@@ -112,23 +112,19 @@ public class JESideMenuController: UIViewController {
     // MARK: - Init
 
     /**
-     Initializes the side menu controller with a menu view controller and a root view controller which will
-     is displayed as first view.
-     - parameter rootViewController: The first view controller. This is typically the home screen.
-     - parameter menuViewController: The menu view controller controls the initialization of controllers.
-     - parameter isLeft: A Boolean value that determines on which side the menu will be placed.
+     Initializes the side menu controller with general settings.
+     - parameter menuViewController: The controller that should be displayed and act as the menu.
      - parameter style: Set the style of the layout. Default is a slide-out style.
+     - parameter isLeft: A Boolean value that determines on which side the menu will be placed.
      */
-    public init(rootViewController: UIViewController, menuViewController: UIViewController, style: Style = .slideOut,
-                isLeft: Bool = true) {
+    public init(menuViewController: UIViewController? = nil, style: Style = .slideOut, isLeft: Bool = true) {
         super.init(nibName: nil, bundle: nil)
-        self.menuViewController = menuViewController
-        self.rootViewController = rootViewController
-        self.isLeft = isLeft
         self.style = style
+        self.isLeft = isLeft
 
-        add(controller: rootViewController, toView: containerView)
+        guard let menuViewController = menuViewController else { return }
         add(controller: menuViewController, toView: menuContainerView)
+        self.menuViewController = menuViewController
     }
 
     public required init?(coder aDecoder: NSCoder) {
@@ -183,6 +179,16 @@ public class JESideMenuController: UIViewController {
     // MARK: - Public Methods
 
     /**
+     Set the view controller that should act as the menu.
+     - parameter viewController: The view controller that will be displayed as the menu.
+     */
+    public func setMenuViewController(_ viewController: UIViewController) {
+        remove(controller: menuViewController)
+        add(controller: viewController, toView: menuContainerView)
+        menuViewController = viewController
+    }
+
+    /**
      Set and display a new root view controller. If animated is set to `true`, the slider will automatically hide.
      - parameter viewController: The view controller which will be displayed.
      - parameter animated: The slider will automatically hide, if the boolean value is `true`.
@@ -193,9 +199,9 @@ public class JESideMenuController: UIViewController {
         transition(fromController: rootViewController,
                    toViewController: viewController,
                    containerView: containerView,
-                   duration: 0.0, completion: { _ in
+                   duration: 0.0) { _ in
             self.rootViewController = viewController
-        })
+        }
 
         setMenuHidden(true, animated: animated)
     }

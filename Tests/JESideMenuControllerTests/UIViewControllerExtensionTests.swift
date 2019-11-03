@@ -23,8 +23,8 @@ class UIViewControllerExtensionTests: XCTestCase {
         // Given
         let rootViewController = UIViewController()
         let menuViewController = UIViewController()
-        let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                                      menuViewController: menuViewController)
+        let sideMenuController = JESideMenuController(menuViewController: menuViewController)
+        sideMenuController.setViewController(rootViewController, animated: false)
         let tabBarController = UITabBarController()
         let viewController = UIViewController()
 

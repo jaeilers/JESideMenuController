@@ -23,10 +23,11 @@ class JESideMenuControllerTests: XCTestCase {
         // Given
         let rootViewController = UIViewController()
         let menuTableViewController = UITableViewController(style: .plain)
-        let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                                      menuViewController: menuTableViewController)
+        let sideMenuController = JESideMenuController()
+
         // When
-        _ = sideMenuController.view
+        sideMenuController.setMenuViewController(menuTableViewController)
+        sideMenuController.setViewController(rootViewController, animated: false)
 
         // Then
         XCTAssertEqual(sideMenuController.children.count, 2)
@@ -54,9 +55,9 @@ class JESideMenuControllerTests: XCTestCase {
         let menuViewController = UITableViewController(style: .plain)
 
         // When
-        let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                                      menuViewController: menuViewController,
+        let sideMenuController = JESideMenuController(menuViewController: menuViewController,
                                                       style: .slideOutInline, isLeft: false)
+        sideMenuController.setViewController(rootViewController, animated: false)
         _ = sideMenuController.view
 
         // Then
@@ -98,11 +99,11 @@ class JESideMenuControllerTests: XCTestCase {
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .grouped)
 
-        let sideMenuController = JESideMenuController(rootViewController: rootController,
-                                                      menuViewController: menuController,
+        let sideMenuController = JESideMenuController(menuViewController: menuController,
                                                       style: .slideOut,
                                                       isLeft: false)
         // When
+        sideMenuController.setViewController(rootController, animated: false)
         _ = sideMenuController.view
         sideMenuController.view.layoutIfNeeded()
 
@@ -127,13 +128,13 @@ class JESideMenuControllerTests: XCTestCase {
         // Given
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .plain)
-        let sideMenuController = JESideMenuController(rootViewController: rootController,
-                                                      menuViewController: menuController,
+        let sideMenuController = JESideMenuController(menuViewController: menuController,
                                                       style: .slideOut,
                                                       isLeft: true)
 
         // When
         _ = sideMenuController.view
+        sideMenuController.setViewController(rootController, animated: false)
 
         // Then
         XCTAssertTrue(sideMenuController.visibleViewController === rootController)
@@ -152,10 +153,10 @@ class JESideMenuControllerTests: XCTestCase {
         // Given
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .plain)
-        let sideMenuController = JESideMenuController(rootViewController: rootController,
-                                                      menuViewController: menuController)
+        let sideMenuController = JESideMenuController(menuViewController: menuController)
 
         // When
+        sideMenuController.setViewController(rootController, animated: false)
         _ = sideMenuController.view
 
         // Then
