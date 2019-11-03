@@ -50,24 +50,34 @@ dependencies: [
 
 ### Set-up via Code
 
-Upon initialization the `JESideMenuController` needs a reference to your menu view controller, which will allow choosing a different view controller for the displayed content, and the root view controller, which will be displayed as the first view controller at launch.
+The `JESideMenuController` provides default arguments for initialization. You can provide the menu view controller and first visible view controller, that will be displayed at launch, after initialization.
 
 ```swift
 let menuViewController = ...
 let rootViewController = ...
-let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                              menuViewController: menuViewController)
+let sideMenuController = JESideMenuController()
+
+sideMenuController.setMenuViewController(menuViewController)
+sideMenuController.setViewController(rootViewController, animated: false)
 ...
 ```
 
-The default values are a slide-out on the left side. To choose a different configuration use the following constructor signature:
+You may also provide the menu view controller upon initialization:
 
 ```swift
 ...
-let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                              menuViewController: menuViewController,
-                                              style: .slideIn,
-                                              isLeft: true)
+let menuViewController = ...
+let sideMenuController = JESideMenuController(menuViewController: menuViewController)
+...
+
+```
+
+The default values are a slide-out menu on the left side. To choose a different configuration use the following constructor signature:
+
+```swift
+...
+let sideMenuController = JESideMenuController(style: .slideIn,
+                                              isLeft: false)
 ...
 ```
 
@@ -96,6 +106,16 @@ public var sideMenuController: JESideMenuController? { get }
 #### Enabled/disable scrolling
 ```swift
 public var isScrollEnabled: Bool { get set }
+```
+
+#### Set a new menu view controller
+```swift 
+/// Set a view controller that will be displayed as the menu.
+public func setMenuViewController(_ viewController: UIViewController)
+
+// Example:
+let newMenuViewController = ...
+sideMenuController?.setMenuViewController(newMenuViewController)
 ```
 
 #### Set a new view controller and hide the menu
