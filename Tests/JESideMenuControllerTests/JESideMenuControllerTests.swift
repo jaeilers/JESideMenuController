@@ -78,7 +78,7 @@ class JESideMenuControllerTests: XCTestCase {
         let builder = ImageBuilder()
 
         // When
-        let image = builder.shadowImage(isFadingLeft: true)
+        let image = builder.makeShadowImage(isFadingLeft: true)
 
         // Then
         XCTAssertNotNil(image)
@@ -86,7 +86,7 @@ class JESideMenuControllerTests: XCTestCase {
         XCTAssertTrue(image!.size.height == 3.0)
 
         // When
-        let rightImage = builder.shadowImage(isFadingLeft: false)
+        let rightImage = builder.makeShadowImage(isFadingLeft: false)
 
         // Then
         XCTAssertNotNil(rightImage)

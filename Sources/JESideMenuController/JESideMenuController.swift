@@ -108,6 +108,7 @@ public class JESideMenuController: UIViewController {
 
     private var style: Style = .slideOut
     private var isLaunch = true
+    private var configuration: Configuration = .default
 
     // MARK: - Init
 
@@ -117,10 +118,12 @@ public class JESideMenuController: UIViewController {
      - parameter style: Set the style of the layout. Default is a slide-out style.
      - parameter isLeft: A Boolean value that determines on which side the menu will be placed.
      */
-    public init(menuViewController: UIViewController? = nil, style: Style = .slideOut, isLeft: Bool = true) {
+    public init(menuViewController: UIViewController? = nil, style: Style = .slideOut,
+                isLeft: Bool = true, configuration: Configuration = .default) {
         super.init(nibName: nil, bundle: nil)
         self.style = style
         self.isLeft = isLeft
+        self.configuration = configuration
 
         guard let menuViewController = menuViewController else { return }
         add(controller: menuViewController, toView: menuContainerView)
@@ -171,7 +174,7 @@ public class JESideMenuController: UIViewController {
         let offsetX = scrollView.contentOffset.x
 
         coordinator.animate(alongsideTransition: { [unowned self] _ in
-            self.scrollView.contentOffset.x = offsetX > 0.0 ? SlideOutLayoutBuilder.scrollViewWidth(for: size) : 0.0
+            self.scrollView.contentOffset.x = offsetX > 0.0 ? self.scrollViewWidth(for: size) : 0.0
         })
         super.viewWillTransition(to: size, with: coordinator)
     }
@@ -252,6 +255,15 @@ public class JESideMenuController: UIViewController {
         setMenuHidden(true, animated: true)
     }
 
+    /// Calculate the size of the menu for a given size
+    private func scrollViewWidth(for size: CGSize) -> CGFloat {
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return configuration.ipadWidth
+        } else {
+            return size.width - configuration.spacing
+        }
+    }
+
 }
 
 // MARK: - Layout Setup
@@ -266,23 +278,27 @@ extension JESideMenuController {
 
         switch style {
         case .slideOut:
-            image = imageBuilder.shadowImage(isFadingLeft: isLeft)
-            builder = SlideOutLayoutBuilder(menuContainerView: menuContainerView, containerView: containerView,
+            image = imageBuilder.makeShadowImage(isFadingLeft: isLeft)
+            builder = SlideOutLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
+                                            menuContainerView: menuContainerView, containerView: containerView,
                                             scrollView: scrollView, tapView: tapView, imageView: shadowImageView,
                                             darkView: darkView)
         case .slideIn:
-            image = imageBuilder.shadowImage(isFadingLeft: !isLeft)
+            image = imageBuilder.makeShadowImage(isFadingLeft: !isLeft)
             tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-            builder = SlideInLayoutBuilder(menuContainerView: menuContainerView, containerView: containerView,
+            builder = SlideInLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
+                                           menuContainerView: menuContainerView, containerView: containerView,
                                            scrollView: scrollView, tapView: tapView, imageView: shadowImageView)
         case .slideOutInline:
             image = nil
             tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
-            builder = SlideOutInlineLayoutBuilder(menuContainerView: menuContainerView, containerView: containerView,
+            builder = SlideOutInlineLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
+                                                  menuContainerView: menuContainerView, containerView: containerView,
                                                   scrollView: scrollView, tapView: tapView)
         }
         builder.layout(in: view, isLeft: isLeft)
-        shadowImageView.image = image
+        shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
+        shadowImageView.isHidden = !configuration.hasDropShadowImage
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToClose(_:)))
         tapView.addGestureRecognizer(tapGesture)
@@ -314,6 +330,7 @@ extension JESideMenuController: UIScrollViewDelegate {
 
     // Calculates the alpha value for the views
     private func getAlpha(for isLeft: Bool, maxValue: CGFloat, scrollView: UIScrollView) -> CGFloat {
+        guard scrollView.bounds.width > 0 else { return 0.0 }
         if isLeft {
             return -((maxValue / scrollView.bounds.width) * scrollView.contentOffset.x) + maxValue
         } else {

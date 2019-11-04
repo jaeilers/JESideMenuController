@@ -27,7 +27,8 @@ class LayoutBuilderTests: XCTestCase {
         let tapView = UIView()
         let imageView = UIImageView()
         let darkView = UIView()
-        let builder = SlideOutLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutLayoutBuilder(spacing: 60, ipadWidth: 320,
+                                            menuContainerView: menuContainerView,
                                             containerView: containerView,
                                             scrollView: scrollView,
                                             tapView: tapView,
@@ -55,7 +56,8 @@ class LayoutBuilderTests: XCTestCase {
         let tapView = UIView()
         let imageView = UIImageView()
         let darkView = UIView()
-        let builder = SlideOutLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutLayoutBuilder(spacing: 0, ipadWidth: 0,
+                                            menuContainerView: menuContainerView,
                                             containerView: containerView,
                                             scrollView: scrollView,
                                             tapView: tapView,
@@ -82,7 +84,7 @@ class LayoutBuilderTests: XCTestCase {
         let scrollView = UIScrollView()
         let tapView = UIView()
         let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
@@ -107,7 +109,7 @@ class LayoutBuilderTests: XCTestCase {
         let scrollView = UIScrollView()
         let tapView = UIView()
         let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
@@ -131,7 +133,7 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
                                                   containerView: containerView,
                                                   scrollView: scrollView,
                                                   tapView: tapView)
@@ -153,7 +155,7 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
                                                   containerView: containerView,
                                                   scrollView: scrollView,
                                                   tapView: tapView)
