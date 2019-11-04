@@ -154,5 +154,18 @@ public var isMenuVisible: Bool { get }
 sideMenuController?.isMenuVisible
 ```
 
+#### Adjust the configuration 
+You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
+
+```swift
+///
+let config = JESideMenuController.Configuration(spacing: 100,
+                                                ipadWidth: 400,
+                                                hasDropShadowImage: true,
+                                                dropShadowImage: UIImage(named: ...))
+let sideMenuController = JESideMenuController(configuration: config)
+...
+```
+
 ## License
 This framework is released under [MIT License](./LICENSE.md). All icons featured in the example project are part of [80 UI outlined icons](https://www.sketchappsources.com/free-source/3841-ui-outlined-icons-sketch-freebie-resource.html) and were created by *Kit of Parts*, &copy; 2019 [kitofparts.co](http://kitofparts.co/)
