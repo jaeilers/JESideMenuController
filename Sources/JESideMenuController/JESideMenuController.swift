@@ -116,7 +116,8 @@ public class JESideMenuController: UIViewController {
      Initializes the side menu controller with general settings.
      - parameter menuViewController: The controller that should be displayed and act as the menu.
      - parameter style: Set the style of the layout. Default is a slide-out style.
-     - parameter isLeft: A Boolean value that determines on which side the menu will be placed.
+     - parameter isLeft: A Boolean value that determines on which side the menu will be placed. Default is `true`.
+     - parameter configuration: The configuration specifies the layout for example spacing and drop shadow visibility.
      */
     public init(menuViewController: UIViewController? = nil, style: Style = .slideOut,
                 isLeft: Bool = true, configuration: Configuration = .default) {
@@ -195,7 +196,6 @@ public class JESideMenuController: UIViewController {
      Set and display a new root view controller. If animated is set to `true`, the slider will automatically hide.
      - parameter viewController: The view controller which will be displayed.
      - parameter animated: The slider will automatically hide, if the boolean value is `true`.
-     - parameter completion: The completion block is called after the animation finished.
      */
     public func setViewController(_ viewController: UIViewController,
                                   animated: Bool) {
