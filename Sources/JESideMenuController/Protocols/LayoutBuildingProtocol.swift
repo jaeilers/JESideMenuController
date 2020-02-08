@@ -22,15 +22,15 @@ protocol LayoutBuilding {
      */
     func layout(in view: UIView?, isLeft: Bool)
 
-    /// Adds specific constraints depending on the current device (iPhone/iPad)
-    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool)
 }
 
 extension LayoutBuilding {
 
-    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool) {
+    /// Adds specific constraints depending on the current device (iPhone/iPad)
+    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool,
+                                      userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
         // restrict width for ipad
-        if UIDevice.current.userInterfaceIdiom == .pad {
+        if userInterfaceIdiom == .pad {
             scrollView.widthAnchor.constraint(equalToConstant: ipadWidth).isActive = true
         } else if isLeft {
             view.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: spacing).isActive = true
@@ -39,4 +39,22 @@ extension LayoutBuilding {
         }
     }
 
+    /// Calculates the width of the scroll view based on a given size and the current devide (iPhone/iPad)
+    func getScrollViewWidth(for size: CGSize,
+                            userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) -> CGFloat {
+        if userInterfaceIdiom == .pad {
+            return ipadWidth
+        } else {
+            return size.width - spacing
+        }
+    }
+
+}
+
+// Enable testing for `getScrollViewWidth(for:, userInterfaceIdiom:)`
+struct DefaultLayoutBuilder: LayoutBuilding {
+    var spacing: CGFloat
+    var ipadWidth: CGFloat
+
+    func layout(in view: UIView?, isLeft: Bool) {}
 }

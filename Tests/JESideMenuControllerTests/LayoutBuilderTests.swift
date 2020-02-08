@@ -171,4 +171,42 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertNotNil(tapView.superview)
     }
 
+    func testDefaultLayoutBuilderDeviceSpecificConstraints() {
+        // Given
+        let spacing: CGFloat = 50.0
+        let ipadWidth: CGFloat = 200.0
+        let builder = DefaultLayoutBuilder(spacing: spacing, ipadWidth: ipadWidth)
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(scrollView)
+        containerView.addSubview(view)
+
+        // When
+        builder.addDeviceSpecificConstraints(to: view, scrollView: scrollView, isLeft: true, userInterfaceIdiom: .pad)
+        scrollView.layoutIfNeeded()
+
+        // Then
+        XCTAssertEqual(scrollView.frame.width, ipadWidth)
+    }
+
+    func testDefaultLayoutBuilderScrollViewWidth() {
+        // Given
+        let size = CGSize(width: 320.0, height: 480.0)
+        let spacing: CGFloat = 100.0
+        let ipadWidth: CGFloat = 200.0
+        let builder = DefaultLayoutBuilder(spacing: spacing, ipadWidth: ipadWidth)
+
+        // When
+        let scrollViewWidth = builder.getScrollViewWidth(for: size, userInterfaceIdiom: .phone)
+        let ipadScrollViewWidth = builder.getScrollViewWidth(for: size, userInterfaceIdiom: .pad)
+
+        // Then
+        XCTAssertEqual(scrollViewWidth, size.width - spacing)
+        XCTAssertEqual(ipadScrollViewWidth, ipadWidth)
+    }
+
 }

@@ -173,16 +173,12 @@ public class JESideMenuController: UIViewController {
      */
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let offsetX = scrollView.contentOffset.x
-
-        let scollViewWidth: CGFloat
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            scollViewWidth = configuration.ipadWidth
-        } else {
-            scollViewWidth = size.width - configuration.spacing
-        }
+        let builder = DefaultLayoutBuilder(spacing: configuration.spacing,
+                                           ipadWidth: configuration.ipadWidth)
+        let scrollViewWidth: CGFloat = builder.getScrollViewWidth(for: size)
 
         coordinator.animate(alongsideTransition: { [unowned self] _ in
-            self.scrollView.contentOffset.x = offsetX > 0.0 ? scollViewWidth : 0.0
+            self.scrollView.contentOffset.x = offsetX > 0.0 ? scrollViewWidth : 0.0
         })
         super.viewWillTransition(to: size, with: coordinator)
     }
