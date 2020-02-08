@@ -8,6 +8,13 @@
 import UIKit
 
 protocol LayoutBuilding {
+
+    /// Visible spacing of the content view if the menu is open
+    var spacing: CGFloat { get }
+
+    /// Menu width on iPad
+    var ipadWidth: CGFloat { get }
+
     /**
      Builds the layout for a slider menu in the specified view.
      - parameter view: The entry point to build up the view hierarchy.
@@ -15,30 +22,39 @@ protocol LayoutBuilding {
      */
     func layout(in view: UIView?, isLeft: Bool)
 
-    /// Adds specific constraints depending on the current device (iPhone/iPad)
-    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool)
 }
 
 extension LayoutBuilding {
 
-    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool) {
+    /// Adds specific constraints depending on the current device (iPhone/iPad)
+    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool,
+                                      userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
         // restrict width for ipad
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            scrollView.widthAnchor.constraint(equalToConstant: 320.0).isActive = true
+        if userInterfaceIdiom == .pad {
+            scrollView.widthAnchor.constraint(equalToConstant: ipadWidth).isActive = true
         } else if isLeft {
-            view.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: 60.0).isActive = true
+            view.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: spacing).isActive = true
         } else {
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60.0).isActive = true
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: spacing).isActive = true
         }
     }
 
-    /// Calculate the size of the menu for a given size
-    static func scrollViewWidth(for size: CGSize) -> CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return 320.0
+    /// Calculates the width of the scroll view based on a given size and the current devide (iPhone/iPad)
+    func getScrollViewWidth(for size: CGSize,
+                            userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) -> CGFloat {
+        if userInterfaceIdiom == .pad {
+            return ipadWidth
         } else {
-            return size.width - 60.0
+            return size.width - spacing
         }
     }
 
+}
+
+// Enable testing for `getScrollViewWidth(for:, userInterfaceIdiom:)`
+struct DefaultLayoutBuilder: LayoutBuilding {
+    var spacing: CGFloat
+    var ipadWidth: CGFloat
+
+    func layout(in view: UIView?, isLeft: Bool) {}
 }

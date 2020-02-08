@@ -17,7 +17,7 @@ struct ImageBuilder {
      Draws an image of a drop shadow. The image is resizable vertically.
      - isFadingLeft: A Boolean value that determines whether the gradient is fading on the left side or on the right.
     */
-    func shadowImage(isFadingLeft: Bool) -> UIImage? {
+    func makeShadowImage(isFadingLeft: Bool) -> UIImage? {
 
         let frame = CGRect(x: 0, y: 0, width: 12.0, height: 3.0)
         let gradientLayer = CAGradientLayer()

@@ -12,6 +12,11 @@ import UIKit
  */
 struct SlideOutLayoutBuilder: LayoutBuilding {
 
+    // MARK: - Protocol Properties
+
+    let spacing: CGFloat
+    let ipadWidth: CGFloat
+
     // MARK: - Internal Properties
 
     /// A containerView that hosts the content of the menu.

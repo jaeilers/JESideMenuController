@@ -27,7 +27,8 @@ class LayoutBuilderTests: XCTestCase {
         let tapView = UIView()
         let imageView = UIImageView()
         let darkView = UIView()
-        let builder = SlideOutLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutLayoutBuilder(spacing: 60, ipadWidth: 320,
+                                            menuContainerView: menuContainerView,
                                             containerView: containerView,
                                             scrollView: scrollView,
                                             tapView: tapView,
@@ -55,7 +56,8 @@ class LayoutBuilderTests: XCTestCase {
         let tapView = UIView()
         let imageView = UIImageView()
         let darkView = UIView()
-        let builder = SlideOutLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutLayoutBuilder(spacing: 0, ipadWidth: 0,
+                                            menuContainerView: menuContainerView,
                                             containerView: containerView,
                                             scrollView: scrollView,
                                             tapView: tapView,
@@ -82,7 +84,7 @@ class LayoutBuilderTests: XCTestCase {
         let scrollView = UIScrollView()
         let tapView = UIView()
         let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
@@ -107,7 +109,7 @@ class LayoutBuilderTests: XCTestCase {
         let scrollView = UIScrollView()
         let tapView = UIView()
         let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
@@ -131,7 +133,7 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
                                                   containerView: containerView,
                                                   scrollView: scrollView,
                                                   tapView: tapView)
@@ -153,7 +155,7 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(menuContainerView: menuContainerView,
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
                                                   containerView: containerView,
                                                   scrollView: scrollView,
                                                   tapView: tapView)
@@ -167,6 +169,44 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertNotNil(menuContainerView.superview)
         XCTAssertNotNil(containerView.superview)
         XCTAssertNotNil(tapView.superview)
+    }
+
+    func testDefaultLayoutBuilderDeviceSpecificConstraints() {
+        // Given
+        let spacing: CGFloat = 50.0
+        let ipadWidth: CGFloat = 200.0
+        let builder = DefaultLayoutBuilder(spacing: spacing, ipadWidth: ipadWidth)
+        let containerView = UIView()
+        containerView.translatesAutoresizingMaskIntoConstraints = false
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        containerView.addSubview(scrollView)
+        containerView.addSubview(view)
+
+        // When
+        builder.addDeviceSpecificConstraints(to: view, scrollView: scrollView, isLeft: true, userInterfaceIdiom: .pad)
+        scrollView.layoutIfNeeded()
+
+        // Then
+        XCTAssertEqual(scrollView.frame.width, ipadWidth)
+    }
+
+    func testDefaultLayoutBuilderScrollViewWidth() {
+        // Given
+        let size = CGSize(width: 320.0, height: 480.0)
+        let spacing: CGFloat = 100.0
+        let ipadWidth: CGFloat = 200.0
+        let builder = DefaultLayoutBuilder(spacing: spacing, ipadWidth: ipadWidth)
+
+        // When
+        let scrollViewWidth = builder.getScrollViewWidth(for: size, userInterfaceIdiom: .phone)
+        let ipadScrollViewWidth = builder.getScrollViewWidth(for: size, userInterfaceIdiom: .pad)
+
+        // Then
+        XCTAssertEqual(scrollViewWidth, size.width - spacing)
+        XCTAssertEqual(ipadScrollViewWidth, ipadWidth)
     }
 
 }

@@ -12,7 +12,7 @@ struct HomeViewModel {
 
     // MARK: - Internal Properties
 
-    var dataSource: HomeDataSource?
+    var setData: ((_ messages: [Message]) -> Void)?
 
     // MARK: - Private Properties
 
@@ -33,7 +33,7 @@ struct HomeViewModel {
             let data = try Data(contentsOf: url)
             let decoder = JSONDecoder()
             let messages = try decoder.decode([Message].self, from: data)
-            dataSource?.setData(messages)
+            setData?(messages)
         } catch {
             print("*** Error: \(error.localizedDescription)")
         }

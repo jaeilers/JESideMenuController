@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import JESideMenuController
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
