@@ -174,8 +174,15 @@ public class JESideMenuController: UIViewController {
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let offsetX = scrollView.contentOffset.x
 
+        let scollViewWidth: CGFloat
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            scollViewWidth = configuration.ipadWidth
+        } else {
+            scollViewWidth = size.width - configuration.spacing
+        }
+
         coordinator.animate(alongsideTransition: { [unowned self] _ in
-            self.scrollView.contentOffset.x = offsetX > 0.0 ? self.scrollViewWidth(for: size) : 0.0
+            self.scrollView.contentOffset.x = offsetX > 0.0 ? scollViewWidth : 0.0
         })
         super.viewWillTransition(to: size, with: coordinator)
     }
@@ -253,15 +260,6 @@ public class JESideMenuController: UIViewController {
     /// Close the menu
     @objc private func tapToClose(_ sender: UITapGestureRecognizer) {
         setMenuHidden(true, animated: true)
-    }
-
-    /// Calculate the size of the menu for a given size
-    private func scrollViewWidth(for size: CGSize) -> CGFloat {
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return configuration.ipadWidth
-        } else {
-            return size.width - configuration.spacing
-        }
     }
 
 }
