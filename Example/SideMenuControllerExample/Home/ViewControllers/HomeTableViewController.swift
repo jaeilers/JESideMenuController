@@ -23,6 +23,8 @@ class HomeTableViewController: UIViewController {
     }()
 
     private var viewModel = HomeViewModel()
+    private lazy var dataSource = HomeDataSource(identifier: String(describing: MessageTableViewCell.self),
+                                                 tableView: tableView)
 
     // MARK: - ViewController Lifecycle
 
@@ -54,9 +56,9 @@ class HomeTableViewController: UIViewController {
         let identifier = String(describing: MessageTableViewCell.self)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: identifier)
 
-        let dataSource = HomeDataSource(identifier: identifier,
-                                        tableView: tableView)
-        viewModel.dataSource = dataSource
+        viewModel.setData = { [weak self] data in
+            self?.dataSource.setData(data)
+        }
         tableView.dataSource = dataSource
         viewModel.loadData()
     }

@@ -1,5 +1,5 @@
 //
-//  TableViewController.swift
+//  ProfileTableViewController.swift
 //  SideMenuControllerExample
 //
 //  Created by Jasmin Eilers on 14.07.19.
