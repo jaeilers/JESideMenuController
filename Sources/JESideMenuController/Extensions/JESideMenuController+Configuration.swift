@@ -36,7 +36,7 @@ public extension JESideMenuController {
         /// The default configuration provides a visible spacing of 60, an iPad menu width of 320
         /// and a default drop shadow image.
         public static var `default`: Configuration {
-            return Configuration(spacing: 60.0, ipadWidth: 320.0, hasDropShadowImage: true, dropShadowImage: nil)
+            return Configuration(spacing: 60.0, ipadWidth: 320.0)
         }
     }
 
