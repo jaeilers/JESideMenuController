@@ -121,10 +121,12 @@ sideMenuController?.setMenuViewController(newMenuViewController)
 #### Set a new view controller and hide the menu
 ```swift
 /// Set and display a new root view controller and hide the menu (animated).
-public func setViewController(_ viewController: UIViewController, animated: Bool)
+public func setViewController(_ viewController: UIViewController, animated: Bool = true)
 
 // Example:
 let newViewController = ...
+sideMenuController?.setViewController(newViewController)
+// or
 sideMenuController?.setViewController(newViewController, animated: true)
 ```
 
