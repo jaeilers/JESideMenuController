@@ -7,7 +7,7 @@
 
 import UIKit
 
-public class JESideMenuController: UIViewController {
+public final class JESideMenuController: UIViewController {
 
     private struct Constants {
         static let alpha: CGFloat = 0.15
@@ -151,12 +151,10 @@ public class JESideMenuController: UIViewController {
         super.viewDidLayoutSubviews()
 
         // hide the menu at launch
-        if isLaunch {
-            isLaunch = false
-
-            let offsetX = isLeft ? scrollView.bounds.width : 0.0
-            scrollView.contentOffset.x = offsetX
-        }
+        guard isLaunch else { return }
+        isLaunch = false
+        let offsetX = isLeft ? scrollView.bounds.width : 0.0
+        scrollView.contentOffset.x = offsetX
     }
 
     // Forward TraitCollection change to the childViewController
