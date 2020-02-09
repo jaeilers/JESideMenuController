@@ -97,11 +97,11 @@ class JESideMenuControllerTests: XCTestCase {
     func testSliderPositionHiddenAtLaunch() {
         // Given
         let rootController = UIViewController()
-        let menuController = UITableViewController(style: .grouped)
-
+        let menuController = UIViewController()
         let sideMenuController = JESideMenuController(menuViewController: menuController,
                                                       style: .slideOut,
                                                       isLeft: false)
+
         // When
         sideMenuController.setViewController(rootController, animated: false)
         _ = sideMenuController.view
