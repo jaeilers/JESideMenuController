@@ -158,7 +158,6 @@ sideMenuController?.isMenuVisible
 You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
 
 ```swift
-///
 let config = JESideMenuController.Configuration(spacing: 100,
                                                 ipadWidth: 400,
                                                 hasDropShadowImage: true,
