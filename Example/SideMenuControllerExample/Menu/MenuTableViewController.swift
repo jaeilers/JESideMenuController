@@ -108,7 +108,7 @@ extension MenuTableViewController: UITableViewDelegate {
 
         let item = menuItems[indexPath.row]
         guard let viewController = viewController(with: item.storyboardID) else { return }
-        sideMenuController?.setViewController(viewController, animated: true)
+        sideMenuController?.setViewController(viewController)
     }
 
 }

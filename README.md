@@ -1,5 +1,5 @@
 # JESideMenuController
-[![Build Status](https://travis-ci.org/jaeilers/JESideMenuController.svg?branch=master)](https://travis-ci.org/jaeilers/JESideMenuController) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/master/graph/badge.svg)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/pod-1.0.0-blue.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
+[![Build Status](https://travis-ci.org/jaeilers/JESideMenuController.svg?branch=master)](https://travis-ci.org/jaeilers/JESideMenuController) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/master/graph/badge.svg)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/Xcode-10.2+-blue.svg) ![](https://img.shields.io/badge/iOS-10+-blue.svg) ![](https://img.shields.io/badge/pod-1.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
@@ -121,10 +121,12 @@ sideMenuController?.setMenuViewController(newMenuViewController)
 #### Set a new view controller and hide the menu
 ```swift
 /// Set and display a new root view controller and hide the menu (animated).
-public func setViewController(_ viewController: UIViewController, animated: Bool)
+public func setViewController(_ viewController: UIViewController, animated: Bool = true)
 
 // Example:
 let newViewController = ...
+sideMenuController?.setViewController(newViewController)
+// or
 sideMenuController?.setViewController(newViewController, animated: true)
 ```
 
@@ -158,7 +160,6 @@ sideMenuController?.isMenuVisible
 You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
 
 ```swift
-///
 let config = JESideMenuController.Configuration(spacing: 100,
                                                 ipadWidth: 400,
                                                 hasDropShadowImage: true,
