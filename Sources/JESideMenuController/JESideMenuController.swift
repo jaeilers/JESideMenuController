@@ -194,20 +194,19 @@ public final class JESideMenuController: UIViewController {
     }
 
     /**
-     Set and display a new root view controller. If animated is set to `true`, the slider will automatically hide.
+     Set and display a new root view controller and hides the slider menu with an animation.
      - parameter viewController: The view controller which will be displayed.
-     - parameter animated: The slider will automatically hide, if the boolean value is `true`.
+     - parameter animated: A boolean value that indicates whether the menu is hidden with an animation.
+     Default is `true`.
      */
     public func setViewController(_ viewController: UIViewController,
-                                  animated: Bool) {
-        transition(fromController: rootViewController,
-                   toViewController: viewController,
-                   containerView: containerView,
-                   duration: 0.0) { _ in
-            self.rootViewController = viewController
-        }
-
+                                  animated: Bool = true) {
         setMenuHidden(true, animated: animated)
+
+        guard rootViewController !== viewController else { return }
+        remove(controller: rootViewController)
+        add(controller: viewController, toView: containerView)
+        rootViewController = viewController
     }
 
     /**

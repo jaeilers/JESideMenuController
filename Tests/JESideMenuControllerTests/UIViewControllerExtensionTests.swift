@@ -51,25 +51,6 @@ class UIViewControllerExtensionTests: XCTestCase {
 
         parent.remove(controller: viewcontroller)
         XCTAssertEqual(parent.children.count, 0)
-
-        parent.transition(fromController: nil,
-                          toViewController: viewcontroller,
-                          containerView: parent.view,
-                          duration: 0.0)
-        XCTAssertEqual(parent.children.count, 1)
-
-        let expectation = XCTestExpectation(description: "Transition with animation")
-        let viewcontroller2 = UIViewController()
-
-        parent.transition(fromController: viewcontroller,
-                          toViewController: viewcontroller2,
-                          containerView: parent.view,
-                          duration: 0.05, completion: { _ in
-                            XCTAssertEqual(parent.children.count, 1)
-                            expectation.fulfill()
-        })
-
-        wait(for: [expectation], timeout: 2.0)
     }
 
 }
