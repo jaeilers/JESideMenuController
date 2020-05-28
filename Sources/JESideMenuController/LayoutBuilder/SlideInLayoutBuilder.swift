@@ -113,7 +113,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             gestureContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            gestureContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 10.0),
+            gestureContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 20.0),
             gestureContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
