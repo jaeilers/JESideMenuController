@@ -288,7 +288,9 @@ extension JESideMenuController {
         }
         builder.layout(in: view, isLeft: isLeft)
         shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
-        shadowImageView.isHidden = !configuration.hasDropShadowImage
+        if configuration.hasDropShadowImage == false {
+            shadowImageView.removeFromSuperview()
+        }
 
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToClose(_:)))
         tapView.addGestureRecognizer(tapGesture)

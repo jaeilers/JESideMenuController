@@ -80,14 +80,18 @@ struct SlideInLayoutBuilder: LayoutBuilding {
                 scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 gestureContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 menuContainerView.leadingAnchor.constraint(equalTo: gestureContainerView.leadingAnchor),
-                imageView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor)
+                imageView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor),
+                tapView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor),
+                tapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
                 ])
         } else {
             NSLayoutConstraint.activate([
                 scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 gestureContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
                 menuContainerView.trailingAnchor.constraint(equalTo: gestureContainerView.trailingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor)
+                imageView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor),
+                tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tapView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor)
                 ])
         }
     }
@@ -112,17 +116,15 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            gestureContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            gestureContainerView.topAnchor.constraint(equalTo: view.topAnchor),
             gestureContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 20.0),
-            gestureContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            menuContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            menuContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            menuContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+            menuContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             menuContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            tapView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor),
             tapView.topAnchor.constraint(equalTo: view.topAnchor),
-            tapView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             tapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
     }
