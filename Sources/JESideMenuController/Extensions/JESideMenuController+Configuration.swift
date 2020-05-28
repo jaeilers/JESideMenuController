@@ -9,9 +9,7 @@ import UIKit
 
 public extension JESideMenuController {
 
-    /**
-     Specify the general configuration of the side menu view controller.
-     */
+    /// Specify the general configuration of the side menu view controller.
     struct Configuration {
         /// The width of the area that is still visible when the menu is open. Default is 60.
         public let spacing: CGFloat

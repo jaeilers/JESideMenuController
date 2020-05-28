@@ -83,11 +83,13 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
+        let gestureContainerView = UIView()
         let imageView = UIImageView()
         let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
+                                           gestureContainerView: gestureContainerView,
                                            imageView: imageView)
 
         // When
@@ -99,6 +101,7 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertTrue(scrollView.superview === superview)
         XCTAssertTrue(tapView.superview === superview)
         XCTAssertTrue(imageView.superview === superview)
+        XCTAssertTrue(gestureContainerView.superview === superview)
         XCTAssertNotNil(menuContainerView.superview)
     }
 
@@ -108,11 +111,13 @@ class LayoutBuilderTests: XCTestCase {
         let containerView = UIView()
         let scrollView = UIScrollView()
         let tapView = UIView()
+        let gestureContainerView = UIView()
         let imageView = UIImageView()
         let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
                                            containerView: containerView,
                                            scrollView: scrollView,
                                            tapView: tapView,
+                                           gestureContainerView: gestureContainerView,
                                            imageView: imageView)
 
         // When
@@ -124,6 +129,7 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertTrue(scrollView.superview === superview)
         XCTAssertTrue(tapView.superview === superview)
         XCTAssertTrue(imageView.superview === superview)
+        XCTAssertTrue(gestureContainerView.superview === superview)
         XCTAssertNotNil(menuContainerView.superview)
     }
 

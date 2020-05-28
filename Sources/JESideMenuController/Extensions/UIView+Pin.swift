@@ -9,10 +9,8 @@ import UIKit
 
 extension UIView {
 
-    /**
-     Pins the view to another view. The view needs to be part of the view hierarchy.
-     - parameter view: The view it should be pinned to via auto layout
-     */
+    /// Pins the view to another view. The view needs to be part of the view hierarchy.
+    /// - parameter view: The view it should be pinned to via auto layout
     func pin(to view: UIView?) {
         guard superview != nil, let view = view else { return }
 
