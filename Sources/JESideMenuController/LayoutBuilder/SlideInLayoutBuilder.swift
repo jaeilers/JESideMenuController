@@ -28,6 +28,8 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     let scrollView: UIScrollView
     /// A view that recognizes a tap to close the menu gesture.
     let tapView: UIView
+    /// A view that recognizes the pan gesture of the scrollView at the screen edge.
+    let gestureContainerView: UIView
     /// An image view with a drop shadow.
     let imageView: UIImageView
 
@@ -37,14 +39,12 @@ struct SlideInLayoutBuilder: LayoutBuilding {
         guard let view = view else { return }
 
         let contentView = UIView()
-        let gestureContainerView = UIView()
         gestureContainerView.addGestureRecognizer(scrollView.panGestureRecognizer)
 
-        setupSubviews(with: view, contentView: contentView, gestureContainerView: gestureContainerView)
+        setupSubviews(with: view, contentView: contentView)
         addDeviceSpecificConstraints(to: view, scrollView: scrollView, isLeft: isLeft)
-        addSideSpecificConstraints(with: view, contentView: contentView, gestureContainerView: gestureContainerView,
-                                   isLeft: isLeft)
-        addConstraints(with: view, contentView: contentView, gestureContainerView: gestureContainerView)
+        addSideSpecificConstraints(with: view, contentView: contentView, isLeft: isLeft)
+        addConstraints(with: view, contentView: contentView)
     }
 
     // MARK: - Private Methods
@@ -53,15 +53,13 @@ struct SlideInLayoutBuilder: LayoutBuilding {
      Add all views to the view hierarchy.
      - parameter view: The superview.
      - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: The superview of the menuContainerView which is slightly larger than
-     the menu to ensure a screen edge gesture recognition.
      */
-    private func setupSubviews(with view: UIView, contentView: UIView, gestureContainerView: UIView) {
+    private func setupSubviews(with view: UIView, contentView: UIView) {
         view.addSubview(scrollView)
         view.addSubview(containerView)
-        view.addSubview(tapView)
         view.addSubview(imageView)
         view.addSubview(gestureContainerView)
+        view.addSubview(tapView)
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.addSubview(contentView)
@@ -74,25 +72,26 @@ struct SlideInLayoutBuilder: LayoutBuilding {
      Adds constraints that are specific for the side where the menu should be placed (left/right).
      - parameter view: The superview.
      - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: The superview of the menuContainerView which is slightly larger than
-     the menu to ensure a screen edge gesture recognition.
      - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
      */
-    private func addSideSpecificConstraints(with view: UIView, contentView: UIView,
-                                            gestureContainerView: UIView, isLeft: Bool) {
+    private func addSideSpecificConstraints(with view: UIView, contentView: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
                 scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 gestureContainerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
                 menuContainerView.leadingAnchor.constraint(equalTo: gestureContainerView.leadingAnchor),
-                imageView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor)
+                imageView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor),
+                tapView.leadingAnchor.constraint(equalTo: menuContainerView.trailingAnchor),
+                tapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
                 ])
         } else {
             NSLayoutConstraint.activate([
                 scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 gestureContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
                 menuContainerView.trailingAnchor.constraint(equalTo: gestureContainerView.trailingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor)
+                imageView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor),
+                tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tapView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor)
                 ])
         }
     }
@@ -102,10 +101,8 @@ struct SlideInLayoutBuilder: LayoutBuilding {
      All views have to be added in the view hierarchy beforehand.
      - parameter view: The superview.
      - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: The superview of the menuContainerView which is slightly larger than
-     the menu to ensure a screen edge gesture recognition.
      */
-    private func addConstraints(with view: UIView, contentView: UIView, gestureContainerView: UIView) {
+    private func addConstraints(with view: UIView, contentView: UIView) {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -119,18 +116,16 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             containerView.topAnchor.constraint(equalTo: view.topAnchor),
             containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            gestureContainerView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            gestureContainerView.topAnchor.constraint(equalTo: view.topAnchor),
             gestureContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: 20.0),
-            gestureContainerView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            menuContainerView.topAnchor.constraint(equalTo: gestureContainerView.topAnchor),
-            menuContainerView.bottomAnchor.constraint(equalTo: gestureContainerView.bottomAnchor),
+            menuContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+            menuContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             menuContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            tapView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            tapView.topAnchor.constraint(equalTo: containerView.topAnchor),
-            tapView.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            tapView.bottomAnchor.constraint(equalTo: containerView.bottomAnchor)
+            tapView.topAnchor.constraint(equalTo: view.topAnchor),
+            tapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
     }
 
