@@ -13,6 +13,7 @@ class MenuTableViewController: UIViewController {
 
     private struct Constants {
         static let identifier = "cell"
+        static let topSpacing: CGFloat = 44.0
     }
 
     private struct Item {
@@ -51,7 +52,7 @@ class MenuTableViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 44.0),
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.topSpacing),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
