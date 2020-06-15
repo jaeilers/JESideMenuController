@@ -22,7 +22,6 @@ class HomeTableViewController: UIViewController {
         return tableView
     }()
 
-    private var viewModel = HomeViewModel()
     private lazy var dataSource = HomeDataSource(identifier: String(describing: MessageTableViewCell.self),
                                                  tableView: tableView)
 
@@ -55,12 +54,15 @@ class HomeTableViewController: UIViewController {
     private func setupTableView() {
         let identifier = String(describing: MessageTableViewCell.self)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: identifier)
-
-        viewModel.setData = { [weak self] data in
-            self?.dataSource.setData(data)
-        }
         tableView.dataSource = dataSource
-        viewModel.loadData()
+
+        do {
+            let dataLoader = DataLoader()
+            let data: [Message] = try dataLoader.loadData()
+            dataSource.setData(data)
+        } catch {
+            print("*** Error: \(error.localizedDescription)")
+        }
     }
 
     @objc private func toggle(_ sender: UIBarButtonItem) {
