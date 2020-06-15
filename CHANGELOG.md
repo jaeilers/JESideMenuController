@@ -9,6 +9,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 - Increased code coverage.
 - Added functionality to adjust the side menu configuration. (spacing, iPad menu width, drop shadow image etc.)
 
+### Changed
+- Improved example application.
+
 ### Fixed
 - Rewording of description and fix typos in README.
 - Fixed a bug where the slide-in edge gesture recognizer would block the recognition of UINavigationControllers back swipe.
