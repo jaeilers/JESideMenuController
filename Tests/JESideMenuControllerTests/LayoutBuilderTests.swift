@@ -11,170 +11,150 @@ import XCTest
 
 class LayoutBuilderTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    private struct Layout {
+        let menuContainerView = UIView()
+        let containerView = UIView()
+        let scrollView = UIScrollView()
+        let tapView = UIView()
+        let gestureContainerView = UIView()
+        let imageView = UIImageView()
+        let darkView = UIView()
     }
 
     func testSlideOutBuilderLeft() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let imageView = UIImageView()
-        let darkView = UIView()
+        let layout = Layout()
         let builder = SlideOutLayoutBuilder(spacing: 60, ipadWidth: 320,
-                                            menuContainerView: menuContainerView,
-                                            containerView: containerView,
-                                            scrollView: scrollView,
-                                            tapView: tapView,
-                                            imageView: imageView,
-                                            darkView: darkView)
+                                            menuContainerView: layout.menuContainerView,
+                                            containerView: layout.containerView,
+                                            scrollView: layout.scrollView,
+                                            tapView: layout.tapView,
+                                            imageView: layout.imageView,
+                                            darkView: layout.darkView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(menuContainerView.superview === superview)
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertTrue(darkView.superview === superview)
-        XCTAssertNotNil(containerView.superview)
-        XCTAssertNotNil(tapView.superview)
-        XCTAssertNotNil(imageView.superview)
+        XCTAssertTrue(layout.menuContainerView.superview === superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertTrue(layout.darkView.superview === superview)
+        XCTAssertNotNil(layout.containerView.superview)
+        XCTAssertNotNil(layout.tapView.superview)
+        XCTAssertNotNil(layout.imageView.superview)
     }
 
     func testSlideOutBuilderRight() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let imageView = UIImageView()
-        let darkView = UIView()
+        let layout = Layout()
         let builder = SlideOutLayoutBuilder(spacing: 0, ipadWidth: 0,
-                                            menuContainerView: menuContainerView,
-                                            containerView: containerView,
-                                            scrollView: scrollView,
-                                            tapView: tapView,
-                                            imageView: imageView,
-                                            darkView: darkView)
+                                            menuContainerView: layout.menuContainerView,
+                                            containerView: layout.containerView,
+                                            scrollView: layout.scrollView,
+                                            tapView: layout.tapView,
+                                            imageView: layout.imageView,
+                                            darkView: layout.darkView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: false)
 
         // Then
-        XCTAssertTrue(menuContainerView.superview === superview)
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertTrue(darkView.superview === superview)
-        XCTAssertNotNil(containerView.superview)
-        XCTAssertNotNil(tapView.superview)
-        XCTAssertNotNil(imageView.superview)
+        XCTAssertTrue(layout.menuContainerView.superview === superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertTrue(layout.darkView.superview === superview)
+        XCTAssertNotNil(layout.containerView.superview)
+        XCTAssertNotNil(layout.tapView.superview)
+        XCTAssertNotNil(layout.imageView.superview)
     }
 
     func testSlideInBuilderLeft() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let gestureContainerView = UIView()
-        let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
-                                           containerView: containerView,
-                                           scrollView: scrollView,
-                                           tapView: tapView,
-                                           gestureContainerView: gestureContainerView,
-                                           imageView: imageView)
+        let layout = Layout()
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320,
+                                           menuContainerView: layout.menuContainerView,
+                                           containerView: layout.containerView,
+                                           scrollView: layout.scrollView,
+                                           tapView: layout.tapView,
+                                           gestureContainerView: layout.gestureContainerView,
+                                           imageView: layout.imageView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(containerView.superview === superview)
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertTrue(tapView.superview === superview)
-        XCTAssertTrue(imageView.superview === superview)
-        XCTAssertTrue(gestureContainerView.superview === superview)
-        XCTAssertNotNil(menuContainerView.superview)
+        XCTAssertTrue(layout.containerView.superview === superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertTrue(layout.tapView.superview === superview)
+        XCTAssertTrue(layout.imageView.superview === superview)
+        XCTAssertTrue(layout.gestureContainerView.superview === superview)
+        XCTAssertNotNil(layout.menuContainerView.superview)
     }
 
     func testSlideInBuilderRight() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let gestureContainerView = UIView()
-        let imageView = UIImageView()
-        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, menuContainerView: menuContainerView,
-                                           containerView: containerView,
-                                           scrollView: scrollView,
-                                           tapView: tapView,
-                                           gestureContainerView: gestureContainerView,
-                                           imageView: imageView)
+        let layout = Layout()
+        let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320,
+                                           menuContainerView: layout.menuContainerView,
+                                           containerView: layout.containerView,
+                                           scrollView: layout.scrollView,
+                                           tapView: layout.tapView,
+                                           gestureContainerView: layout.gestureContainerView,
+                                           imageView: layout.imageView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: false)
 
         // Then
-        XCTAssertTrue(containerView.superview === superview)
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertTrue(tapView.superview === superview)
-        XCTAssertTrue(imageView.superview === superview)
-        XCTAssertTrue(gestureContainerView.superview === superview)
-        XCTAssertNotNil(menuContainerView.superview)
+        XCTAssertTrue(layout.containerView.superview === superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertTrue(layout.tapView.superview === superview)
+        XCTAssertTrue(layout.imageView.superview === superview)
+        XCTAssertTrue(layout.gestureContainerView.superview === superview)
+        XCTAssertNotNil(layout.menuContainerView.superview)
     }
 
     func testSlideOutInlineBuilderLeft() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
-                                                  containerView: containerView,
-                                                  scrollView: scrollView,
-                                                  tapView: tapView)
+        let layout = Layout()
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600,
+                                                  menuContainerView: layout.menuContainerView,
+                                                  containerView: layout.containerView,
+                                                  scrollView: layout.scrollView,
+                                                  tapView: layout.tapView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertNotNil(menuContainerView.superview)
-        XCTAssertNotNil(containerView.superview)
-        XCTAssertNotNil(tapView.superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertNotNil(layout.menuContainerView.superview)
+        XCTAssertNotNil(layout.containerView.superview)
+        XCTAssertNotNil(layout.tapView.superview)
     }
 
     func testSlideOutInlineBuilderRight() {
         // Given
-        let menuContainerView = UIView()
-        let containerView = UIView()
-        let scrollView = UIScrollView()
-        let tapView = UIView()
-        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, menuContainerView: menuContainerView,
-                                                  containerView: containerView,
-                                                  scrollView: scrollView,
-                                                  tapView: tapView)
+        let layout = Layout()
+        let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600,
+                                                  menuContainerView: layout.menuContainerView,
+                                                  containerView: layout.containerView,
+                                                  scrollView: layout.scrollView,
+                                                  tapView: layout.tapView)
 
         // When
         let superview = UIView()
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(scrollView.superview === superview)
-        XCTAssertNotNil(menuContainerView.superview)
-        XCTAssertNotNil(containerView.superview)
-        XCTAssertNotNil(tapView.superview)
+        XCTAssertTrue(layout.scrollView.superview === superview)
+        XCTAssertNotNil(layout.menuContainerView.superview)
+        XCTAssertNotNil(layout.containerView.superview)
+        XCTAssertNotNil(layout.tapView.superview)
     }
 
     func testDefaultLayoutBuilderDeviceSpecificConstraints() {
@@ -182,10 +162,13 @@ class LayoutBuilderTests: XCTestCase {
         let spacing: CGFloat = 50.0
         let ipadWidth: CGFloat = 200.0
         let builder = DefaultLayoutBuilder(spacing: spacing, ipadWidth: ipadWidth)
+
         let containerView = UIView()
         containerView.translatesAutoresizingMaskIntoConstraints = false
+
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
+
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         containerView.addSubview(scrollView)
