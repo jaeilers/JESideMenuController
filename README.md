@@ -1,5 +1,5 @@
 # JESideMenuController
-[![Build Status](https://travis-ci.org/jaeilers/JESideMenuController.svg?branch=master)](https://travis-ci.org/jaeilers/JESideMenuController) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/master/graph/badge.svg)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/Xcode-10.2+-blue.svg) ![](https://img.shields.io/badge/iOS-10+-blue.svg) ![](https://img.shields.io/badge/pod-1.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
+[![Build Status](https://travis-ci.com/jaeilers/JESideMenuController.svg?branch=master)](https://travis-ci.com/jaeilers/JESideMenuController) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/master/graph/badge.svg)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/Xcode-10.2+-blue.svg) ![](https://img.shields.io/badge/iOS-10+-blue.svg) ![](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
@@ -27,14 +27,14 @@ slide out | slide in | slide out inline
 To integrate the `JESideMenuController` in your project, add the following line to your `Podfile`:
 
 ```
-  pod 'JESideMenuController', '~> 1.0.0'
+  pod 'JESideMenuController', '~> 2.0.0'
 ```
 
 ### Carthage
 [Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager. To integrate the `JESideMenuController` add the following line to your `Cartfile` and follow the instructions to [add the framework to your application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application):
 
 ```
-github "jaeilers/JESideMenuController" ~> 1.0.0
+github "jaeilers/JESideMenuController" ~> 2.0.0
 ```
 
 ### Swift Package Manager
@@ -42,7 +42,7 @@ github "jaeilers/JESideMenuController" ~> 1.0.0
 
 ```
 dependencies: [
-	.package(url: "https://github.com/jaeilers/JESideMenuController.git", from: "1.0.0")
+	.package(url: "https://github.com/jaeilers/JESideMenuController.git", from: "2.0.0")
 ]
 ```
 
