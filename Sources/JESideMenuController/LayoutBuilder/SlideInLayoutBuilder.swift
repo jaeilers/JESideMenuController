@@ -85,12 +85,16 @@ struct SlideInLayoutBuilder: LayoutBuilding {
                 tapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
                 ])
         } else {
+            // the layout system might break this constraint on rotation.
+            let tapLeading = tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
+            tapLeading.priority = .defaultHigh
+            tapLeading.isActive = true
+
             NSLayoutConstraint.activate([
                 scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 gestureContainerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
                 menuContainerView.trailingAnchor.constraint(equalTo: gestureContainerView.trailingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor),
-                tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 tapView.trailingAnchor.constraint(equalTo: menuContainerView.leadingAnchor)
                 ])
         }
@@ -121,8 +125,8 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             imageView.topAnchor.constraint(equalTo: view.topAnchor),
             imageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            menuContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            menuContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            menuContainerView.topAnchor.constraint(equalTo: gestureContainerView.topAnchor),
+            menuContainerView.bottomAnchor.constraint(equalTo: gestureContainerView.bottomAnchor),
             menuContainerView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
             tapView.topAnchor.constraint(equalTo: view.topAnchor),
             tapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
