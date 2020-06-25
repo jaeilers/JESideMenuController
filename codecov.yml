@@ -3,4 +3,3 @@ coverage:
     project:
       default:
         threshold: 1 # allow coverage decrease up to 1%
-    patch: off # no status report for PR diff
