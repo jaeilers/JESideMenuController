@@ -24,4 +24,4 @@ jobs:
       run: xcodebuild test -project JESideMenuController.xcodeproj -scheme JESideMenuController-Package -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11'
 
     - name: Upload code coverage to codecov.io
-      uses: codecov/codecov-action@v1
+      run: bash <(curl -s https://codecov.io/bash)
