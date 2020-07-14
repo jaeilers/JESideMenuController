@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+      - develop
+
+  pull_request:
+    branches:
+      - develop
+      - feature/*
+      - bugfix/*
+      - release/*
+
+jobs:
+  run-tests:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build and Test
+      run: xcodebuild test -project JESideMenuController.xcodeproj -scheme JESideMenuController-Package -destination 'platform=iOS Simulator,OS=13.5,name=iPhone 11'
+
+    - name: Upload code coverage to codecov.io
+      run: bash <(curl -s https://codecov.io/bash)
