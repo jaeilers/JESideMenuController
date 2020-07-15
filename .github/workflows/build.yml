@@ -8,10 +8,8 @@ on:
 
   pull_request:
     branches:
+      - master
       - develop
-      - feature/*
-      - bugfix/*
-      - release/*
 
 jobs:
   run-tests:
