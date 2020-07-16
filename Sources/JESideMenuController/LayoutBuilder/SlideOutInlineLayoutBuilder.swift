@@ -7,10 +7,8 @@
 
 import UIKit
 
-/**
- The `SlideOutInlineLayoutBuilder` is responsible for building a layout where menu and the content slide-out
- simultaniously.
- */
+/// The `SlideOutInlineLayoutBuilder` is responsible for building a layout where menu and the content slide-out
+/// simultaniously.
 struct SlideOutInlineLayoutBuilder: LayoutBuilding {
 
     // MARK: - Protocol Properties
@@ -47,13 +45,11 @@ struct SlideOutInlineLayoutBuilder: LayoutBuilding {
 
     // MARK: - Private Methods
 
-    /**
-     Add all views to the view hierarchy.
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: A container that wraps the menu and the containerView.
-     This view is responsible recognizing the scrollViews pan gesture.
-     */
+    /// Add all views to the view hierarchy.
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
+    /// - parameter gestureContainerView: A container that wraps the menu and the containerView.
+    /// This view is responsible recognizing the scrollViews pan gesture.
     private func setupSubviews(with view: UIView, contentView: UIView, gestureContainerView: UIView) {
         view.addSubview(scrollView)
         view.addSubview(gestureContainerView)
@@ -66,14 +62,12 @@ struct SlideOutInlineLayoutBuilder: LayoutBuilding {
         gestureContainerView.addSubview(tapView)
     }
 
-    /**
-     Adds constraints that are specific for the side where the menu should be placed (left/right).
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: A container that wraps the menu and the containerView.
-     This view is responsible for recognizing the scrollViews pan gesture.
-     - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
-     */
+    /// Adds constraints that are specific for the side where the menu should be placed (left/right).
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
+    /// - parameter gestureContainerView: A container that wraps the menu and the containerView.
+    /// This view is responsible for recognizing the scrollViews pan gesture.
+    /// - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
     private func addSideSpecificConstraints(with view: UIView, contentView: UIView, gestureContainerView: UIView,
                                             isLeft: Bool) {
         if isLeft {
@@ -95,14 +89,12 @@ struct SlideOutInlineLayoutBuilder: LayoutBuilding {
         }
     }
 
-    /**
-     Adds all the remaining constraints that aren't device or side specific to all the views.
-     All views have to be added in the view hierarchy beforehand.
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     - parameter gestureContainerView: A container that wraps the menu and the containerView.
-     This view is responsible for recognizing the scrollViews pan gesture.
-     */
+    /// Adds all the remaining constraints that aren't device or side specific to all the views.
+    /// All views have to be added in the view hierarchy beforehand.
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
+    /// - parameter gestureContainerView: A container that wraps the menu and the containerView.
+    /// This view is responsible for recognizing the scrollViews pan gesture.
     private func addConstraints(with view: UIView, contentView: UIView, gestureContainerView: UIView) {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),

@@ -15,11 +15,9 @@ protocol LayoutBuilding {
     /// Menu width on iPad
     var ipadWidth: CGFloat { get }
 
-    /**
-     Builds the layout for a slider menu in the specified view.
-     - parameter view: The entry point to build up the view hierarchy.
-     - parameter isLeft: A Boolean value that determines the side which the menu will be placed.
-     */
+    /// Builds the layout for a slider menu in the specified view.
+    /// - parameter view: The entry point to build up the view hierarchy.
+    /// - parameter isLeft: A Boolean value that determines the side which the menu will be placed.
     func layout(in view: UIView?, isLeft: Bool)
 
 }

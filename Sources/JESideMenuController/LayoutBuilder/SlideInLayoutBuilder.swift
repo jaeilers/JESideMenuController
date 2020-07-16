@@ -7,10 +7,8 @@
 
 import UIKit
 
-/**
- The `SlideInLayoutBuilder` is a slide-in menu similar to a navigation drawer that slides in over the content.
- This layout builder layouts the menu on specific side (left/right).
- */
+/// The `SlideInLayoutBuilder` is a slide-in menu similar to a navigation drawer that slides in over the content.
+/// This layout builder layouts the menu on specific side (left/right).
 struct SlideInLayoutBuilder: LayoutBuilding {
 
     // MARK: - Protocol Properties
@@ -49,11 +47,9 @@ struct SlideInLayoutBuilder: LayoutBuilding {
 
     // MARK: - Private Methods
 
-    /**
-     Add all views to the view hierarchy.
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     */
+    /// Add all views to the view hierarchy.
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
     private func setupSubviews(with view: UIView, contentView: UIView) {
         view.addSubview(scrollView)
         view.addSubview(containerView)
@@ -68,12 +64,10 @@ struct SlideInLayoutBuilder: LayoutBuilding {
         gestureContainerView.addSubview(menuContainerView)
     }
 
-    /**
-     Adds constraints that are specific for the side where the menu should be placed (left/right).
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
-     */
+    /// Adds constraints that are specific for the side where the menu should be placed (left/right).
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
+    /// - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
     private func addSideSpecificConstraints(with view: UIView, contentView: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
@@ -100,12 +94,10 @@ struct SlideInLayoutBuilder: LayoutBuilding {
         }
     }
 
-    /**
-     Adds all the remaining constraints that aren't device or side specific to all the views.
-     All views have to be added in the view hierarchy beforehand.
-     - parameter view: The superview.
-     - parameter contentView: The contentView of the scrollView.
-     */
+    /// Adds all the remaining constraints that aren't device or side specific to all the views.
+    /// All views have to be added in the view hierarchy beforehand.
+    /// - parameter view: The superview.
+    /// - parameter contentView: The contentView of the scrollView.
     private func addConstraints(with view: UIView, contentView: UIView) {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.topAnchor),

@@ -49,7 +49,7 @@ public final class JESideMenuController: UIViewController {
     public var isScrollEnabled: Bool {
         set {
             scrollView.isScrollEnabled = newValue
-            /// hide the gesture container view for slide-in style, so that it doesn't block swipe-back.
+            // hide the gesture container view for slide-in style, so that it doesn't block swipe-back.
             guard style == .slideIn else { return }
             gestureContainerView.isHidden = !newValue
         }
@@ -115,8 +115,8 @@ public final class JESideMenuController: UIViewController {
     private weak var rootViewController: UIViewController?
 
     private var style: Style = .slideOut
-    private var isLaunch = true
     private var configuration: Configuration = .default
+    private var isLaunch = true
 
     // MARK: - Init
 
@@ -156,12 +156,7 @@ public final class JESideMenuController: UIViewController {
 
     public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        // hide the menu at launch
-        guard isLaunch else { return }
-        isLaunch = false
-        let offsetX = isLeft ? scrollView.bounds.width : 0.0
-        scrollView.contentOffset.x = offsetX
+        hideMenuAtLaunch()
     }
 
     /// Forward TraitCollection change to the childViewController
@@ -213,7 +208,7 @@ public final class JESideMenuController: UIViewController {
     /// Hides or reveals the menu based on the current state.
     /// - parameter animated: A Boolean value that determines if the change should be animated. Default is `true`.
     public func toggle(animated: Bool = true) {
-        let offsetX = scrollView.contentOffset.x > 0 ? 0.0 : scrollView.bounds.width
+        let offsetX: CGFloat = scrollView.contentOffset.x > 0 ? 0.0 : scrollView.bounds.width
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0.0), animated: animated)
     }
 
@@ -221,9 +216,9 @@ public final class JESideMenuController: UIViewController {
     /// - parameter isHidden: A Boolean value that determines whether the menu view controller will be hidden.
     ///  - parameter animated: A Boolean value that determines if the change should be animated.
     public func setMenuHidden(_ isHidden: Bool, animated: Bool) {
-        let leftOffset = isHidden ? scrollView.bounds.width : 0.0
-        let rightOffset = isHidden ? 0.0 : scrollView.bounds.width
-        let offsetX = isLeft ? leftOffset : rightOffset
+        let leftOffset: CGFloat = isHidden ? scrollView.bounds.width : 0.0
+        let rightOffset: CGFloat = isHidden ? 0.0 : scrollView.bounds.width
+        let offsetX: CGFloat = isLeft ? leftOffset : rightOffset
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0.0), animated: animated)
     }
 
@@ -245,6 +240,13 @@ public final class JESideMenuController: UIViewController {
 
         guard let menuViewController = menuViewController else { return }
         add(controller: menuViewController, toView: menuContainerView)
+    }
+
+    private func hideMenuAtLaunch() {
+        guard isLaunch else { return }
+        isLaunch = false
+        let offsetX: CGFloat = isLeft ? scrollView.bounds.width : 0.0
+        scrollView.contentOffset.x = offsetX
     }
 
     /// Close the menu
@@ -286,9 +288,12 @@ extension JESideMenuController {
                                                   menuContainerView: menuContainerView, containerView: containerView,
                                                   scrollView: scrollView, tapView: tapView)
         }
+
         builder.layout(in: view, isLeft: isLeft)
-        shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
-        if configuration.hasDropShadowImage == false {
+
+        if configuration.hasDropShadowImage {
+            shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
+        } else {
             shadowImageView.removeFromSuperview()
         }
 
@@ -312,9 +317,7 @@ extension JESideMenuController: UIScrollViewDelegate {
         shadowImageView.isHidden = alpha == 0.0
 
         // this view is only present in the .slideOut style to reveal/lighten the menu when it opens
-        guard style == .slideOut else {
-            return
-        }
+        guard style == .slideOut else { return }
         let darkAlpha = getAlpha(for: !isLeft, maxValue: Constants.alpha, scrollView: scrollView)
         darkView.alpha = darkAlpha
         darkView.isHidden = darkAlpha == 0.0
