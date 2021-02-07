@@ -1,5 +1,5 @@
 # JESideMenuController
-![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/Xcode-10.2+-blue.svg) ![](https://img.shields.io/badge/iOS-10+-blue.svg) ![](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
+![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.1-orange.svg) ![](https://img.shields.io/badge/platform-iOS-blue.svg) ![](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
@@ -17,9 +17,9 @@ slide out | slide in | slide out inline
 ![](Example/resources/slide-out.gif) | ![](Example/resources/slide-in.gif) | ![](Example/resources/slide-out-inline.gif)
 
 ## Requirements
-- iOS 10.0+
-- Xcode 10.2+
-- Swift 4.2+
+- iOS 10+
+- Xcode 11+
+- Swift 5.1+
 
 ## Installation
 
@@ -76,8 +76,10 @@ The default values are a slide-out menu on the left side. To choose a different 
 
 ```swift
 ...
-let sideMenuController = JESideMenuController(style: .slideIn,
-                                              isLeft: false)
+let sideMenuController = JESideMenuController(
+	style: .slideIn,
+	isLeft: false
+)
 ...
 ```
 
@@ -103,7 +105,7 @@ You can access the `JESideMenuController` instance due to a `UIViewController` e
 public var sideMenuController: JESideMenuController? { get }
 ```
 
-#### Enabled/disable scrolling
+#### Enable/disable scrolling
 ```swift
 public var isScrollEnabled: Bool { get set }
 ```
@@ -160,13 +162,16 @@ sideMenuController?.isMenuVisible
 You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
 
 ```swift
-let config = JESideMenuController.Configuration(spacing: 100,
-                                                ipadWidth: 400,
-                                                hasDropShadowImage: true,
-                                                dropShadowImage: UIImage(named: ...))
+let config = JESideMenuController.Configuration(
+	spacing: 100,
+	ipadWidth: 400,
+	tintColor: .gray,
+	hasDropShadowImage: true,
+	dropShadowImage: UIImage(name: ...)
+)
 let sideMenuController = JESideMenuController(configuration: config)
 ...
 ```
 
 ## License
-This framework is released under [MIT License](./LICENSE.md). All icons featured in the example project are part of [80 UI outlined icons](https://www.sketchappsources.com/free-source/3841-ui-outlined-icons-sketch-freebie-resource.html) and were created by *Kit of Parts*, &copy; 2019 [kitofparts.co](http://kitofparts.co/)
+This framework is released under [MIT License](./LICENSE.md).

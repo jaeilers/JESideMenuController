@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class JESideMenuController: UIViewController {
+public final class JESideMenuController: UIViewController, LayoutContainer {
 
     private struct Constants {
         static let alpha: CGFloat = 0.15
@@ -56,24 +56,24 @@ public final class JESideMenuController: UIViewController {
         }
     }
 
-    // MARK: - Private Properties
+    // MARK: - Layout Container Properties
 
     /// The containerView for the content.
-    private lazy var containerView: UIView = {
+    lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     /// The containerView for the menu.
-    private lazy var menuContainerView: UIView = {
+    lazy var menuContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     /// Responsible for the scrolling behaviour of the menu (paging).
-    private lazy var scrollView: UIScrollView = {
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isHidden = true
@@ -84,15 +84,15 @@ public final class JESideMenuController: UIViewController {
     }()
 
     /// Hosts the tap gesture recognizer to close the menu.
-    private lazy var tapView: UIView = {
+    lazy var tapView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
     }()
 
-    /// Drop down shadow
-    private lazy var shadowImageView: UIImageView = {
+    /// Drop down shadow.
+    lazy var shadowImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
@@ -101,15 +101,17 @@ public final class JESideMenuController: UIViewController {
     }()
 
     /// Darkens the menu in .slideOut to reveal it underneath the containerView
-    private lazy var darkView: UIView = {
+    lazy var darkView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        view.backgroundColor = configuration.tintColor
         return view
     }()
 
     /// View that hosts the gesture recognizer for the slide-in menu.
-    private lazy var gestureContainerView = UIView()
+    lazy var gestureContainerView = UIView()
+
+    // MARK: - Private Properties
 
     private weak var menuViewController: UIViewController?
     private weak var rootViewController: UIViewController?
@@ -171,9 +173,8 @@ public final class JESideMenuController: UIViewController {
     /// so that the status of the menu (open/closed) doesn't change on rotation.
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let offsetX = scrollView.contentOffset.x
-        let builder = DefaultLayoutBuilder(spacing: configuration.spacing,
-                                           ipadWidth: configuration.ipadWidth)
-        let scrollViewWidth: CGFloat = builder.getScrollViewWidth(for: size)
+        let util = LayoutUtil(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth)
+        let scrollViewWidth: CGFloat = util.getScrollViewWidth(for: size)
 
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.scrollView.contentOffset.x = offsetX > 0.0 ? scrollViewWidth : 0.0
@@ -253,7 +254,6 @@ public final class JESideMenuController: UIViewController {
     @objc private func tapToClose(_ sender: UITapGestureRecognizer) {
         setMenuHidden(true, animated: true)
     }
-
 }
 
 // MARK: - Layout Setup
@@ -270,29 +270,24 @@ extension JESideMenuController {
         case .slideOut:
             image = imageBuilder.makeShadowImage(isFadingLeft: isLeft)
             builder = SlideOutLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                            menuContainerView: menuContainerView, containerView: containerView,
-                                            scrollView: scrollView, tapView: tapView, imageView: shadowImageView,
-                                            darkView: darkView)
+                                            container: self)
         case .slideIn:
             image = imageBuilder.makeShadowImage(isFadingLeft: !isLeft)
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideInLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                           menuContainerView: menuContainerView, containerView: containerView,
-                                           scrollView: scrollView, tapView: tapView,
-                                           gestureContainerView: gestureContainerView,
-                                           imageView: shadowImageView)
+                                           container: self)
         case .slideOutInline:
             image = nil
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideOutInlineLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                                  menuContainerView: menuContainerView, containerView: containerView,
-                                                  scrollView: scrollView, tapView: tapView)
+                                                  container: self)
         }
 
         builder.layout(in: view, isLeft: isLeft)
 
         if configuration.hasDropShadowImage {
             shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
+            shadowImageView.tintColor = configuration.tintColor
         } else {
             shadowImageView.removeFromSuperview()
         }
@@ -300,7 +295,6 @@ extension JESideMenuController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToClose(_:)))
         tapView.addGestureRecognizer(tapGesture)
     }
-
 }
 
 // MARK: - ScrollView Delegate
@@ -332,5 +326,4 @@ extension JESideMenuController: UIScrollViewDelegate {
             return maxValue / scrollView.bounds.width * scrollView.contentOffset.x
         }
     }
-
 }

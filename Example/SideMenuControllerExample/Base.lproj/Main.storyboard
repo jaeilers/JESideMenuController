@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,8 +16,8 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="rootId" value="root"/>
@@ -35,7 +36,9 @@
         <scene sceneID="ryV-BR-5ee">
             <objects>
                 <navigationController id="etC-0G-scd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" image="comment" id="5Ys-42-bb4"/>
+                    <tabBarItem key="tabBarItem" title="Messages" id="5Ys-42-bb4">
+                        <imageReference key="image" image="text.bubble" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ju4-xh-4ZN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -55,8 +58,8 @@
                     <view key="view" contentMode="scaleToFill" id="J8q-Yd-qQc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="1Cf-cn-Cav"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="cda-aH-PFB"/>
                     <navigationItem key="navigationItem" title="Messages" id="R9f-2M-N8P"/>
@@ -79,8 +82,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="dKe-jN-Hcf">
-                        <barButtonItem key="leftBarButtonItem" image="toggle" id="d2y-9p-J0u">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="leftBarButtonItem" id="d2y-9p-J0u">
+                            <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="toggle:" destination="nId-l2-vZT" id="xDq-Kc-lJm"/>
                             </connections>
@@ -117,7 +121,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bWS-ih-1fh">
                                 <rect key="frame" x="0.0" y="44" width="375" height="623"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="pOy-8X-6ka" style="IBUITableViewCellStyleDefault" id="Z3B-rt-jzs">
                                         <rect key="frame" x="0.0" y="28" width="375" height="43.5"/>
@@ -127,7 +131,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pOy-8X-6ka">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -146,18 +150,19 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="p5U-4o-e1e"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bWS-ih-1fh" firstAttribute="bottom" secondItem="p5U-4o-e1e" secondAttribute="bottom" id="4UB-bW-Fka"/>
                             <constraint firstItem="bWS-ih-1fh" firstAttribute="leading" secondItem="p5U-4o-e1e" secondAttribute="leading" id="5wi-7x-cb0"/>
                             <constraint firstItem="bWS-ih-1fh" firstAttribute="trailing" secondItem="p5U-4o-e1e" secondAttribute="trailing" id="nM7-Yt-zry"/>
                             <constraint firstItem="bWS-ih-1fh" firstAttribute="top" secondItem="p5U-4o-e1e" secondAttribute="top" id="u0E-po-1Yg"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="p5U-4o-e1e"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Table" id="dJF-JF-NtT">
-                        <barButtonItem key="leftBarButtonItem" image="toggle" id="Flp-b1-gX3">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <navigationItem key="navigationItem" title="Profile" id="dJF-JF-NtT">
+                        <barButtonItem key="leftBarButtonItem" id="Flp-b1-gX3">
+                            <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="toggle:" destination="Tlp-6Y-QeJ" id="l3U-bA-bdx"/>
                             </connections>
@@ -181,6 +186,7 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="cjt-ph-Xwe"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jNw-aN-Arq" firstAttribute="trailing" secondItem="cjt-ph-Xwe" secondAttribute="trailing" id="25i-Vj-aXu"/>
@@ -188,7 +194,6 @@
                             <constraint firstItem="jNw-aN-Arq" firstAttribute="bottom" secondItem="cjt-ph-Xwe" secondAttribute="bottom" id="Zov-n4-7yb"/>
                             <constraint firstItem="jNw-aN-Arq" firstAttribute="top" secondItem="cjt-ph-Xwe" secondAttribute="top" id="ukq-Yk-Z0S"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="cjt-ph-Xwe"/>
                     </view>
                     <navigationItem key="navigationItem" title="Detail" id="5Bo-dN-QAQ"/>
                 </viewController>
@@ -203,8 +208,8 @@
                     <view key="view" contentMode="scaleToFill" id="n5Z-vF-7VS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="PE2-hx-R16"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tUm-QP-ncW" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -234,8 +239,8 @@
                     <view key="view" contentMode="scaleToFill" id="A89-Qw-Hvc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="XMj-Yf-Nah"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" id="7a8-DA-6B1"/>
                     <navigationItem key="navigationItem" title="Home" id="bbO-nu-dX8"/>
@@ -248,7 +253,9 @@
         <scene sceneID="574-PZ-XJi">
             <objects>
                 <navigationController id="Tdr-3y-bMz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="home" id="RCI-Lo-t45"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="RCI-Lo-t45">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0wk-LV-WyH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -269,8 +276,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Bu-P1-MID">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="Tdr-3y-bMz" kind="relationship" relationship="viewControllers" id="X2d-nd-DYZ"/>
@@ -283,8 +289,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="comment" width="29" height="30"/>
-        <image name="home" width="29" height="30"/>
-        <image name="toggle" width="24" height="24"/>
+        <image name="house" catalog="system" width="128" height="106"/>
+        <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
+        <image name="text.bubble" catalog="system" width="128" height="110"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

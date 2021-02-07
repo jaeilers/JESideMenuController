@@ -1,0 +1,28 @@
+{
+  "name": "JESideMenuController",
+  "version": "2.0.0",
+  "summary": "A simple side menu that supports different styles (slide-out, slide-in, etc) and can be positioned at the left or the right side.",
+  "homepage": "https://github.com/jaeilers/JESideMenuController",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE.md"
+  },
+  "authors": "Jasmin Eilers",
+  "platforms": {
+    "ios": "11.0"
+  },
+  "source": {
+    "git": "https://github.com/jaeilers/JESideMenuController.git",
+    "tag": "2.0.0"
+  },
+  "source_files": [
+    "Sources",
+    "Sources/**/*.{swift}"
+  ],
+  "swift_versions": [
+    "5.1",
+    "5.2",
+    "5.3"
+  ],
+  "swift_version": "5.3"
+}

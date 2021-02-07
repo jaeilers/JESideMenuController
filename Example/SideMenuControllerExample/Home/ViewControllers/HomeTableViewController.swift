@@ -11,6 +11,24 @@ import JESideMenuController
 
 class HomeTableViewController: UIViewController {
 
+    private struct Constants {
+        static let identifier = String(describing: MessageTableViewCell.self)
+    }
+
+    private struct Item: Hashable {
+        let text: String
+        let hasImage: Bool?
+        private let identifier = UUID()
+
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(identifier)
+        }
+    }
+
     // MARK: - Private Properties
 
     private lazy var tableView: UITableView = {
@@ -22,8 +40,7 @@ class HomeTableViewController: UIViewController {
         return tableView
     }()
 
-    private lazy var dataSource = HomeDataSource(identifier: String(describing: MessageTableViewCell.self),
-                                                 tableView: tableView)
+    private var dataSource: UITableViewDiffableDataSource<Int, Item>?
 
     // MARK: - ViewController Lifecycle
 
@@ -31,17 +48,20 @@ class HomeTableViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        setupTableView()
+        setupDataSource()
+        try? loadData()
     }
 
     // MARK: - Private Methods
 
     private func setupView() {
         view.addSubview(tableView)
+        tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
-        let bbi = UIBarButtonItem(image: #imageLiteral(resourceName: "toggle"), style: .plain, target: self, action: #selector(toggle(_:)))
-        bbi.tintColor = .black
-        self.navigationItem.leftBarButtonItem = bbi
+        let bbi = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"),
+                                  style: .plain, target: self, action: #selector(toggle(_:)))
+        bbi.tintColor = .label
+        navigationItem.leftBarButtonItem = bbi
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -51,18 +71,28 @@ class HomeTableViewController: UIViewController {
             ])
     }
 
-    private func setupTableView() {
-        let identifier = String(describing: MessageTableViewCell.self)
-        tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: identifier)
-        tableView.dataSource = dataSource
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) { tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
 
-        do {
-            let dataLoader = DataLoader()
-            let data: [Message] = try dataLoader.loadData()
-            dataSource.setData(data)
-        } catch {
-            print("*** Error: \(error.localizedDescription)")
+            if let customCell = cell as? MessageTableViewCell {
+                customCell.setText(item.text)
+                customCell.showImage(item.hasImage ?? false)
+            }
+
+            return cell
         }
+    }
+
+    private func loadData() throws {
+        let dataLoader = DataLoader()
+        let data: [Message] = try dataLoader.loadData()
+        let items = data.map { Item(text: $0.text, hasImage: $0.hasImage) }
+
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
     @objc private func toggle(_ sender: UIBarButtonItem) {

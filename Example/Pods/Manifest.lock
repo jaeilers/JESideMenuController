@@ -1,0 +1,16 @@
+PODS:
+  - JESideMenuController (2.0.0)
+
+DEPENDENCIES:
+  - JESideMenuController (from `../`)
+
+EXTERNAL SOURCES:
+  JESideMenuController:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JESideMenuController: 95635fe30c9f5404e45eed9c002d7a4ea32a709f
+
+PODFILE CHECKSUM: f80825912123f233bba25d19064955f3d3f18efd
+
+COCOAPODS: 1.10.1
