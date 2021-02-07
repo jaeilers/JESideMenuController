@@ -36,8 +36,10 @@ struct ImageBuilder {
         UIGraphicsEndImageContext()
 
         // create a resizable image
-        return image?.resizableImage(withCapInsets: UIEdgeInsets(top: 1.0, left: 0.0, bottom: 1.0, right: 0.0),
-                                     resizingMode: .stretch)
+        return image?
+            .resizableImage(withCapInsets: UIEdgeInsets(top: 1.0, left: 0.0, bottom: 1.0, right: 0.0),
+                            resizingMode: .stretch)
+            .withRenderingMode(.alwaysTemplate)
     }
 
 }

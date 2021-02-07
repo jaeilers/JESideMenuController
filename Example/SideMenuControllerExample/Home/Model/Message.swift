@@ -9,8 +9,6 @@
 import UIKit
 
 struct Message: Codable {
-
     let text: String
     let hasImage: Bool?
-
 }

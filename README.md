@@ -71,8 +71,10 @@ The default values are a slide-out menu on the left side. To choose a different 
 
 ```swift
 ...
-let sideMenuController = JESideMenuController(style: .slideIn,
-                                              isLeft: false)
+let sideMenuController = JESideMenuController(
+	style: .slideIn,
+	isLeft: false
+)
 ...
 ```
 
@@ -98,7 +100,7 @@ You can access the `JESideMenuController` instance due to a `UIViewController` e
 public var sideMenuController: JESideMenuController? { get }
 ```
 
-#### Enabled/disable scrolling
+#### Enable/disable scrolling
 ```swift
 public var isScrollEnabled: Bool { get set }
 ```
@@ -155,13 +157,16 @@ sideMenuController?.isMenuVisible
 You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
 
 ```swift
-let config = JESideMenuController.Configuration(spacing: 100,
-                                                ipadWidth: 400,
-                                                hasDropShadowImage: true,
-                                                dropShadowImage: UIImage(named: ...))
+let config = JESideMenuController.Configuration(
+	spacing: 100,
+	ipadWidth: 400,
+	tintColor: .gray,
+	hasDropShadowImage: true,
+	dropShadowImage: UIImage(name: ...)
+)
 let sideMenuController = JESideMenuController(configuration: config)
 ...
 ```
 
 ## License
-This framework is released under [MIT License](./LICENSE.md). All icons featured in the example project are part of [80 UI outlined icons](https://www.sketchappsources.com/free-source/3841-ui-outlined-icons-sketch-freebie-resource.html) and were created by *Kit of Parts*, &copy; 2019 [kitofparts.co](http://kitofparts.co/)
+This framework is released under [MIT License](./LICENSE.md).

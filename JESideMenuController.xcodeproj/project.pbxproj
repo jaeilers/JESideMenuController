@@ -26,12 +26,12 @@
 		8919BE6D22CD1BD200860D49 /* UIViewController+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6A22CD1BD200860D49 /* UIViewController+Containment.swift */; };
 		8919BE6E22CD1BD200860D49 /* UIViewController+SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6B22CD1BD200860D49 /* UIViewController+SideMenuController.swift */; };
 		8919BE6F22CD1BD200860D49 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6C22CD1BD200860D49 /* UIView+Pin.swift */; };
+		8930C54725E159D000DD55C2 /* LayoutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8930C54625E159D000DD55C2 /* LayoutContainer.swift */; };
 		894E9192236EEFC4004F5215 /* JESideMenuController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E9191236EEFC4004F5215 /* JESideMenuController+Configuration.swift */; };
 		8963949B2364A0C000690C19 /* LayoutBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963949A2364A0C000690C19 /* LayoutBuilderTests.swift */; };
 		8968EDAF22EB3ADC00B4EFB7 /* Main.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE7022CD1BDE00860D49 /* Main.storyboard */; };
 		8968EDB022EB3AE000B4EFB7 /* JESideMenuControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE7122CD1BEF00860D49 /* JESideMenuControllerTests.swift */; };
 		8968EDB122EB3AE500B4EFB7 /* UIViewControllerExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE7222CD1BEF00860D49 /* UIViewControllerExtensionTests.swift */; };
-		8968EDB222EB3AE900B4EFB7 /* XCTestManifests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* XCTestManifests.swift */; };
 		8998385C22CD2C7B00F0F8A9 /* SlideOutLayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998385B22CD2C7B00F0F8A9 /* SlideOutLayoutBuilder.swift */; };
 		8998385E22CD384200F0F8A9 /* LayoutBuildingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998385D22CD384200F0F8A9 /* LayoutBuildingProtocol.swift */; };
 		8998386422CE60FA00F0F8A9 /* SlideInLayoutBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8998386322CE60FA00F0F8A9 /* SlideInLayoutBuilder.swift */; };
@@ -65,6 +65,7 @@
 		8919BE7022CD1BDE00860D49 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8919BE7122CD1BEF00860D49 /* JESideMenuControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JESideMenuControllerTests.swift; sourceTree = "<group>"; };
 		8919BE7222CD1BEF00860D49 /* UIViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTests.swift; sourceTree = "<group>"; };
+		8930C54625E159D000DD55C2 /* LayoutContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutContainer.swift; sourceTree = "<group>"; };
 		894E9191236EEFC4004F5215 /* JESideMenuController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JESideMenuController+Configuration.swift"; sourceTree = "<group>"; };
 		8963949A2364A0C000690C19 /* LayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderTests.swift; sourceTree = "<group>"; };
 		8968EDA222EB19C800B4EFB7 /* JESideMenuController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JESideMenuController.podspec; sourceTree = "<group>"; };
@@ -72,7 +73,6 @@
 		8998385D22CD384200F0F8A9 /* LayoutBuildingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuildingProtocol.swift; sourceTree = "<group>"; };
 		8998386322CE60FA00F0F8A9 /* SlideInLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInLayoutBuilder.swift; sourceTree = "<group>"; };
 		8998386522D0F50F00F0F8A9 /* SlideOutInlineLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutInlineLayoutBuilder.swift; sourceTree = "<group>"; };
-		OBJ_13 /* XCTestManifests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestManifests.swift; sourceTree = "<group>"; };
 		OBJ_6 /* Package.swift */ = {isa = PBXFileReference; explicitFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		"SideMenuController::SideMenuController::Product" /* JESideMenuController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = JESideMenuController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		"SideMenuController::SideMenuControllerTests::Product" /* JESideMenuControllerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; path = JESideMenuControllerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -112,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				8998385D22CD384200F0F8A9 /* LayoutBuildingProtocol.swift */,
+				8930C54625E159D000DD55C2 /* LayoutContainer.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -142,7 +143,6 @@
 				8919BE7122CD1BEF00860D49 /* JESideMenuControllerTests.swift */,
 				8963949A2364A0C000690C19 /* LayoutBuilderTests.swift */,
 				8919BE7222CD1BEF00860D49 /* UIViewControllerExtensionTests.swift */,
-				OBJ_13 /* XCTestManifests.swift */,
 			);
 			name = JESideMenuControllerTests;
 			path = Tests/JESideMenuControllerTests;
@@ -155,7 +155,7 @@
 				"SideMenuController::SideMenuControllerTests::Product" /* JESideMenuControllerTests.xctest */,
 			);
 			name = Products;
-			sourceTree = BUILT_PRODUCTS_DIR;
+			sourceTree = "<group>";
 		};
 		OBJ_5 = {
 			isa = PBXGroup;
@@ -246,7 +246,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 9999;
-				LastUpgradeCheck = 9999;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					"SideMenuController::SideMenuController" = {
 						LastSwiftMigration = 1100;
@@ -258,8 +258,8 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
+				Base,
 			);
 			mainGroup = OBJ_5;
 			productRefGroup = OBJ_14 /* Products */;
@@ -303,6 +303,7 @@
 				8919BE6922CD1BCA00860D49 /* JESideMenuController.swift in Sources */,
 				8998386422CE60FA00F0F8A9 /* SlideInLayoutBuilder.swift in Sources */,
 				8919BE6D22CD1BD200860D49 /* UIViewController+Containment.swift in Sources */,
+				8930C54725E159D000DD55C2 /* LayoutContainer.swift in Sources */,
 				8998386622D0F50F00F0F8A9 /* SlideOutInlineLayoutBuilder.swift in Sources */,
 				8912BAE722D5006B00E5B0E9 /* ImageBuilder.swift in Sources */,
 				8919BE6F22CD1BD200860D49 /* UIView+Pin.swift in Sources */,
@@ -324,7 +325,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				8968EDB222EB3AE900B4EFB7 /* XCTestManifests.swift in Sources */,
 				8968EDB122EB3AE500B4EFB7 /* UIViewControllerExtensionTests.swift in Sources */,
 				8968EDB022EB3AE000B4EFB7 /* JESideMenuControllerTests.swift in Sources */,
 				8963949B2364A0C000690C19 /* LayoutBuilderTests.swift in Sources */,
@@ -372,9 +372,11 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_NAME = JESideMenuController;
 			};
 			name = Debug;
@@ -403,8 +405,10 @@
 				PRODUCT_MODULE_NAME = "$(TARGET_NAME:c99extidentifier)";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited)";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				TARGET_NAME = JESideMenuController;
 			};
 			name = Release;
@@ -415,7 +419,9 @@
 				LD = /usr/bin/true;
 				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
 				PRODUCT_NAME = JESideMenuControllerPackageDescription;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -425,7 +431,9 @@
 				LD = /usr/bin/true;
 				OTHER_SWIFT_FLAGS = "-swift-version 5 -I $(TOOLCHAIN_DIR)/usr/lib/swift/pm/4_2 -target x86_64-apple-macosx10.10 -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk";
 				PRODUCT_NAME = JESideMenuControllerPackageDescription;
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -454,6 +462,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -509,7 +518,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -535,7 +543,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -582,6 +589,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

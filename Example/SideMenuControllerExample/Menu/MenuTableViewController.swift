@@ -16,22 +16,37 @@ class MenuTableViewController: UIViewController {
         static let topSpacing: CGFloat = 44.0
     }
 
-    private struct Item {
-        let image: UIImage
+    private struct Item: Hashable {
+        let image: UIImage?
         let title: String
         let storyboardID: String
+        private let identifier = UUID()
+
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(identifier)
+        }
     }
 
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.tableFooterView = UIView()
         return tableView
     }()
 
-    private let menuItems = [ Item(image: #imageLiteral(resourceName: "comment"), title: "Home", storyboardID: "root"),
-                              Item(image: #imageLiteral(resourceName: "home"), title: "Profile", storyboardID: "table"),
-                              Item(image: #imageLiteral(resourceName: "settings"), title: "Settings", storyboardID: "settings")]
-    private var cache = NSCache<NSString, UIViewController>()
+    private var dataSource: UITableViewDiffableDataSource<Int, Item>?
+
+    private let menuItems = [
+        Item(image: UIImage.messages(), title: "Home", storyboardID: "root"),
+        Item(image: UIImage.home(), title: "Profile", storyboardID: "table"),
+        Item(image: UIImage.settings(), title: "Settings", storyboardID: "settings")
+    ]
+    private var cache = [String: UIViewController]()
 
     // MARK: - ViewController Lifecycle
 
@@ -40,6 +55,7 @@ class MenuTableViewController: UIViewController {
 
         cacheRootViewController()
         setupView()
+        setupDataSource()
     }
 
     // MARK: - Private Methods
@@ -47,8 +63,6 @@ class MenuTableViewController: UIViewController {
     private func setupView() {
         view.addSubview(tableView)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.identifier)
-        tableView.dataSource = self
-        tableView.delegate = self
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -56,16 +70,29 @@ class MenuTableViewController: UIViewController {
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
             ])
+    }
 
-        tableView.tableFooterView = UIView()
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) { tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
+            cell.imageView?.image = item.image
+            cell.textLabel?.text = item.title
+            cell.imageView?.tintColor = .label
+            return cell
+        }
+
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(menuItems)
+        dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
     // Cache the view controllers
     private func viewController(with identifier: String) -> UIViewController? {
-        if let viewController = cache.object(forKey: identifier as NSString) {
+        if let viewController = cache[identifier] {
             return viewController
         } else if let viewController = storyboard?.instantiateViewController(withIdentifier: identifier) {
-            cache.setObject(viewController, forKey: identifier as NSString)
+            cache[identifier] = viewController
             return viewController
         } else {
             return nil
@@ -75,32 +102,13 @@ class MenuTableViewController: UIViewController {
     // An example to access the currently visible view controller and cache it.
     private func cacheRootViewController() {
         guard let visibleViewController = sideMenuController?.visibleViewController else { return }
-        cache.setObject(visibleViewController, forKey: (menuItems.first?.storyboardID ?? "") as NSString)
+        let identifier = menuItems.first?.storyboardID ?? ""
+        cache[identifier] = visibleViewController
     }
 
 }
 
-// MARK: - Table view dataSource
-
-extension MenuTableViewController: UITableViewDataSource {
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
-
-        let item = menuItems[indexPath.row]
-        cell.imageView?.image = item.image
-        cell.textLabel?.text = item.title
-
-        return cell
-    }
-
-}
-
-// MARK: - Table view delegate
+// MARK: - TableView delegate
 
 extension MenuTableViewController: UITableViewDelegate {
 
@@ -112,4 +120,21 @@ extension MenuTableViewController: UITableViewDelegate {
         sideMenuController?.setViewController(viewController)
     }
 
+}
+
+// MARK: - Extensions
+
+extension UIImage {
+
+    static func messages() -> UIImage? {
+        return UIImage(systemName: "text.bubble")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
+
+    static func home() -> UIImage? {
+        return UIImage(systemName: "house")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
+
+    static func settings() -> UIImage? {
+        return UIImage(systemName: "gearshape")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
 }

@@ -16,7 +16,6 @@ class MessageTableViewCell: UITableViewCell {
         static let height: CGFloat = 120.0
         static let iconHeight: CGFloat = 50.0
         static let cornerRadius: CGFloat = 8.0
-        static let color = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
     }
 
     // MARK: - Private Properties
@@ -42,7 +41,7 @@ class MessageTableViewCell: UITableViewCell {
     private lazy var iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = Constants.color
+        imageView.backgroundColor = .secondarySystemFill
         imageView.layer.cornerRadius = Constants.iconHeight / 2.0
         return imageView
     }()
@@ -51,13 +50,15 @@ class MessageTableViewCell: UITableViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
+        label.font = .preferredFont(forTextStyle: .body)
+        label.adjustsFontForContentSizeCategory = true
         return label
     }()
 
     private lazy var messageImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = Constants.color
+        imageView.backgroundColor = .secondarySystemFill
         imageView.layer.cornerRadius = Constants.cornerRadius
         imageView.isHidden = true
         return imageView

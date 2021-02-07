@@ -36,6 +36,18 @@ extension LayoutBuilding {
             scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: spacing).isActive = true
         }
     }
+}
+
+/// Utility to calculate the scrollable for a given layout.
+struct LayoutUtil: LayoutBuilding {
+
+    /// The visible spacing for the content view when the menu is open
+    let spacing: CGFloat
+
+    /// The width of the menu on iPad
+    let ipadWidth: CGFloat
+
+    func layout(in view: UIView?, isLeft: Bool) {}
 
     /// Calculates the width of the scroll view based on a given size and the current devide (iPhone/iPad)
     func getScrollViewWidth(for size: CGSize,
@@ -46,13 +58,4 @@ extension LayoutBuilding {
             return size.width - spacing
         }
     }
-
-}
-
-// Enable testing for `getScrollViewWidth(for:, userInterfaceIdiom:)`
-struct DefaultLayoutBuilder: LayoutBuilding {
-    var spacing: CGFloat
-    var ipadWidth: CGFloat
-
-    func layout(in view: UIView?, isLeft: Bool) {}
 }
