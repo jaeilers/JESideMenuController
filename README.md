@@ -169,4 +169,4 @@ let sideMenuController = JESideMenuController(configuration: config)
 ```
 
 ## License
-This framework is released under [MIT License](./LICENSE.md). All icons featured in the example project are part of [80 UI outlined icons](https://www.sketchappsources.com/free-source/3841-ui-outlined-icons-sketch-freebie-resource.html) and were created by *Kit of Parts*, &copy; 2019 [kitofparts.co](http://kitofparts.co/)
+This framework is released under [MIT License](./LICENSE.md).

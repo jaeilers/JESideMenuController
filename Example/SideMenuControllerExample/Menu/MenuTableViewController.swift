@@ -17,7 +17,7 @@ class MenuTableViewController: UIViewController {
     }
 
     private struct Item: Hashable {
-        let image: UIImage
+        let image: UIImage?
         let title: String
         let storyboardID: String
         private let identifier = UUID()
@@ -41,9 +41,11 @@ class MenuTableViewController: UIViewController {
 
     private var dataSource: UITableViewDiffableDataSource<Int, Item>?
 
-    private let menuItems = [ Item(image: #imageLiteral(resourceName: "comment"), title: "Home", storyboardID: "root"),
-                              Item(image: #imageLiteral(resourceName: "home"), title: "Profile", storyboardID: "table"),
-                              Item(image: #imageLiteral(resourceName: "settings"), title: "Settings", storyboardID: "settings")]
+    private let menuItems = [
+        Item(image: UIImage(systemName: "text.bubble"), title: "Home", storyboardID: "root"),
+        Item(image: UIImage(systemName: "house"), title: "Profile", storyboardID: "table"),
+        Item(image: UIImage(systemName: "gearshape"), title: "Settings", storyboardID: "settings")
+    ]
     private var cache = [String: UIViewController]()
 
     // MARK: - ViewController Lifecycle
@@ -75,7 +77,7 @@ class MenuTableViewController: UIViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
             cell.imageView?.image = item.image
             cell.textLabel?.text = item.title
-
+            cell.imageView?.tintColor = .black
             return cell
         }
 

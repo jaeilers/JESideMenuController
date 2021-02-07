@@ -58,7 +58,8 @@ class HomeTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
-        let bbi = UIBarButtonItem(image: #imageLiteral(resourceName: "toggle"), style: .plain, target: self, action: #selector(toggle(_:)))
+        let bbi = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"),
+                                  style: .plain, target: self, action: #selector(toggle(_:)))
         bbi.tintColor = .black
         navigationItem.leftBarButtonItem = bbi
 
