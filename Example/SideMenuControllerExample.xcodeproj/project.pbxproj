@@ -13,7 +13,6 @@
 		89758B1E22DB73180073288C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B1D22DB73180073288C /* ProfileTableViewController.swift */; };
 		89758B2922DCF4460073288C /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B2822DCF4460073288C /* HomeTableViewController.swift */; };
 		89758B2F22DCF4AA0073288C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */; };
-		89758B3322DCFAC80073288C /* HomeDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B3222DCFAC80073288C /* HomeDataSource.swift */; };
 		89758B3522DCFC640073288C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B3422DCFC640073288C /* Message.swift */; };
 		89758B3722DCFE6F0073288C /* Messages.json in Resources */ = {isa = PBXBuildFile; fileRef = 89758B3622DCFE6F0073288C /* Messages.json */; };
 		899B06C122CD1E040048CDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B06C022CD1E040048CDFB /* AppDelegate.swift */; };
@@ -21,7 +20,7 @@
 		899B06C622CD1E040048CDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899B06C422CD1E040048CDFB /* Main.storyboard */; };
 		899B06C822CD1E060048CDFB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 899B06C722CD1E060048CDFB /* Assets.xcassets */; };
 		899B06CB22CD1E060048CDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899B06C922CD1E060048CDFB /* LaunchScreen.storyboard */; };
-		89C35A872497C2F2000DEB78 /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C35A862497C2F2000DEB78 /* DataLoader.swift */; };
+		89DBFE7125D03819001285EA /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C35A862497C2F2000DEB78 /* DataLoader.swift */; };
 		89E158F322DFA4FA00FADB91 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E158F222DFA4FA00FADB91 /* SettingsTableViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		89758B1D22DB73180073288C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		89758B2822DCF4460073288C /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
-		89758B3222DCFAC80073288C /* HomeDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDataSource.swift; sourceTree = "<group>"; };
 		89758B3422DCFC640073288C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		89758B3622DCFE6F0073288C /* Messages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Messages.json; sourceTree = "<group>"; };
 		899B06BD22CD1E040048CDFB /* SideMenuControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideMenuControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,9 +106,9 @@
 			isa = PBXGroup;
 			children = (
 				89758B2722DCF3960073288C /* ViewControllers */,
-				89758B2C22DCF4700073288C /* DataSource */,
 				89758B2D22DCF47E0073288C /* Views */,
 				89758B2B22DCF4660073288C /* Model */,
+				89DBFE7025D0378A001285EA /* Services */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -134,19 +132,10 @@
 		89758B2B22DCF4660073288C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				89C35A862497C2F2000DEB78 /* DataLoader.swift */,
 				89758B3422DCFC640073288C /* Message.swift */,
 				89758B3622DCFE6F0073288C /* Messages.json */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		89758B2C22DCF4700073288C /* DataSource */ = {
-			isa = PBXGroup;
-			children = (
-				89758B3222DCFAC80073288C /* HomeDataSource.swift */,
-			);
-			path = DataSource;
 			sourceTree = "<group>";
 		};
 		89758B2D22DCF47E0073288C /* Views */ = {
@@ -189,6 +178,14 @@
 				899B06CC22CD1E060048CDFB /* Info.plist */,
 			);
 			path = SideMenuControllerExample;
+			sourceTree = "<group>";
+		};
+		89DBFE7025D0378A001285EA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				89C35A862497C2F2000DEB78 /* DataLoader.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		89E158F022DFA4B900FADB91 /* Profile */ = {
@@ -246,7 +243,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1020;
+				LastUpgradeCheck = 1230;
 				ORGANIZATIONNAME = JE;
 				TargetAttributes = {
 					899B06BC22CD1E040048CDFB = {
@@ -316,16 +313,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				89C35A872497C2F2000DEB78 /* DataLoader.swift in Sources */,
 				899B06C322CD1E040048CDFB /* DetailViewController.swift in Sources */,
 				899B06C122CD1E040048CDFB /* AppDelegate.swift in Sources */,
 				89758B3522DCFC640073288C /* Message.swift in Sources */,
-				89758B3322DCFAC80073288C /* HomeDataSource.swift in Sources */,
 				89758B1822DB6AB50073288C /* MenuTableViewController.swift in Sources */,
 				89E158F322DFA4FA00FADB91 /* SettingsTableViewController.swift in Sources */,
 				89758B1E22DB73180073288C /* ProfileTableViewController.swift in Sources */,
 				89758B2922DCF4460073288C /* HomeTableViewController.swift in Sources */,
 				89758B2F22DCF4AA0073288C /* MessageTableViewCell.swift in Sources */,
+				89DBFE7125D03819001285EA /* DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,6 +381,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -410,7 +407,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -446,6 +443,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -465,7 +463,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

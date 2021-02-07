@@ -8,7 +8,7 @@
 import UIKit
 import QuartzCore
 
-///The `ImageBuilder` is responsible for rendering images.
+/// The `ImageBuilder` is responsible for rendering images.
 struct ImageBuilder {
 
     /// Draws an image of a drop shadow. The image is resizable vertically.
