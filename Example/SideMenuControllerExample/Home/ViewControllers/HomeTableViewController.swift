@@ -60,7 +60,7 @@ class HomeTableViewController: UIViewController {
 
         let bbi = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"),
                                   style: .plain, target: self, action: #selector(toggle(_:)))
-        bbi.tintColor = .black
+        bbi.tintColor = .label
         navigationItem.leftBarButtonItem = bbi
 
         NSLayoutConstraint.activate([

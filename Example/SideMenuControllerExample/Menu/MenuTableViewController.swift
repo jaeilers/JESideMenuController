@@ -42,9 +42,9 @@ class MenuTableViewController: UIViewController {
     private var dataSource: UITableViewDiffableDataSource<Int, Item>?
 
     private let menuItems = [
-        Item(image: UIImage(systemName: "text.bubble"), title: "Home", storyboardID: "root"),
-        Item(image: UIImage(systemName: "house"), title: "Profile", storyboardID: "table"),
-        Item(image: UIImage(systemName: "gearshape"), title: "Settings", storyboardID: "settings")
+        Item(image: UIImage.messages(), title: "Home", storyboardID: "root"),
+        Item(image: UIImage.home(), title: "Profile", storyboardID: "table"),
+        Item(image: UIImage.settings(), title: "Settings", storyboardID: "settings")
     ]
     private var cache = [String: UIViewController]()
 
@@ -77,7 +77,7 @@ class MenuTableViewController: UIViewController {
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
             cell.imageView?.image = item.image
             cell.textLabel?.text = item.title
-            cell.imageView?.tintColor = .black
+            cell.imageView?.tintColor = .label
             return cell
         }
 
@@ -120,4 +120,21 @@ extension MenuTableViewController: UITableViewDelegate {
         sideMenuController?.setViewController(viewController)
     }
 
+}
+
+// MARK: - Extensions
+
+extension UIImage {
+
+    static func messages() -> UIImage? {
+        return UIImage(systemName: "text.bubble")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
+
+    static func home() -> UIImage? {
+        return UIImage(systemName: "house")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
+
+    static func settings() -> UIImage? {
+        return UIImage(systemName: "gearshape")?.applyingSymbolConfiguration(.init(scale: .medium))
+    }
 }

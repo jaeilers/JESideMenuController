@@ -104,7 +104,7 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     lazy var darkView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        view.backgroundColor = configuration.tintColor
         return view
     }()
 
@@ -273,12 +273,12 @@ extension JESideMenuController {
                                             container: self)
         case .slideIn:
             image = imageBuilder.makeShadowImage(isFadingLeft: !isLeft)
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideInLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
                                            container: self)
         case .slideOutInline:
             image = nil
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideOutInlineLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
                                                   container: self)
         }
@@ -287,6 +287,7 @@ extension JESideMenuController {
 
         if configuration.hasDropShadowImage {
             shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
+            shadowImageView.tintColor = configuration.tintColor
         } else {
             shadowImageView.removeFromSuperview()
         }

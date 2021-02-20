@@ -3,6 +3,7 @@
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -35,7 +36,9 @@
         <scene sceneID="ryV-BR-5ee">
             <objects>
                 <navigationController id="etC-0G-scd" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Messages" image="text.bubble" catalog="system" id="5Ys-42-bb4"/>
+                    <tabBarItem key="tabBarItem" title="Messages" id="5Ys-42-bb4">
+                        <imageReference key="image" image="text.bubble" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ju4-xh-4ZN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -79,8 +82,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="dKe-jN-Hcf">
-                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="d2y-9p-J0u">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="leftBarButtonItem" id="d2y-9p-J0u">
+                            <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="toggle:" destination="nId-l2-vZT" id="xDq-Kc-lJm"/>
                             </connections>
@@ -156,8 +160,9 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="dJF-JF-NtT">
-                        <barButtonItem key="leftBarButtonItem" image="line.horizontal.3" catalog="system" id="Flp-b1-gX3">
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="leftBarButtonItem" id="Flp-b1-gX3">
+                            <imageReference key="image" image="line.horizontal.3" catalog="system" symbolScale="large"/>
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="toggle:" destination="Tlp-6Y-QeJ" id="l3U-bA-bdx"/>
                             </connections>
@@ -248,7 +253,9 @@
         <scene sceneID="574-PZ-XJi">
             <objects>
                 <navigationController id="Tdr-3y-bMz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="RCI-Lo-t45"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="RCI-Lo-t45">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="0wk-LV-WyH">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -269,8 +276,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4Bu-P1-MID">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="Tdr-3y-bMz" kind="relationship" relationship="viewControllers" id="X2d-nd-DYZ"/>
@@ -286,6 +292,9 @@
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="line.horizontal.3" catalog="system" width="128" height="64"/>
         <image name="text.bubble" catalog="system" width="128" height="110"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
