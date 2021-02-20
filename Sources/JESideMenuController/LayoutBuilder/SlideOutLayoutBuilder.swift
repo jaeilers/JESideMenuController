@@ -27,14 +27,12 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
 
         let contentView = UIView()
         let page = UIView()
-        let gestureContainerView = UIView()
-        gestureContainerView.addGestureRecognizer(container.scrollView.panGestureRecognizer)
+        container.gestureContainerView.addGestureRecognizer(container.scrollView.panGestureRecognizer)
 
-        setupSubviews(with: view, contentView: contentView, page: page, gestureContainerView: gestureContainerView)
+        setupSubviews(with: view, contentView: contentView, page: page)
         addDeviceSpecificConstraints(to: view, scrollView: container.scrollView, isLeft: isLeft)
-        addSideSpecificConstraints(to: view, contentView: contentView, page: page,
-                                   gestureContainerView: gestureContainerView, isLeft: isLeft)
-        addConstraints(to: view, contentView: contentView, page: page, gestureContainerView: gestureContainerView)
+        addSideSpecificConstraints(to: view, contentView: contentView, page: page, isLeft: isLeft)
+        addConstraints(to: view, contentView: contentView, page: page)
     }
 
     // MARK: - Private Methods
@@ -43,18 +41,17 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
-    /// - parameter gestureContainerView: A view that hosts the scrollViews gesture recognizer.
-    private func setupSubviews(with view: UIView, contentView: UIView, page: UIView, gestureContainerView: UIView) {
+    private func setupSubviews(with view: UIView, contentView: UIView, page: UIView) {
         view.addSubview(container.scrollView)
         view.addSubview(container.menuContainerView)
         view.addSubview(container.darkView)
 
-        gestureContainerView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(gestureContainerView)
+        container.gestureContainerView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(container.gestureContainerView)
 
-        gestureContainerView.addSubview(container.shadowImageView)
-        gestureContainerView.addSubview(container.containerView)
-        gestureContainerView.addSubview(container.tapView)
+        container.gestureContainerView.addSubview(container.shadowImageView)
+        container.gestureContainerView.addSubview(container.containerView)
+        container.gestureContainerView.addSubview(container.tapView)
 
         contentView.translatesAutoresizingMaskIntoConstraints = false
         container.scrollView.addSubview(contentView)
@@ -67,15 +64,13 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
-    /// - parameter gestureContainerView: A view that hosts the scrollViews gesture recognizer.
     /// - parameter isLeft: A Boolean value that determines on which side the menu should be placed in the layout.
-    private func addSideSpecificConstraints(to view: UIView, contentView: UIView, page: UIView,
-                                            gestureContainerView: UIView, isLeft: Bool) {
+    private func addSideSpecificConstraints(to view: UIView, contentView: UIView, page: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
                 container.scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 page.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-                gestureContainerView.leadingAnchor.constraint(equalTo: page.leadingAnchor),
+                container.gestureContainerView.leadingAnchor.constraint(equalTo: page.leadingAnchor),
                 container.menuContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 container.menuContainerView.trailingAnchor.constraint(equalTo: container.scrollView.trailingAnchor),
                 container.shadowImageView.trailingAnchor.constraint(equalTo: container.containerView.leadingAnchor)
@@ -84,7 +79,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
             NSLayoutConstraint.activate([
                 container.scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 page.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-                gestureContainerView.trailingAnchor.constraint(equalTo: page.trailingAnchor),
+                container.gestureContainerView.trailingAnchor.constraint(equalTo: page.trailingAnchor),
                 container.menuContainerView.leadingAnchor.constraint(equalTo: container.scrollView.leadingAnchor),
                 container.menuContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 container.shadowImageView.leadingAnchor.constraint(equalTo: container.containerView.trailingAnchor)
@@ -98,7 +93,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
     /// - parameter gestureContainerView: A view that hosts the scrollViews gesture recognizer.
-    private func addConstraints(to view: UIView, contentView: UIView, page: UIView, gestureContainerView: UIView) {
+    private func addConstraints(to view: UIView, contentView: UIView, page: UIView) {
         NSLayoutConstraint.activate([
             container.scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             container.scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -111,21 +106,21 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
             page.topAnchor.constraint(equalTo: contentView.topAnchor),
             page.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
             page.widthAnchor.constraint(equalTo: container.scrollView.widthAnchor),
-            gestureContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            gestureContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            container.shadowImageView.topAnchor.constraint(equalTo: gestureContainerView.topAnchor),
-            container.shadowImageView.bottomAnchor.constraint(equalTo: gestureContainerView.bottomAnchor),
-            container.containerView.leadingAnchor.constraint(equalTo: gestureContainerView.leadingAnchor),
-            container.containerView.topAnchor.constraint(equalTo: gestureContainerView.topAnchor),
-            container.containerView.trailingAnchor.constraint(equalTo: gestureContainerView.trailingAnchor),
-            container.containerView.bottomAnchor.constraint(equalTo: gestureContainerView.bottomAnchor),
+            container.gestureContainerView.topAnchor.constraint(equalTo: view.topAnchor),
+            container.gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            container.gestureContainerView.widthAnchor.constraint(equalTo: view.widthAnchor),
+            container.shadowImageView.topAnchor.constraint(equalTo: container.gestureContainerView.topAnchor),
+            container.shadowImageView.bottomAnchor.constraint(equalTo: container.gestureContainerView.bottomAnchor),
+            container.containerView.leadingAnchor.constraint(equalTo: container.gestureContainerView.leadingAnchor),
+            container.containerView.topAnchor.constraint(equalTo: container.gestureContainerView.topAnchor),
+            container.containerView.trailingAnchor.constraint(equalTo: container.gestureContainerView.trailingAnchor),
+            container.containerView.bottomAnchor.constraint(equalTo: container.gestureContainerView.bottomAnchor),
             container.menuContainerView.topAnchor.constraint(equalTo: view.topAnchor),
             container.menuContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            container.tapView.leadingAnchor.constraint(equalTo: gestureContainerView.leadingAnchor),
-            container.tapView.topAnchor.constraint(equalTo: gestureContainerView.topAnchor),
-            container.tapView.trailingAnchor.constraint(equalTo: gestureContainerView.trailingAnchor),
-            container.tapView.bottomAnchor.constraint(equalTo: gestureContainerView.bottomAnchor),
+            container.tapView.leadingAnchor.constraint(equalTo: container.gestureContainerView.leadingAnchor),
+            container.tapView.topAnchor.constraint(equalTo: container.gestureContainerView.topAnchor),
+            container.tapView.trailingAnchor.constraint(equalTo: container.gestureContainerView.trailingAnchor),
+            container.tapView.bottomAnchor.constraint(equalTo: container.gestureContainerView.bottomAnchor),
             container.darkView.leadingAnchor.constraint(equalTo: container.menuContainerView.leadingAnchor),
             container.darkView.topAnchor.constraint(equalTo: container.menuContainerView.topAnchor),
             container.darkView.trailingAnchor.constraint(equalTo: container.menuContainerView.trailingAnchor),

@@ -38,6 +38,7 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertNotNil(container.containerView.superview)
         XCTAssertNotNil(container.tapView.superview)
         XCTAssertNotNil(container.shadowImageView.superview)
+        XCTAssertNotNil(container.gestureContainerView.superview)
     }
 
     func testSlideOutBuilderRight() {
@@ -56,6 +57,7 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertNotNil(container.containerView.superview)
         XCTAssertNotNil(container.tapView.superview)
         XCTAssertNotNil(container.shadowImageView.superview)
+        XCTAssertNotNil(container.gestureContainerView.superview)
     }
 
     func testSlideInBuilderLeft() {
@@ -108,6 +110,7 @@ class LayoutBuilderTests: XCTestCase {
         XCTAssertNotNil(container.menuContainerView.superview)
         XCTAssertNotNil(container.containerView.superview)
         XCTAssertNotNil(container.tapView.superview)
+        XCTAssertNotNil(container.gestureContainerView.superview)
     }
 
     func testSlideOutInlineBuilderRight() {
