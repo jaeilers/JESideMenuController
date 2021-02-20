@@ -10,6 +10,6 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/jaeilers/JESideMenuController.git", :tag => "#{spec.version}" }
 
   spec.source_files  = "Sources", "Sources/**/*.{swift}"
-  spec.swift_version = "5.0"
+  spec.swift_versions = ["5.1", "5.2", "5.3"]
 
 end

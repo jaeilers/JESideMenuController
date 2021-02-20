@@ -19,6 +19,10 @@
     "Sources",
     "Sources/**/*.{swift}"
   ],
-  "swift_versions": "5.0",
-  "swift_version": "5.0"
+  "swift_versions": [
+    "5.1",
+    "5.2",
+    "5.3"
+  ],
+  "swift_version": "5.3"
 }
