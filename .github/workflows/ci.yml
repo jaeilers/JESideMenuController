@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+  pull_request:
+    branches:
+      - main
+      - develop
+
+jobs:
+  run-tests:
+    runs-on: macos-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build and Test
+      run: xcodebuild build test -project JESideMenuController.xcodeproj -scheme JESideMenuController-Package -destination 'platform=iOS Simulator,name=iPhone 12' -enableCodeCoverage YES
+
+    - name: Generate code coverage files for codecov
+      uses: sersoft-gmbh/swift-coverage-action@v2
+      id: coverage-files
+
+    - name: Upload code coverage to codecov.io
+      uses: codecov/codecov-action@v2
+      with:
+        files: ${{join(fromJSON(steps.coverage-files.outputs.files), ',')}}
