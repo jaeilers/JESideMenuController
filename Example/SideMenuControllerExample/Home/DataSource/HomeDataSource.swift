@@ -47,7 +47,7 @@ class HomeDataSource: NSObject, UITableViewDataSource {
         self.data = data
 
         if animated {
-            tableView?.reloadSections(IndexSet(arrayLiteral: 0), with: .automatic)
+            tableView?.reloadSections(IndexSet(integer: 0), with: .automatic)
         } else {
             tableView?.reloadData()
         }

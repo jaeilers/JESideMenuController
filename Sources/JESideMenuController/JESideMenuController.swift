@@ -47,13 +47,13 @@ public final class JESideMenuController: UIViewController {
 
     /// A Boolean value that indicates whether scrolling is enabled.
     public var isScrollEnabled: Bool {
+        get { return scrollView.isScrollEnabled }
         set {
             scrollView.isScrollEnabled = newValue
             // hide the gesture container view for slide-in style, so that it doesn't block swipe-back.
             guard style == .slideIn else { return }
             gestureContainerView.isHidden = !newValue
         }
-        get { return scrollView.isScrollEnabled }
     }
 
     // MARK: - Private Properties
