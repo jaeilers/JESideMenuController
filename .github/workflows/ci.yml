@@ -28,4 +28,5 @@ jobs:
     - name: Upload code coverage to codecov.io
       uses: codecov/codecov-action@v2
       with:
+        token: ${{ secrets.CODECOV_TOKEN }}
         files: ${{join(fromJSON(steps.coverage-files.outputs.files), ',')}}
