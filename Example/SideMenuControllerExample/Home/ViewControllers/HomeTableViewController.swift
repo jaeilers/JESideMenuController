@@ -2,14 +2,32 @@
 //  HomeTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 15.07.19.
+//  Created by JE on 15.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
 import UIKit
 import JESideMenuController
 
-class HomeTableViewController: UIViewController {
+final class HomeTableViewController: UIViewController {
+
+    private struct Constants: Sendable {
+        static let identifier = String(describing: UITableViewCell.self)
+    }
+
+    private struct Item: Hashable, Sendable {
+        let text: String
+        let hasImage: Bool
+        private let identifier = UUID()
+
+        static func == (lhs: Item, rhs: Item) -> Bool {
+            lhs.identifier == rhs.identifier
+        }
+
+        func hash(into hasher: inout Hasher) {
+            hasher.combine(identifier)
+        }
+    }
 
     // MARK: - Private Properties
 
@@ -18,12 +36,10 @@ class HomeTableViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.allowsSelection = false
         tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView()
         return tableView
     }()
 
-    private lazy var dataSource = HomeDataSource(identifier: String(describing: MessageTableViewCell.self),
-                                                 tableView: tableView)
+    private var dataSource: UITableViewDiffableDataSource<Int, Item>?
 
     // MARK: - ViewController Lifecycle
 
@@ -31,42 +47,53 @@ class HomeTableViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
-        setupTableView()
+        setupDataSource()
+        try? loadData()
     }
 
     // MARK: - Private Methods
 
     private func setupView() {
         view.addSubview(tableView)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
-        let bbi = UIBarButtonItem(image: #imageLiteral(resourceName: "toggle"), style: .plain, target: self, action: #selector(toggle(_:)))
-        bbi.tintColor = .black
-        self.navigationItem.leftBarButtonItem = bbi
+        let action = UIAction { [weak self] _ in
+            self?.sideMenuController?.toggle()
+        }
+        let bbi = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal"),
+            primaryAction: action
+        )
+        bbi.tintColor = .label
+        navigationItem.leftBarButtonItem = bbi
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            ])
+        ])
     }
 
-    private func setupTableView() {
-        let identifier = String(describing: MessageTableViewCell.self)
-        tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: identifier)
-        tableView.dataSource = dataSource
-
-        do {
-            let dataLoader = DataLoader()
-            let data: [Message] = try dataLoader.loadData()
-            dataSource.setData(data)
-        } catch {
-            print("*** Error: \(error.localizedDescription)")
+    private func setupDataSource() {
+        dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) { tableView, indexPath, item in
+            let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
+            var configuration = cell.messageConfiguration()
+            configuration.text = item.text
+            configuration.hasImage = item.hasImage
+            cell.contentConfiguration = configuration
+            return cell
         }
     }
 
-    @objc private func toggle(_ sender: UIBarButtonItem) {
-        sideMenuController?.toggle()
-    }
+    private func loadData() throws {
+        let dataLoader = DataLoader()
+        let data: [Message] = try dataLoader.loadData()
+        let items = data.map { Item(text: $0.text, hasImage: $0.hasImage ?? false) }
 
+        var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
+        snapshot.appendSections([0])
+        snapshot.appendItems(items)
+        dataSource?.apply(snapshot, animatingDifferences: false)
+    }
 }

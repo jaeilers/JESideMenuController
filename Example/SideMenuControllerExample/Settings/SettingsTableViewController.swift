@@ -2,15 +2,15 @@
 //  SettingsTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 17.07.19.
+//  Created by JE on 17.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
 import UIKit
 import JESideMenuController
 
-// An example for more control over the menues visibility.
-class SettingsTableViewController: UITableViewController {
+// An example for more control over the menus visibility.
+final class SettingsTableViewController: UITableViewController {
 
     @IBAction private func toggle(_ sender: UIBarButtonItem) {
         // get the current visibility state via the `isMenuVisible` property
@@ -21,5 +21,4 @@ class SettingsTableViewController: UITableViewController {
             sideMenuController?.setMenuHidden(false, animated: true)
         }
     }
-
 }

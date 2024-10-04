@@ -2,14 +2,14 @@
 //  ProfileTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 14.07.19.
+//  Created by JE on 14.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
 import UIKit
 import JESideMenuController
 
-class ProfileTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class ProfileTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 42
@@ -17,7 +17,9 @@ class ProfileTableViewController: UIViewController, UITableViewDataSource, UITab
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = String(indexPath.row + 1)
+        var config = cell.defaultContentConfiguration()
+        config.text = String(indexPath.row + 1)
+        cell.contentConfiguration = config
         return cell
     }
 
@@ -29,5 +31,4 @@ class ProfileTableViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction private func toggle(_ sender: UIBarButtonItem) {
         sideMenuController?.toggle()
     }
-
 }

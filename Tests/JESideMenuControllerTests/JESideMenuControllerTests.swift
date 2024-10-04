@@ -9,15 +9,8 @@
 import XCTest
 @testable import JESideMenuController
 
-class JESideMenuControllerTests: XCTestCase {
-
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+@MainActor
+final class JESideMenuControllerTests: XCTestCase {
 
     func testInitialization() {
         // Given
@@ -44,7 +37,7 @@ class JESideMenuControllerTests: XCTestCase {
         XCTAssertNotNil(sideMenuController)
         XCTAssertNotNil(sideMenuController?.rootId)
         XCTAssertNotNil(sideMenuController?.menuId)
-        _ = sideMenuController?.view
+        sideMenuController?.loadViewIfNeeded()
 
         XCTAssertEqual(sideMenuController?.children.count, 2)
     }
@@ -55,10 +48,13 @@ class JESideMenuControllerTests: XCTestCase {
         let menuViewController = UITableViewController(style: .plain)
 
         // When
-        let sideMenuController = JESideMenuController(menuViewController: menuViewController,
-                                                      style: .slideOutInline, isLeft: false)
+        let sideMenuController = JESideMenuController(
+            menuViewController: menuViewController,
+            style: .slideOutInline,
+            isLeft: false
+        )
         sideMenuController.setViewController(rootViewController, animated: false)
-        _ = sideMenuController.view
+        sideMenuController.loadViewIfNeeded()
 
         // Then
         XCTAssertEqual(sideMenuController.children.count, 2)
@@ -98,13 +94,15 @@ class JESideMenuControllerTests: XCTestCase {
         // Given
         let rootController = UIViewController()
         let menuController = UIViewController()
-        let sideMenuController = JESideMenuController(menuViewController: menuController,
-                                                      style: .slideOut,
-                                                      isLeft: false)
+        let sideMenuController = JESideMenuController(
+            menuViewController: menuController,
+            style: .slideOut,
+            isLeft: false
+        )
 
         // When
         sideMenuController.setViewController(rootController, animated: false)
-        _ = sideMenuController.view
+        sideMenuController.loadViewIfNeeded()
         sideMenuController.view.layoutIfNeeded()
 
         // Then
@@ -128,12 +126,14 @@ class JESideMenuControllerTests: XCTestCase {
         // Given
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .plain)
-        let sideMenuController = JESideMenuController(menuViewController: menuController,
-                                                      style: .slideOut,
-                                                      isLeft: true)
+        let sideMenuController = JESideMenuController(
+            menuViewController: menuController,
+            style: .slideOut,
+            isLeft: true
+        )
 
         // When
-        _ = sideMenuController.view
+        sideMenuController.loadViewIfNeeded()
         sideMenuController.setViewController(rootController, animated: false)
 
         // Then
@@ -157,7 +157,7 @@ class JESideMenuControllerTests: XCTestCase {
 
         // When
         sideMenuController.setViewController(rootController, animated: false)
-        _ = sideMenuController.view
+        sideMenuController.loadViewIfNeeded()
 
         // Then
         XCTAssertTrue(sideMenuController.isScrollEnabled)
@@ -167,5 +167,4 @@ class JESideMenuControllerTests: XCTestCase {
 
         XCTAssertFalse(sideMenuController.isScrollEnabled)
     }
-
 }

@@ -7,14 +7,14 @@
 
 import UIKit
 
-public final class JESideMenuController: UIViewController {
+public final class JESideMenuController: UIViewController, LayoutContainer {
 
-    private struct Constants {
+    private struct Constants: Sendable {
         static let alpha: CGFloat = 0.15
     }
 
     /// Constants for the side menu controller layout styles.
-    public enum Style: Int {
+    public enum Style: Int, Sendable {
         case slideOut, slideIn, slideOutInline
     }
 
@@ -37,17 +37,17 @@ public final class JESideMenuController: UIViewController {
     @IBInspectable public var isLeft: Bool = true
 
     public var visibleViewController: UIViewController? {
-        return rootViewController
+        rootViewController
     }
 
     /// A Boolean value that indicates if the side menu is displayed on screen.
     public var isMenuVisible: Bool {
-        return isLeft ? scrollView.contentOffset.x <= 0 : scrollView.contentOffset.x >= scrollView.bounds.width
+        isLeft ? scrollView.contentOffset.x <= 0 : scrollView.contentOffset.x >= scrollView.bounds.width
     }
 
     /// A Boolean value that indicates whether scrolling is enabled.
     public var isScrollEnabled: Bool {
-        get { return scrollView.isScrollEnabled }
+        get { scrollView.isScrollEnabled }
         set {
             scrollView.isScrollEnabled = newValue
             // hide the gesture container view for slide-in style, so that it doesn't block swipe-back.
@@ -56,24 +56,24 @@ public final class JESideMenuController: UIViewController {
         }
     }
 
-    // MARK: - Private Properties
+    // MARK: - Layout Container Properties
 
     /// The containerView for the content.
-    private lazy var containerView: UIView = {
+    lazy var containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
     /// The containerView for the menu.
-    private lazy var menuContainerView: UIView = {
+    lazy var menuContainerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
-    /// Responsible for the scrolling behaviour of the menu (paging).
-    private lazy var scrollView: UIScrollView = {
+    /// Responsible for the scrolling behavior of the menu (paging).
+    lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         scrollView.isHidden = true
@@ -84,15 +84,15 @@ public final class JESideMenuController: UIViewController {
     }()
 
     /// Hosts the tap gesture recognizer to close the menu.
-    private lazy var tapView: UIView = {
+    lazy var tapView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.isHidden = true
         return view
     }()
 
-    /// Drop down shadow
-    private lazy var shadowImageView: UIImageView = {
+    /// Drop down shadow.
+    lazy var shadowImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.isUserInteractionEnabled = false
@@ -101,15 +101,17 @@ public final class JESideMenuController: UIViewController {
     }()
 
     /// Darkens the menu in .slideOut to reveal it underneath the containerView
-    private lazy var darkView: UIView = {
+    lazy var darkView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+        view.backgroundColor = configuration.tintColor
         return view
     }()
 
     /// View that hosts the gesture recognizer for the slide-in menu.
-    private lazy var gestureContainerView = UIView()
+    lazy var gestureContainerView = UIView()
+
+    // MARK: - Private Properties
 
     private weak var menuViewController: UIViewController?
     private weak var rootViewController: UIViewController?
@@ -126,8 +128,12 @@ public final class JESideMenuController: UIViewController {
     /// - parameter isLeft: A Boolean value that determines on which side the menu will be placed. Default is `true`.
     /// - parameter configuration: The configuration specifies the layout for example spacing
     /// and drop shadow visibility.
-    public init(menuViewController: UIViewController? = nil, style: Style = .slideOut,
-                isLeft: Bool = true, configuration: Configuration = .default) {
+    public init(
+        menuViewController: UIViewController? = nil,
+        style: Style = .slideOut,
+        isLeft: Bool = true,
+        configuration: Configuration = .default
+    ) {
         super.init(nibName: nil, bundle: nil)
         self.style = style
         self.isLeft = isLeft
@@ -160,8 +166,10 @@ public final class JESideMenuController: UIViewController {
     }
 
     /// Forward TraitCollection change to the childViewController
-    override public func willTransition(to newCollection: UITraitCollection,
-                                        with coordinator: UIViewControllerTransitionCoordinator) {
+    override public func willTransition(
+        to newCollection: UITraitCollection,
+        with coordinator: UIViewControllerTransitionCoordinator
+    ) {
         super.willTransition(to: newCollection, with: coordinator)
         rootViewController?.willTransition(to: newCollection, with: coordinator)
         menuViewController?.willTransition(to: newCollection, with: coordinator)
@@ -171,9 +179,8 @@ public final class JESideMenuController: UIViewController {
     /// so that the status of the menu (open/closed) doesn't change on rotation.
     override public func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         let offsetX = scrollView.contentOffset.x
-        let builder = DefaultLayoutBuilder(spacing: configuration.spacing,
-                                           ipadWidth: configuration.ipadWidth)
-        let scrollViewWidth: CGFloat = builder.getScrollViewWidth(for: size)
+        let util = LayoutUtil(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth)
+        let scrollViewWidth: CGFloat = util.getScrollViewWidth(for: size)
 
         coordinator.animate(alongsideTransition: { [unowned self] _ in
             self.scrollView.contentOffset.x = offsetX > 0.0 ? scrollViewWidth : 0.0
@@ -195,8 +202,10 @@ public final class JESideMenuController: UIViewController {
     /// - parameter viewController: The view controller which will be displayed.
     /// - parameter animated: A boolean value that indicates whether the menu is hidden with an animation.
     /// Default is `true`.
-    public func setViewController(_ viewController: UIViewController,
-                                  animated: Bool = true) {
+    public func setViewController(
+        _ viewController: UIViewController,
+        animated: Bool = true
+    ) {
         setMenuHidden(true, animated: animated)
 
         guard rootViewController !== viewController else { return }
@@ -253,7 +262,6 @@ public final class JESideMenuController: UIViewController {
     @objc private func tapToClose(_ sender: UITapGestureRecognizer) {
         setMenuHidden(true, animated: true)
     }
-
 }
 
 // MARK: - Layout Setup
@@ -270,29 +278,24 @@ extension JESideMenuController {
         case .slideOut:
             image = imageBuilder.makeShadowImage(isFadingLeft: isLeft)
             builder = SlideOutLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                            menuContainerView: menuContainerView, containerView: containerView,
-                                            scrollView: scrollView, tapView: tapView, imageView: shadowImageView,
-                                            darkView: darkView)
+                                            container: self)
         case .slideIn:
             image = imageBuilder.makeShadowImage(isFadingLeft: !isLeft)
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideInLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                           menuContainerView: menuContainerView, containerView: containerView,
-                                           scrollView: scrollView, tapView: tapView,
-                                           gestureContainerView: gestureContainerView,
-                                           imageView: shadowImageView)
+                                           container: self)
         case .slideOutInline:
             image = nil
-            tapView.backgroundColor = UIColor(red: 0.0, green: 0.0, blue: 0.0, alpha: 1.0)
+            tapView.backgroundColor = configuration.tintColor
             builder = SlideOutInlineLayoutBuilder(spacing: configuration.spacing, ipadWidth: configuration.ipadWidth,
-                                                  menuContainerView: menuContainerView, containerView: containerView,
-                                                  scrollView: scrollView, tapView: tapView)
+                                                  container: self)
         }
 
         builder.layout(in: view, isLeft: isLeft)
 
         if configuration.hasDropShadowImage {
             shadowImageView.image = configuration.dropShadowImage == nil ? image : configuration.dropShadowImage
+            shadowImageView.tintColor = configuration.tintColor
         } else {
             shadowImageView.removeFromSuperview()
         }
@@ -300,7 +303,6 @@ extension JESideMenuController {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToClose(_:)))
         tapView.addGestureRecognizer(tapGesture)
     }
-
 }
 
 // MARK: - ScrollView Delegate
@@ -332,5 +334,4 @@ extension JESideMenuController: UIScrollViewDelegate {
             return maxValue / scrollView.bounds.width * scrollView.contentOffset.x
         }
     }
-
 }
