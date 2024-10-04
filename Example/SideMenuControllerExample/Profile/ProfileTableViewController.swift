@@ -2,7 +2,7 @@
 //  ProfileTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 14.07.19.
+//  Created by JE on 14.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
@@ -17,7 +17,9 @@ final class ProfileTableViewController: UIViewController, UITableViewDataSource,
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = String(indexPath.row + 1)
+        var config = cell.defaultContentConfiguration()
+        config.text = String(indexPath.row + 1)
+        cell.contentConfiguration = config
         return cell
     }
 

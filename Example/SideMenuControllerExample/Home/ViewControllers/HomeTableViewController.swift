@@ -2,7 +2,7 @@
 //  HomeTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 15.07.19.
+//  Created by JE on 15.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import JESideMenuController
 final class HomeTableViewController: UIViewController {
 
     private struct Constants: Sendable {
-        static let identifier = String(describing: MessageTableViewCell.self)
+        static let identifier = String(describing: UITableViewCell.self)
     }
 
     private struct Item: Hashable, Sendable {
@@ -36,7 +36,6 @@ final class HomeTableViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.allowsSelection = false
         tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView()
         return tableView
     }()
 
@@ -56,7 +55,7 @@ final class HomeTableViewController: UIViewController {
 
     private func setupView() {
         view.addSubview(tableView)
-        tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
         let action = UIAction { [weak self] _ in
             self?.sideMenuController?.toggle()
@@ -79,12 +78,10 @@ final class HomeTableViewController: UIViewController {
     private func setupDataSource() {
         dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) { tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
-
-            if let customCell = cell as? MessageTableViewCell {
-                customCell.setText(item.text)
-                customCell.showImage(item.hasImage)
-            }
-
+            var configuration = cell.messageConfiguration()
+            configuration.text = item.text
+            configuration.hasImage = item.hasImage
+            cell.contentConfiguration = configuration
             return cell
         }
     }

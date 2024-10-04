@@ -7,10 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		89397EFA2CB0250B00CAF50B /* MessageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89397EF92CB0250500CAF50B /* MessageConfiguration.swift */; };
+		89397EFC2CB0252C00CAF50B /* MessageContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89397EFB2CB0252300CAF50B /* MessageContentView.swift */; };
+		89397EFE2CB0259200CAF50B /* UITableViewCell+messageConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89397EFD2CB0257800CAF50B /* UITableViewCell+messageConfiguration.swift */; };
 		89758B1822DB6AB50073288C /* MenuTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B1722DB6AB50073288C /* MenuTableViewController.swift */; };
 		89758B1E22DB73180073288C /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B1D22DB73180073288C /* ProfileTableViewController.swift */; };
 		89758B2922DCF4460073288C /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B2822DCF4460073288C /* HomeTableViewController.swift */; };
-		89758B2F22DCF4AA0073288C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */; };
 		89758B3522DCFC640073288C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B3422DCFC640073288C /* Message.swift */; };
 		89758B3722DCFE6F0073288C /* Messages.json in Resources */ = {isa = PBXBuildFile; fileRef = 89758B3622DCFE6F0073288C /* Messages.json */; };
 		89988F402CB00AB200B02A7D /* JESideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 89988F3F2CB00AB200B02A7D /* JESideMenuController */; };
@@ -37,10 +39,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		89397EF92CB0250500CAF50B /* MessageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConfiguration.swift; sourceTree = "<group>"; };
+		89397EFB2CB0252300CAF50B /* MessageContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageContentView.swift; sourceTree = "<group>"; };
+		89397EFD2CB0257800CAF50B /* UITableViewCell+messageConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+messageConfiguration.swift"; sourceTree = "<group>"; };
 		89758B1722DB6AB50073288C /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		89758B1D22DB73180073288C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		89758B2822DCF4460073288C /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
-		89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
 		89758B3422DCFC640073288C /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		89758B3622DCFE6F0073288C /* Messages.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = Messages.json; sourceTree = "<group>"; };
 		899B06BD22CD1E040048CDFB /* SideMenuControllerExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SideMenuControllerExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +109,9 @@
 		89758B2D22DCF47E0073288C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */,
+				89397EF92CB0250500CAF50B /* MessageConfiguration.swift */,
+				89397EFB2CB0252300CAF50B /* MessageContentView.swift */,
+				89397EFD2CB0257800CAF50B /* UITableViewCell+messageConfiguration.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,12 +252,14 @@
 			files = (
 				899B06C322CD1E040048CDFB /* DetailViewController.swift in Sources */,
 				899B06C122CD1E040048CDFB /* AppDelegate.swift in Sources */,
+				89397EFE2CB0259200CAF50B /* UITableViewCell+messageConfiguration.swift in Sources */,
+				89397EFC2CB0252C00CAF50B /* MessageContentView.swift in Sources */,
 				89758B3522DCFC640073288C /* Message.swift in Sources */,
 				89758B1822DB6AB50073288C /* MenuTableViewController.swift in Sources */,
+				89397EFA2CB0250B00CAF50B /* MessageConfiguration.swift in Sources */,
 				89E158F322DFA4FA00FADB91 /* SettingsTableViewController.swift in Sources */,
 				89758B1E22DB73180073288C /* ProfileTableViewController.swift in Sources */,
 				89758B2922DCF4460073288C /* HomeTableViewController.swift in Sources */,
-				89758B2F22DCF4AA0073288C /* MessageTableViewCell.swift in Sources */,
 				89DBFE7125D03819001285EA /* DataLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -331,13 +339,14 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -388,12 +397,13 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -411,7 +421,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.je.SideMenuControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -429,7 +438,6 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = de.je.SideMenuControllerExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

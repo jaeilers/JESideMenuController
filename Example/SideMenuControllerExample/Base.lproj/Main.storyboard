@@ -243,7 +243,9 @@
         <scene sceneID="J2t-RK-pax">
             <objects>
                 <navigationController id="3Jk-9L-mug" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="mkk-pa-61F"/>
+                    <tabBarItem key="tabBarItem" title="Home" id="mkk-pa-61F">
+                        <imageReference key="image" image="house" catalog="system" symbolScale="default"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VIt-uH-pF8">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

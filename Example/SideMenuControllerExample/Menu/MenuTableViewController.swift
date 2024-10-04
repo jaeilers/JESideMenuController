@@ -2,7 +2,7 @@
 //  MenuTableViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 14.07.19.
+//  Created by JE on 14.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import JESideMenuController
 final class MenuTableViewController: UIViewController {
 
     private struct Constants {
-        static let identifier = "cell"
+        static let identifier = String(describing: UITableViewCell.self)
         static let topSpacing: CGFloat = 44.0
     }
 

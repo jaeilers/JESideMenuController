@@ -2,7 +2,7 @@
 //  DetailViewController.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 03.07.19.
+//  Created by JE on 03.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
