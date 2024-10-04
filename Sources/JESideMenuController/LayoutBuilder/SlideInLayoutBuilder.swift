@@ -1,7 +1,4 @@
 //
-//  LeftSlideInLayoutBuilder.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 04.07.19.
 //
 

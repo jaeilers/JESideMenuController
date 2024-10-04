@@ -1,7 +1,4 @@
 //
-//  JESideMenuController+Configuration.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 03.11.19.
 //
 
