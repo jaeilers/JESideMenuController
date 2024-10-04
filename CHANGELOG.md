@@ -17,6 +17,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 - Require minimum target iOS 15
 - Updated example project
 - Added @MainActor annotation and Sendable conformance
+- Removed CocoaPods supports
 
 ### Fixed
 - Rewording of description and fix typos in README.
