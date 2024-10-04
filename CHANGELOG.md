@@ -16,6 +16,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 - Switched from Travis-CI to github actions.
 - Require minimum target iOS 15
 - Updated example project
+- Added @MainActor annotation and Sendable conformance
 
 ### Fixed
 - Rewording of description and fix typos in README.
