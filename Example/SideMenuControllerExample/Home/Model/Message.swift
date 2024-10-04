@@ -6,7 +6,7 @@
 //  Copyright © 2019 JE. All rights reserved.
 //
 
-struct Message: Codable {
+struct Message: Codable, Sendable {
     let text: String
     let hasImage: Bool?
 }

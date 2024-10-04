@@ -58,9 +58,12 @@ final class HomeTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
+        let action = UIAction { [weak self] _ in
+            self?.sideMenuController?.toggle()
+        }
         let bbi = UIBarButtonItem(
             image: UIImage(systemName: "line.3.horizontal"),
-            style: .plain, target: self, action: #selector(toggle(_:))
+            primaryAction: action
         )
         bbi.tintColor = .label
         navigationItem.leftBarButtonItem = bbi
@@ -95,10 +98,5 @@ final class HomeTableViewController: UIViewController {
         snapshot.appendSections([0])
         snapshot.appendItems(items)
         dataSource?.apply(snapshot, animatingDifferences: false)
-    }
-
-    @objc
-    private func toggle(_ sender: UIBarButtonItem) {
-        sideMenuController?.toggle()
     }
 }

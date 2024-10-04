@@ -16,7 +16,7 @@ final class MenuTableViewController: UIViewController {
         static let topSpacing: CGFloat = 44.0
     }
 
-    private struct Item: Hashable {
+    private struct Item: Hashable, Sendable {
         let image: UIImage?
         let title: String
         let storyboardID: String
@@ -69,15 +69,17 @@ final class MenuTableViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: Constants.topSpacing),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            ])
+        ])
     }
 
     private func setupDataSource() {
         dataSource = UITableViewDiffableDataSource<Int, Item>(tableView: tableView) { tableView, indexPath, item in
             let cell = tableView.dequeueReusableCell(withIdentifier: Constants.identifier, for: indexPath)
-            cell.imageView?.image = item.image
-            cell.textLabel?.text = item.title
-            cell.imageView?.tintColor = .label
+            var configuration = cell.defaultContentConfiguration()
+            configuration.image = item.image
+            configuration.text = item.title
+            configuration.imageProperties.tintColor = .label
+            cell.contentConfiguration = configuration
             return cell
         }
 
