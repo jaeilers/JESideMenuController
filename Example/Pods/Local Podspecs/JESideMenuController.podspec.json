@@ -9,7 +9,7 @@
   },
   "authors": "Jasmin Eilers",
   "platforms": {
-    "ios": "11.0"
+    "ios": "15.0"
   },
   "source": {
     "git": "https://github.com/jaeilers/JESideMenuController.git",
@@ -19,10 +19,6 @@
     "Sources",
     "Sources/**/*.{swift}"
   ],
-  "swift_versions": [
-    "5.1",
-    "5.2",
-    "5.3"
-  ],
-  "swift_version": "5.3"
+  "swift_versions": "5.10",
+  "swift_version": "5.10"
 }
