@@ -9,13 +9,13 @@
 import UIKit
 import JESideMenuController
 
-class HomeTableViewController: UIViewController {
+final class HomeTableViewController: UIViewController {
 
-    private struct Constants {
+    private struct Constants: Sendable {
         static let identifier = String(describing: MessageTableViewCell.self)
     }
 
-    private struct Item: Hashable {
+    private struct Item: Hashable, Sendable {
         let text: String
         let hasImage: Bool?
         private let identifier = UUID()
@@ -58,10 +58,12 @@ class HomeTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
-        let bbi = UIBarButtonItem(image: UIImage(systemName: "line.horizontal.3"),
-                                  style: .plain, target: self, action: #selector(toggle(_:)))
-        bbi.tintColor = .label
-        navigationItem.leftBarButtonItem = bbi
+//        let bbi = UIBarButtonItem(
+//            image: UIImage(systemName: "line.3.horizontal"),
+//            style: .plain, target: self, action: #selector(toggle(_:))
+//        )
+//        bbi.tintColor = .label
+//        navigationItem.leftBarButtonItem = bbi
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),

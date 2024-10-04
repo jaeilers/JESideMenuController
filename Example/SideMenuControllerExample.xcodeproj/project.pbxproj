@@ -13,6 +13,7 @@
 		89758B2F22DCF4AA0073288C /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B2E22DCF4AA0073288C /* MessageTableViewCell.swift */; };
 		89758B3522DCFC640073288C /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89758B3422DCFC640073288C /* Message.swift */; };
 		89758B3722DCFE6F0073288C /* Messages.json in Resources */ = {isa = PBXBuildFile; fileRef = 89758B3622DCFE6F0073288C /* Messages.json */; };
+		89988F402CB00AB200B02A7D /* JESideMenuController in Frameworks */ = {isa = PBXBuildFile; productRef = 89988F3F2CB00AB200B02A7D /* JESideMenuController */; };
 		899B06C122CD1E040048CDFB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B06C022CD1E040048CDFB /* AppDelegate.swift */; };
 		899B06C322CD1E040048CDFB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 899B06C222CD1E040048CDFB /* DetailViewController.swift */; };
 		899B06C622CD1E040048CDFB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899B06C422CD1E040048CDFB /* Main.storyboard */; };
@@ -20,7 +21,6 @@
 		899B06CB22CD1E060048CDFB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 899B06C922CD1E060048CDFB /* LaunchScreen.storyboard */; };
 		89DBFE7125D03819001285EA /* DataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89C35A862497C2F2000DEB78 /* DataLoader.swift */; };
 		89E158F322DFA4FA00FADB91 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89E158F222DFA4FA00FADB91 /* SettingsTableViewController.swift */; };
-		8F3381DBC2B966E12297A727 /* Pods_SideMenuControllerExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9EF02553C0DDF1553D2EA35 /* Pods_SideMenuControllerExample.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,7 +37,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		4A41BB4572B43448479C4ED3 /* Pods-SideMenuControllerExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideMenuControllerExample.release.xcconfig"; path = "Target Support Files/Pods-SideMenuControllerExample/Pods-SideMenuControllerExample.release.xcconfig"; sourceTree = "<group>"; };
 		89758B1722DB6AB50073288C /* MenuTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTableViewController.swift; sourceTree = "<group>"; };
 		89758B1D22DB73180073288C /* ProfileTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		89758B2822DCF4460073288C /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
@@ -53,8 +52,6 @@
 		899B06CC22CD1E060048CDFB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89C35A862497C2F2000DEB78 /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		89E158F222DFA4FA00FADB91 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
-		939D83DACEFF9B5A8F72C613 /* Pods-SideMenuControllerExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SideMenuControllerExample.debug.xcconfig"; path = "Target Support Files/Pods-SideMenuControllerExample/Pods-SideMenuControllerExample.debug.xcconfig"; sourceTree = "<group>"; };
-		A9EF02553C0DDF1553D2EA35 /* Pods_SideMenuControllerExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SideMenuControllerExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,22 +59,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8F3381DBC2B966E12297A727 /* Pods_SideMenuControllerExample.framework in Frameworks */,
+				89988F402CB00AB200B02A7D /* JESideMenuController in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		896B8A2A63EBF03E644BBA9F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				939D83DACEFF9B5A8F72C613 /* Pods-SideMenuControllerExample.debug.xcconfig */,
-				4A41BB4572B43448479C4ED3 /* Pods-SideMenuControllerExample.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		89758B2222DCF38C0073288C /* Home */ = {
 			isa = PBXGroup;
 			children = (
@@ -127,8 +115,6 @@
 			children = (
 				899B06BF22CD1E040048CDFB /* SideMenuControllerExample */,
 				899B06BE22CD1E040048CDFB /* Products */,
-				89EE6D1722CD23A200A7F666 /* Frameworks */,
-				896B8A2A63EBF03E644BBA9F /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -181,14 +167,6 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		89EE6D1722CD23A200A7F666 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A9EF02553C0DDF1553D2EA35 /* Pods_SideMenuControllerExample.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -196,12 +174,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 899B06CF22CD1E060048CDFB /* Build configuration list for PBXNativeTarget "SideMenuControllerExample" */;
 			buildPhases = (
-				C15B893945E4B44D3075BCC4 /* [CP] Check Pods Manifest.lock */,
 				899B06B922CD1E040048CDFB /* Sources */,
 				899B06BA22CD1E040048CDFB /* Frameworks */,
 				899B06BB22CD1E040048CDFB /* Resources */,
 				89EE6D1A22CD23A200A7F666 /* Embed Frameworks */,
-				77921D2C1648B24020D31EB1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -237,6 +213,9 @@
 				Base,
 			);
 			mainGroup = 899B06B422CD1E040048CDFB;
+			packageReferences = (
+				89988F3E2CB00AB200B02A7D /* XCLocalSwiftPackageReference "../../JESideMenuController" */,
+			);
 			productRefGroup = 899B06BE22CD1E040048CDFB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -259,48 +238,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		77921D2C1648B24020D31EB1 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideMenuControllerExample/Pods-SideMenuControllerExample-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SideMenuControllerExample/Pods-SideMenuControllerExample-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SideMenuControllerExample/Pods-SideMenuControllerExample-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C15B893945E4B44D3075BCC4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SideMenuControllerExample-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		899B06B922CD1E040048CDFB /* Sources */ = {
@@ -463,7 +400,6 @@
 		};
 		899B06D022CD1E060048CDFB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 939D83DACEFF9B5A8F72C613 /* Pods-SideMenuControllerExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
@@ -482,7 +418,6 @@
 		};
 		899B06D122CD1E060048CDFB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4A41BB4572B43448479C4ED3 /* Pods-SideMenuControllerExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "";
@@ -521,6 +456,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		89988F3E2CB00AB200B02A7D /* XCLocalSwiftPackageReference "../../JESideMenuController" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../JESideMenuController;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		89988F3F2CB00AB200B02A7D /* JESideMenuController */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = JESideMenuController;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 899B06B522CD1E040048CDFB /* Project object */;
 }
