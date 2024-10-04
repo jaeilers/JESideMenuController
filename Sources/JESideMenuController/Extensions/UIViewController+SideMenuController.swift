@@ -1,7 +1,4 @@
 //
-//  UIViewController+SideMenuController.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 01.04.19.
 //
 
@@ -21,5 +18,4 @@ public extension UIViewController {
         }
         return nil
     }
-
 }

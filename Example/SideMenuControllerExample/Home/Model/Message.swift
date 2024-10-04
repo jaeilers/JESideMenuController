@@ -2,15 +2,11 @@
 //  Message.swift
 //  SideMenuControllerExample
 //
-//  Created by Jasmin Eilers on 15.07.19.
+//  Created by JE on 15.07.19.
 //  Copyright © 2019 JE. All rights reserved.
 //
 
-import UIKit
-
-struct Message: Codable {
-
+struct Message: Codable, Sendable {
     let text: String
     let hasImage: Bool?
-
 }

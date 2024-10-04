@@ -1,5 +1,5 @@
 # JESideMenuController
-[![Build Status](https://travis-ci.org/jaeilers/JESideMenuController.svg?branch=master)](https://travis-ci.org/jaeilers/JESideMenuController) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/master/graph/badge.svg)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.0-orange.svg) ![](https://img.shields.io/badge/pod-1.0.0-blue.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
+![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.10-orange.svg) ![](https://img.shields.io/badge/Xcode-15.4+-blue.svg) ![](https://img.shields.io/badge/iOS-15+-blue.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
@@ -16,33 +16,13 @@ slide out | slide in | slide out inline
 --- | --- | ---
 ![](Example/resources/slide-out.gif) | ![](Example/resources/slide-in.gif) | ![](Example/resources/slide-out-inline.gif)
 
-## Requirements
-- iOS 10.0+
-- Xcode 10.2+
-- Swift 4.2+
-
 ## Installation
 
-### CocoaPods
-To integrate the `JESideMenuController` in your project, add the following line to your `Podfile`:
-
-```
-  pod 'JESideMenuController', '~> 1.0.0'
-```
-
-### Carthage
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager. To integrate the `JESideMenuController` add the following line to your `Cartfile` and follow the instructions to [add the framework to your application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application):
-
-```
-github "jaeilers/JESideMenuController" ~> 1.0.0
-```
-
-### Swift Package Manager
-[Swift Package Manager](https://github.com/apple/swift-package-manager) is the official dependency manager for Cocoa projects. Xcode 11 directly integrates Swift PM. Add the url of this repository to your dependencies in Xcode or add the following line to your `Package.swift` as a value in `dependencies`:
+[Swift Package Manager](https://github.com/apple/swift-package-manager) is the official dependency manager for Cocoa projects. Swift PM is directly integrated since Xcode 11. Add the url of this repository to your dependencies in Xcode or add the following line to your `Package.swift` as a value in `dependencies`:
 
 ```
 dependencies: [
-	.package(url: "https://github.com/jaeilers/JESideMenuController.git", from: "1.0.0")
+	.package(url: "https://github.com/jaeilers/JESideMenuController.git", from: "2.0.0")
 ]
 ```
 
@@ -50,24 +30,36 @@ dependencies: [
 
 ### Set-up via Code
 
-Upon initialization the `JESideMenuController` needs a reference to your menu view controller, which will allow choosing a different view controller for the displayed content, and the root view controller, which will be displayed as the first view controller at launch.
+The `JESideMenuController` provides default arguments for initialization. You can provide the menu view controller and first visible view controller, that will be displayed at launch, after initialization.
 
 ```swift
 let menuViewController = ...
 let rootViewController = ...
-let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                              menuViewController: menuViewController)
+let sideMenuController = JESideMenuController()
+
+sideMenuController.setMenuViewController(menuViewController)
+sideMenuController.setViewController(rootViewController, animated: false)
 ...
 ```
 
-The default values are a slide-out on the left side. To choose a different configuration use the following constructor signature:
+You may also provide the menu view controller upon initialization:
 
 ```swift
 ...
-let sideMenuController = JESideMenuController(rootViewController: rootViewController,
-                                              menuViewController: menuViewController,
-                                              style: .slideIn,
-                                              isLeft: true)
+let menuViewController = ...
+let sideMenuController = JESideMenuController(menuViewController: menuViewController)
+...
+
+```
+
+The default values are a slide-out menu on the left side. To choose a different configuration use the following constructor signature:
+
+```swift
+...
+let sideMenuController = JESideMenuController(
+	style: .slideIn,
+	isLeft: false
+)
 ...
 ```
 
@@ -93,18 +85,30 @@ You can access the `JESideMenuController` instance due to a `UIViewController` e
 public var sideMenuController: JESideMenuController? { get }
 ```
 
-#### Enabled/disable scrolling
+#### Enable/disable scrolling
 ```swift
 public var isScrollEnabled: Bool { get set }
+```
+
+#### Set a new menu view controller
+```swift 
+/// Set a view controller that will be displayed as the menu.
+public func setMenuViewController(_ viewController: UIViewController)
+
+// Example:
+let newMenuViewController = ...
+sideMenuController?.setMenuViewController(newMenuViewController)
 ```
 
 #### Set a new view controller and hide the menu
 ```swift
 /// Set and display a new root view controller and hide the menu (animated).
-public func setViewController(_ viewController: UIViewController, animated: Bool)
+public func setViewController(_ viewController: UIViewController, animated: Bool = true)
 
 // Example:
 let newViewController = ...
+sideMenuController?.setViewController(newViewController)
+// or
 sideMenuController?.setViewController(newViewController, animated: true)
 ```
 
@@ -134,5 +138,20 @@ public var isMenuVisible: Bool { get }
 sideMenuController?.isMenuVisible
 ```
 
+#### Adjust the configuration 
+You may adjust the configuration of the slider to your projects needs via `JESideMenuController.Configuration`.
+
+```swift
+let config = JESideMenuController.Configuration(
+	spacing: 100,
+	ipadWidth: 400,
+	tintColor: .gray,
+	hasDropShadowImage: true,
+	dropShadowImage: UIImage(name: ...)
+)
+let sideMenuController = JESideMenuController(configuration: config)
+...
+```
+
 ## License
-This framework is released under [MIT License](./LICENSE.md). All icons featured in the example project are part of [80 UI outlined icons](https://www.sketchappsources.com/free-source/3841-ui-outlined-icons-sketch-freebie-resource.html) and were created by *Kit of Parts*, &copy; 2019 [kitofparts.co](http://kitofparts.co/)
+This framework is released under [MIT License](./LICENSE.md).
