@@ -11,7 +11,8 @@ let package = Package(
     products: [
         .library(
             name: "JESideMenuController",
-            targets: ["JESideMenuController"])
+            targets: ["JESideMenuController"]
+        )
     ],
     targets: [
         .target(
@@ -19,7 +20,8 @@ let package = Package(
             dependencies: []),
         .testTarget(
             name: "JESideMenuControllerTests",
-            dependencies: ["JESideMenuController"])
+            dependencies: ["JESideMenuController"]
+        )
     ],
     swiftLanguageVersions: [.v5]
 )

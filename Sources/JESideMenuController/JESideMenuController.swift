@@ -15,7 +15,13 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
 
     /// Constants for the side menu controller layout styles.
     public enum Style: Int, Sendable {
-        case slideOut, slideIn, slideOutInline
+        /// A classic slide-out style where the main view slides out to reveal the menu underneath.
+        case slideOut
+        /// The menu slides in and overlays the main view.
+        case slideIn
+        /// A slide-out style similar to twitter. The menu appears to be on the same level as the main view
+        /// and pushes the main view out.
+        case slideOutInline
     }
 
     // MARK: - Public Properties
@@ -36,6 +42,7 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     /// A Boolean value that determines on which side the menu will be placed.
     @IBInspectable public var isLeft: Bool = true
 
+    /// The currently visible, hosted view controller.
     public var visibleViewController: UIViewController? {
         rootViewController
     }
@@ -123,11 +130,11 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     // MARK: - Init
 
     /// Initializes the side menu controller with general settings.
-    /// - parameter menuViewController: The controller that should be displayed and act as the menu.
-    /// - parameter style: Set the style of the layout. Default is a slide-out style.
-    /// - parameter isLeft: A Boolean value that determines on which side the menu will be placed. Default is `true`.
-    /// - parameter configuration: The configuration specifies the layout for example spacing
-    /// and drop shadow visibility.
+    /// - Parameters:
+    ///   - menuViewController: The controller that should be displayed and act as the menu.
+    ///   - style: Set the style of the layout. Default is a slide-out style.
+    ///   - isLeft: A Boolean value that determines on which side the menu will be placed. Default is `true`.
+    ///   - configuration: The configuration specifies the layout for example spacing and drop shadow visibility.
     public init(
         menuViewController: UIViewController? = nil,
         style: Style = .slideOut,
@@ -191,7 +198,8 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     // MARK: - Public Methods
 
     /// Set the view controller that should act as the menu.
-    /// - parameter viewController: The view controller that will be displayed as the menu.
+    /// - Parameters:
+    ///   - viewController: The view controller that will be displayed as the menu.
     public func setMenuViewController(_ viewController: UIViewController) {
         remove(controller: menuViewController)
         add(controller: viewController, toView: menuContainerView)
@@ -199,9 +207,9 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     }
 
     /// Set and display a new root view controller and hides the slider menu with an animation.
-    /// - parameter viewController: The view controller which will be displayed.
-    /// - parameter animated: A boolean value that indicates whether the menu is hidden with an animation.
-    /// Default is `true`.
+    /// - Parameters:
+    ///   - viewController: The view controller which will be displayed.
+    ///   - animated: A boolean value that indicates whether the menu is hidden with an animation. Default is `true`.
     public func setViewController(
         _ viewController: UIViewController,
         animated: Bool = true
@@ -215,15 +223,17 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     }
 
     /// Hides or reveals the menu based on the current state.
-    /// - parameter animated: A Boolean value that determines if the change should be animated. Default is `true`.
+    /// - Parameters:
+    ///   - animated: A Boolean value that determines if the change should be animated. Default is `true`.
     public func toggle(animated: Bool = true) {
         let offsetX: CGFloat = scrollView.contentOffset.x > 0 ? 0.0 : scrollView.bounds.width
         scrollView.setContentOffset(CGPoint(x: offsetX, y: 0.0), animated: animated)
     }
 
     /// Set the hidden state of the menu. Optionally animated.
-    /// - parameter isHidden: A Boolean value that determines whether the menu view controller will be hidden.
-    ///  - parameter animated: A Boolean value that determines if the change should be animated.
+    /// - Parameters:
+    ///   - isHidden: A Boolean value that determines whether the menu view controller will be hidden.
+    ///   - animated: A Boolean value that determines if the change should be animated.
     public func setMenuHidden(_ isHidden: Bool, animated: Bool) {
         let leftOffset: CGFloat = isHidden ? scrollView.bounds.width : 0.0
         let rightOffset: CGFloat = isHidden ? 0.0 : scrollView.bounds.width

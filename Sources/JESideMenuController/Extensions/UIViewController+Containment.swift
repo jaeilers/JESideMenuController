@@ -10,8 +10,9 @@ import UIKit
 extension UIViewController {
 
     /// Add a controller as child view controller and its view to a specified subview.
-    /// - parameter controller: The new child view controller to be added.
-    /// - parameter toView: The view to which the child controller view should be added to.
+    /// - Parameters:
+    ///   - controller: The new child view controller to be added.
+    ///   - toView: The view to which the child controller view should be added to.
     func add(controller: UIViewController?, toView: UIView?) {
         guard let controller = controller, let toView = toView else { return }
 
@@ -22,11 +23,11 @@ extension UIViewController {
     }
 
     /// Remove a child controller.
-    /// - parameter controller: The child view controller which should be removed.
+    /// - Parameters:
+    ///   - controller: The child view controller which should be removed.
     func remove(controller: UIViewController?) {
         controller?.willMove(toParent: nil)
         controller?.view.removeFromSuperview()
         controller?.removeFromParent()
     }
-
 }

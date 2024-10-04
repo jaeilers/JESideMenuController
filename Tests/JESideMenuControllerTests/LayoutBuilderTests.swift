@@ -25,8 +25,11 @@ final class LayoutBuilderTests: XCTestCase {
     func testSlideOutBuilderLeft() {
         // Given
         let container = Container()
-        let builder = SlideOutLayoutBuilder(spacing: 60, ipadWidth: 320,
-                                            container: container)
+        let builder = SlideOutLayoutBuilder(
+            spacing: 60,
+            ipadWidth: 320,
+            container: container
+        )
 
         // When
         let superview = UIView()

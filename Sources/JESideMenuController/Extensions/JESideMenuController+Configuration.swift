@@ -23,11 +23,13 @@ public extension JESideMenuController {
         /// Setting this property to `nil` will result in the default drop shadow image.
         public let dropShadowImage: UIImage?
 
-        public init(spacing: CGFloat = 60.0,
-                    ipadWidth: CGFloat = 320.0,
-                    tintColor: UIColor? = .black,
-                    hasDropShadowImage: Bool = true,
-                    dropShadowImage: UIImage? = nil) {
+        public init(
+            spacing: CGFloat = 60.0,
+            ipadWidth: CGFloat = 320.0,
+            tintColor: UIColor? = .black,
+            hasDropShadowImage: Bool = true,
+            dropShadowImage: UIImage? = nil
+        ) {
             self.spacing = spacing
             self.ipadWidth = ipadWidth
             self.tintColor = tintColor
@@ -38,8 +40,7 @@ public extension JESideMenuController {
         /// The default configuration provides a visible spacing of 60, an iPad menu width of 320
         /// and a default drop shadow image.
         public static var `default`: Configuration {
-            return Configuration()
+            Configuration()
         }
     }
-
 }
