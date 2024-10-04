@@ -17,7 +17,8 @@ let package = Package(
     targets: [
         .target(
             name: "JESideMenuController",
-            dependencies: []),
+            dependencies: []
+        ),
         .testTarget(
             name: "JESideMenuControllerTests",
             dependencies: ["JESideMenuController"]
