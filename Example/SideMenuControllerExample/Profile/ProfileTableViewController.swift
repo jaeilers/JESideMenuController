@@ -9,7 +9,7 @@
 import UIKit
 import JESideMenuController
 
-class ProfileTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+final class ProfileTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 42
@@ -29,5 +29,4 @@ class ProfileTableViewController: UIViewController, UITableViewDataSource, UITab
     @IBAction private func toggle(_ sender: UIBarButtonItem) {
         sideMenuController?.toggle()
     }
-
 }

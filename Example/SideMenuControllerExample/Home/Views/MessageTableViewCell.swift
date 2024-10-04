@@ -8,9 +8,9 @@
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell {
+final class MessageTableViewCell: UITableViewCell {
 
-    private struct Constants {
+    private struct Constants: Sendable {
         static let spacing: CGFloat = 16.0
         static let vSpacing: CGFloat = 10.0
         static let height: CGFloat = 120.0
@@ -107,7 +107,6 @@ class MessageTableViewCell: UITableViewCell {
             contentView.bottomAnchor.constraint(equalTo: hStackView.bottomAnchor, constant: Constants.spacing),
             iconImageView.heightAnchor.constraint(equalToConstant: Constants.iconHeight),
             iconImageView.widthAnchor.constraint(equalTo: iconImageView.heightAnchor)
-            ])
+        ])
     }
-
 }

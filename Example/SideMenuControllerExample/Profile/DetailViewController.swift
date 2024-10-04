@@ -10,7 +10,7 @@ import UIKit
 import JESideMenuController
 
 /// An example to disable the scrolling in detail views.
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -23,5 +23,4 @@ class DetailViewController: UIViewController {
 
         sideMenuController?.isScrollEnabled = true
     }
-
 }

@@ -33,5 +33,4 @@ struct DataLoader {
 
         return decodedData
     }
-
 }

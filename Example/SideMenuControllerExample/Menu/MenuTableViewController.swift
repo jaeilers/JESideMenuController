@@ -9,7 +9,7 @@
 import UIKit
 import JESideMenuController
 
-class MenuTableViewController: UIViewController {
+final class MenuTableViewController: UIViewController {
 
     private struct Constants {
         static let identifier = "cell"
@@ -105,7 +105,6 @@ class MenuTableViewController: UIViewController {
         let identifier = menuItems.first?.storyboardID ?? ""
         cache[identifier] = visibleViewController
     }
-
 }
 
 // MARK: - TableView delegate
@@ -119,7 +118,6 @@ extension MenuTableViewController: UITableViewDelegate {
         guard let viewController = viewController(with: item.storyboardID) else { return }
         sideMenuController?.setViewController(viewController)
     }
-
 }
 
 // MARK: - Extensions

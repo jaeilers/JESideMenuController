@@ -17,7 +17,7 @@ final class HomeTableViewController: UIViewController {
 
     private struct Item: Hashable, Sendable {
         let text: String
-        let hasImage: Bool?
+        let hasImage: Bool
         private let identifier = UUID()
 
         static func == (lhs: Item, rhs: Item) -> Bool {
@@ -58,19 +58,19 @@ final class HomeTableViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(MessageTableViewCell.self, forCellReuseIdentifier: Constants.identifier)
 
-//        let bbi = UIBarButtonItem(
-//            image: UIImage(systemName: "line.3.horizontal"),
-//            style: .plain, target: self, action: #selector(toggle(_:))
-//        )
-//        bbi.tintColor = .label
-//        navigationItem.leftBarButtonItem = bbi
+        let bbi = UIBarButtonItem(
+            image: UIImage(systemName: "line.3.horizontal"),
+            style: .plain, target: self, action: #selector(toggle(_:))
+        )
+        bbi.tintColor = .label
+        navigationItem.leftBarButtonItem = bbi
 
         NSLayoutConstraint.activate([
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-            ])
+        ])
     }
 
     private func setupDataSource() {
@@ -79,7 +79,7 @@ final class HomeTableViewController: UIViewController {
 
             if let customCell = cell as? MessageTableViewCell {
                 customCell.setText(item.text)
-                customCell.showImage(item.hasImage ?? false)
+                customCell.showImage(item.hasImage)
             }
 
             return cell
@@ -89,7 +89,7 @@ final class HomeTableViewController: UIViewController {
     private func loadData() throws {
         let dataLoader = DataLoader()
         let data: [Message] = try dataLoader.loadData()
-        let items = data.map { Item(text: $0.text, hasImage: $0.hasImage) }
+        let items = data.map { Item(text: $0.text, hasImage: $0.hasImage ?? false) }
 
         var snapshot = NSDiffableDataSourceSnapshot<Int, Item>()
         snapshot.appendSections([0])
@@ -97,8 +97,8 @@ final class HomeTableViewController: UIViewController {
         dataSource?.apply(snapshot, animatingDifferences: false)
     }
 
-    @objc private func toggle(_ sender: UIBarButtonItem) {
+    @objc
+    private func toggle(_ sender: UIBarButtonItem) {
         sideMenuController?.toggle()
     }
-
 }
