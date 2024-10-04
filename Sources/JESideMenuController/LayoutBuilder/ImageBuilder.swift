@@ -12,7 +12,10 @@ import QuartzCore
 struct ImageBuilder: Sendable {
 
     /// Draws an image of a drop shadow. The image is resizable vertically.
-    /// - isFadingLeft: A Boolean value that determines whether the gradient is fading on the left side or on the right.
+    /// - Parameters:
+    ///   - isFadingLeft: A Boolean value that determines whether the gradient is fading on the left side
+    ///   or on the right.
+    /// - Returns: The a stretchable drop shadow image.
     @MainActor func makeShadowImage(isFadingLeft: Bool) -> UIImage? {
         let frame = CGRect(x: 0, y: 0, width: 12.0, height: 3.0)
         let gradientLayer = CAGradientLayer()
@@ -44,5 +47,4 @@ struct ImageBuilder: Sendable {
             )
             .withRenderingMode(.alwaysTemplate)
     }
-
 }

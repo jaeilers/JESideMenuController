@@ -25,7 +25,7 @@
 		8919BE6922CD1BCA00860D49 /* JESideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6822CD1BCA00860D49 /* JESideMenuController.swift */; };
 		8919BE6D22CD1BD200860D49 /* UIViewController+Containment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6A22CD1BD200860D49 /* UIViewController+Containment.swift */; };
 		8919BE6E22CD1BD200860D49 /* UIViewController+SideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6B22CD1BD200860D49 /* UIViewController+SideMenuController.swift */; };
-		8919BE6F22CD1BD200860D49 /* UIView+Pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6C22CD1BD200860D49 /* UIView+Pin.swift */; };
+		8919BE6F22CD1BD200860D49 /* UIView+pin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8919BE6C22CD1BD200860D49 /* UIView+pin.swift */; };
 		8930C54725E159D000DD55C2 /* LayoutContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8930C54625E159D000DD55C2 /* LayoutContainer.swift */; };
 		894E9192236EEFC4004F5215 /* JESideMenuController+Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894E9191236EEFC4004F5215 /* JESideMenuController+Configuration.swift */; };
 		8963949B2364A0C000690C19 /* LayoutBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8963949A2364A0C000690C19 /* LayoutBuilderTests.swift */; };
@@ -61,7 +61,7 @@
 		8919BE6822CD1BCA00860D49 /* JESideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JESideMenuController.swift; sourceTree = "<group>"; };
 		8919BE6A22CD1BD200860D49 /* UIViewController+Containment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Containment.swift"; sourceTree = "<group>"; };
 		8919BE6B22CD1BD200860D49 /* UIViewController+SideMenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+SideMenuController.swift"; sourceTree = "<group>"; };
-		8919BE6C22CD1BD200860D49 /* UIView+Pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Pin.swift"; sourceTree = "<group>"; };
+		8919BE6C22CD1BD200860D49 /* UIView+pin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+pin.swift"; sourceTree = "<group>"; };
 		8919BE7022CD1BDE00860D49 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8919BE7122CD1BEF00860D49 /* JESideMenuControllerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JESideMenuControllerTests.swift; sourceTree = "<group>"; };
 		8919BE7222CD1BEF00860D49 /* UIViewControllerExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtensionTests.swift; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		89E158F422DFAACB00FADB91 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				8919BE6C22CD1BD200860D49 /* UIView+Pin.swift */,
+				8919BE6C22CD1BD200860D49 /* UIView+pin.swift */,
 				8919BE6A22CD1BD200860D49 /* UIViewController+Containment.swift */,
 				8919BE6B22CD1BD200860D49 /* UIViewController+SideMenuController.swift */,
 				894E9191236EEFC4004F5215 /* JESideMenuController+Configuration.swift */,
@@ -291,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n   swiftlint\nelse\n   echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+			shellScript = "if command -v swiftlint >/dev/null 2>&1\nthen\n    swiftlint\nelse\n    echo \"warning: `swiftlint` command not found - See https://github.com/realm/SwiftLint#installation for installation instructions.\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -306,7 +306,7 @@
 				8930C54725E159D000DD55C2 /* LayoutContainer.swift in Sources */,
 				8998386622D0F50F00F0F8A9 /* SlideOutInlineLayoutBuilder.swift in Sources */,
 				8912BAE722D5006B00E5B0E9 /* ImageBuilder.swift in Sources */,
-				8919BE6F22CD1BD200860D49 /* UIView+Pin.swift in Sources */,
+				8919BE6F22CD1BD200860D49 /* UIView+pin.swift in Sources */,
 				8998385E22CD384200F0F8A9 /* LayoutBuildingProtocol.swift in Sources */,
 				8919BE6E22CD1BD200860D49 /* UIViewController+SideMenuController.swift in Sources */,
 				8998385C22CD2C7B00F0F8A9 /* SlideOutLayoutBuilder.swift in Sources */,
@@ -356,6 +356,7 @@
 				DEFINES_MODULE = YES;
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
@@ -392,6 +393,7 @@
 				DEFINES_MODULE = YES;
 				ENABLE_MODULE_VERIFIER = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",

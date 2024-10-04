@@ -16,17 +16,22 @@ protocol LayoutBuilding: Sendable {
     var ipadWidth: CGFloat { get }
 
     /// Builds the layout for a slider menu in the specified view.
-    /// - parameter view: The entry point to build up the view hierarchy.
-    /// - parameter isLeft: A Boolean value that determines the side which the menu will be placed.
+    /// - Parameters:
+    ///   - view: The entry point to build up the view hierarchy.
+    ///   - isLeft: A Boolean value that determines the side which the menu will be placed.
     @MainActor func layout(in view: UIView?, isLeft: Bool)
 }
 
 extension LayoutBuilding {
 
     /// Adds specific constraints depending on the current device (iPhone/iPad)
-    func addDeviceSpecificConstraints(to view: UIView, scrollView: UIScrollView, isLeft: Bool,
-                                      userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) {
-        // restrict width for ipad
+    func addDeviceSpecificConstraints(
+        to view: UIView,
+        scrollView: UIScrollView,
+        isLeft: Bool,
+        userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+    ) {
+        // restrict width for iPad
         if userInterfaceIdiom == .pad {
             scrollView.widthAnchor.constraint(equalToConstant: ipadWidth).isActive = true
         } else if isLeft {

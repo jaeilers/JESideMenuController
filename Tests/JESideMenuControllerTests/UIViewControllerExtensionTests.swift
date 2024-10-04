@@ -36,13 +36,13 @@ final class UIViewControllerExtensionTests: XCTestCase {
 
     func testContainment() {
         let parent = UIViewController()
-        let viewcontroller = UIViewController()
+        let viewController = UIViewController()
         XCTAssertEqual(parent.children.count, 0)
 
-        parent.add(controller: viewcontroller, toView: parent.view)
+        parent.add(controller: viewController, toView: parent.view)
         XCTAssertEqual(parent.children.count, 1)
 
-        parent.remove(controller: viewcontroller)
+        parent.remove(controller: viewController)
         XCTAssertEqual(parent.children.count, 0)
     }
 }

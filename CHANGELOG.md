@@ -22,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 ### Fixed
 - Rewording of description and fix typos in README.
 - Fixed a bug where the slide-in edge gesture recognizer would block the recognition of `UINavigationControllers` back swipe.
+- Swiftlint integration after upgrading to Xcode 15+
 
 ## [1.0.0] - 2019-07-26
 ### Added

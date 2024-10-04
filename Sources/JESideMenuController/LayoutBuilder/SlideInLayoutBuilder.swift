@@ -37,8 +37,9 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     // MARK: - Private Methods
 
     /// Add all views to the view hierarchy.
-    /// - parameter view: The superview.
-    /// - parameter contentView: The contentView of the scrollView.
+    /// - Parameters:
+    ///   - view: The superview.
+    ///   - contentView: The contentView of the scrollView.
     @MainActor private func setupSubviews(with view: UIView, contentView: UIView) {
         view.addSubview(container.scrollView)
         view.addSubview(container.containerView)
@@ -54,9 +55,10 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     }
 
     /// Adds constraints that are specific for the side where the menu should be placed (left/right).
-    /// - parameter view: The superview.
-    /// - parameter contentView: The contentView of the scrollView.
-    /// - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
+    /// - Parameters:
+    ///   - view: The superview.
+    ///   - contentView: The contentView of the scrollView.
+    ///   - isLeft: A Boolean value that determines on which side menu should be placed in the layout.
     @MainActor private func addSideSpecificConstraints(with view: UIView, contentView: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
@@ -89,8 +91,9 @@ struct SlideInLayoutBuilder: LayoutBuilding {
 
     /// Adds all the remaining constraints that aren't device or side specific to all the views.
     /// All views have to be added in the view hierarchy beforehand.
-    /// - parameter view: The superview.
-    /// - parameter contentView: The contentView of the scrollView.
+    /// - Parameters:
+    ///   - view: The superview.
+    ///   - contentView: The contentView of the scrollView.
     @MainActor private func addConstraints(with view: UIView, contentView: UIView) {
         NSLayoutConstraint.activate([
             container.scrollView.topAnchor.constraint(equalTo: view.topAnchor),
