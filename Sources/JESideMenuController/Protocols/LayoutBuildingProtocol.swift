@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol LayoutBuilding {
+protocol LayoutBuilding: Sendable {
 
     /// Visible spacing of the content view if the menu is open
     var spacing: CGFloat { get }
@@ -18,8 +18,7 @@ protocol LayoutBuilding {
     /// Builds the layout for a slider menu in the specified view.
     /// - parameter view: The entry point to build up the view hierarchy.
     /// - parameter isLeft: A Boolean value that determines the side which the menu will be placed.
-    func layout(in view: UIView?, isLeft: Bool)
-
+    @MainActor func layout(in view: UIView?, isLeft: Bool)
 }
 
 extension LayoutBuilding {
@@ -49,13 +48,15 @@ struct LayoutUtil: LayoutBuilding {
 
     func layout(in view: UIView?, isLeft: Bool) {}
 
-    /// Calculates the width of the scroll view based on a given size and the current devide (iPhone/iPad)
-    func getScrollViewWidth(for size: CGSize,
-                            userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom) -> CGFloat {
+    /// Calculates the width of the scroll view based on a given size and the current device (iPhone/iPad)
+    func getScrollViewWidth(
+        for size: CGSize,
+        userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+    ) -> CGFloat {
         if userInterfaceIdiom == .pad {
-            return ipadWidth
+            ipadWidth
         } else {
-            return size.width - spacing
+            size.width - spacing
         }
     }
 }

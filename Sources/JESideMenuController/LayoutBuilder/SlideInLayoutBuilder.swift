@@ -39,7 +39,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     /// Add all views to the view hierarchy.
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
-    private func setupSubviews(with view: UIView, contentView: UIView) {
+    @MainActor private func setupSubviews(with view: UIView, contentView: UIView) {
         view.addSubview(container.scrollView)
         view.addSubview(container.containerView)
         view.addSubview(container.shadowImageView)
@@ -57,7 +57,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter isLeft: A Boolean value that determines on which side menu should be placed in the layout.
-    private func addSideSpecificConstraints(with view: UIView, contentView: UIView, isLeft: Bool) {
+    @MainActor private func addSideSpecificConstraints(with view: UIView, contentView: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
                 container.scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -68,7 +68,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
                 container.shadowImageView.leadingAnchor.constraint(equalTo: container.menuContainerView.trailingAnchor),
                 container.tapView.leadingAnchor.constraint(equalTo: container.menuContainerView.trailingAnchor),
                 container.tapView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-                ])
+            ])
         } else {
             // the layout system might break this constraint on rotation.
             let tapLeading = container.tapView.leadingAnchor.constraint(equalTo: view.leadingAnchor)
@@ -83,7 +83,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
                 ),
                 container.shadowImageView.trailingAnchor.constraint(equalTo: container.menuContainerView.leadingAnchor),
                 container.tapView.trailingAnchor.constraint(equalTo: container.menuContainerView.leadingAnchor)
-                ])
+            ])
         }
     }
 
@@ -91,7 +91,7 @@ struct SlideInLayoutBuilder: LayoutBuilding {
     /// All views have to be added in the view hierarchy beforehand.
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
-    private func addConstraints(with view: UIView, contentView: UIView) {
+    @MainActor private func addConstraints(with view: UIView, contentView: UIView) {
         NSLayoutConstraint.activate([
             container.scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             container.scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -106,8 +106,10 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             container.containerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             container.containerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             container.gestureContainerView.topAnchor.constraint(equalTo: view.topAnchor),
-            container.gestureContainerView.widthAnchor.constraint(equalTo: container.scrollView.widthAnchor,
-                                                                  constant: 20.0),
+            container.gestureContainerView.widthAnchor.constraint(
+                equalTo: container.scrollView.widthAnchor,
+                constant: 20.0
+            ),
             container.gestureContainerView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             container.shadowImageView.topAnchor.constraint(equalTo: view.topAnchor),
             container.shadowImageView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -116,6 +118,6 @@ struct SlideInLayoutBuilder: LayoutBuilding {
             container.menuContainerView.widthAnchor.constraint(equalTo: container.scrollView.widthAnchor),
             container.tapView.topAnchor.constraint(equalTo: view.topAnchor),
             container.tapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-            ])
+        ])
     }
 }

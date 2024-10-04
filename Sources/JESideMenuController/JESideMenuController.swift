@@ -9,12 +9,12 @@ import UIKit
 
 public final class JESideMenuController: UIViewController, LayoutContainer {
 
-    private struct Constants {
+    private struct Constants: Sendable {
         static let alpha: CGFloat = 0.15
     }
 
     /// Constants for the side menu controller layout styles.
-    public enum Style: Int {
+    public enum Style: Int, Sendable {
         case slideOut, slideIn, slideOutInline
     }
 
@@ -37,17 +37,17 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     @IBInspectable public var isLeft: Bool = true
 
     public var visibleViewController: UIViewController? {
-        return rootViewController
+        rootViewController
     }
 
     /// A Boolean value that indicates if the side menu is displayed on screen.
     public var isMenuVisible: Bool {
-        return isLeft ? scrollView.contentOffset.x <= 0 : scrollView.contentOffset.x >= scrollView.bounds.width
+        isLeft ? scrollView.contentOffset.x <= 0 : scrollView.contentOffset.x >= scrollView.bounds.width
     }
 
     /// A Boolean value that indicates whether scrolling is enabled.
     public var isScrollEnabled: Bool {
-        get { return scrollView.isScrollEnabled }
+        get { scrollView.isScrollEnabled }
         set {
             scrollView.isScrollEnabled = newValue
             // hide the gesture container view for slide-in style, so that it doesn't block swipe-back.
@@ -72,7 +72,7 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
         return view
     }()
 
-    /// Responsible for the scrolling behaviour of the menu (paging).
+    /// Responsible for the scrolling behavior of the menu (paging).
     lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -128,8 +128,12 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     /// - parameter isLeft: A Boolean value that determines on which side the menu will be placed. Default is `true`.
     /// - parameter configuration: The configuration specifies the layout for example spacing
     /// and drop shadow visibility.
-    public init(menuViewController: UIViewController? = nil, style: Style = .slideOut,
-                isLeft: Bool = true, configuration: Configuration = .default) {
+    public init(
+        menuViewController: UIViewController? = nil,
+        style: Style = .slideOut,
+        isLeft: Bool = true,
+        configuration: Configuration = .default
+    ) {
         super.init(nibName: nil, bundle: nil)
         self.style = style
         self.isLeft = isLeft
@@ -162,8 +166,10 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     }
 
     /// Forward TraitCollection change to the childViewController
-    override public func willTransition(to newCollection: UITraitCollection,
-                                        with coordinator: UIViewControllerTransitionCoordinator) {
+    override public func willTransition(
+        to newCollection: UITraitCollection,
+        with coordinator: UIViewControllerTransitionCoordinator
+    ) {
         super.willTransition(to: newCollection, with: coordinator)
         rootViewController?.willTransition(to: newCollection, with: coordinator)
         menuViewController?.willTransition(to: newCollection, with: coordinator)
@@ -196,8 +202,10 @@ public final class JESideMenuController: UIViewController, LayoutContainer {
     /// - parameter viewController: The view controller which will be displayed.
     /// - parameter animated: A boolean value that indicates whether the menu is hidden with an animation.
     /// Default is `true`.
-    public func setViewController(_ viewController: UIViewController,
-                                  animated: Bool = true) {
+    public func setViewController(
+        _ viewController: UIViewController,
+        animated: Bool = true
+    ) {
         setMenuHidden(true, animated: animated)
 
         guard rootViewController !== viewController else { return }

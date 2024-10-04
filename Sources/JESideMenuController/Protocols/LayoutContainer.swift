@@ -7,7 +7,8 @@
 
 import UIKit
 
-protocol LayoutContainer {
+@MainActor
+protocol LayoutContainer: Sendable {
     /// The main container view to host the content.
     var containerView: UIView { get }
     /// The container view for the menu (viewController).

@@ -9,7 +9,8 @@
 import XCTest
 @testable import JESideMenuController
 
-class LayoutBuilderTests: XCTestCase {
+@MainActor
+final class LayoutBuilderTests: XCTestCase {
 
     private struct Container: LayoutContainer {
         let menuContainerView = UIView()

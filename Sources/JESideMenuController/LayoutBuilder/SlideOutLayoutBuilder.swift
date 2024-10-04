@@ -41,7 +41,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter view: The superview.
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
-    private func setupSubviews(with view: UIView, contentView: UIView, page: UIView) {
+    @MainActor private func setupSubviews(with view: UIView, contentView: UIView, page: UIView) {
         view.addSubview(container.scrollView)
         view.addSubview(container.menuContainerView)
         view.addSubview(container.darkView)
@@ -65,7 +65,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
     /// - parameter isLeft: A Boolean value that determines on which side the menu should be placed in the layout.
-    private func addSideSpecificConstraints(to view: UIView, contentView: UIView, page: UIView, isLeft: Bool) {
+    @MainActor private func addSideSpecificConstraints(to view: UIView, contentView: UIView, page: UIView, isLeft: Bool) {
         if isLeft {
             NSLayoutConstraint.activate([
                 container.scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -74,7 +74,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
                 container.menuContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
                 container.menuContainerView.trailingAnchor.constraint(equalTo: container.scrollView.trailingAnchor),
                 container.shadowImageView.trailingAnchor.constraint(equalTo: container.containerView.leadingAnchor)
-                ])
+            ])
         } else {
             NSLayoutConstraint.activate([
                 container.scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -83,7 +83,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
                 container.menuContainerView.leadingAnchor.constraint(equalTo: container.scrollView.leadingAnchor),
                 container.menuContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
                 container.shadowImageView.leadingAnchor.constraint(equalTo: container.containerView.trailingAnchor)
-                ])
+            ])
         }
     }
 
@@ -93,7 +93,7 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
     /// - parameter contentView: The contentView of the scrollView.
     /// - parameter page: A view that acts as a spacer for the containerView to reveal the menu underneath.
     /// - parameter gestureContainerView: A view that hosts the scrollViews gesture recognizer.
-    private func addConstraints(to view: UIView, contentView: UIView, page: UIView) {
+    @MainActor private func addConstraints(to view: UIView, contentView: UIView, page: UIView) {
         NSLayoutConstraint.activate([
             container.scrollView.topAnchor.constraint(equalTo: view.topAnchor),
             container.scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -125,6 +125,6 @@ struct SlideOutLayoutBuilder: LayoutBuilding {
             container.darkView.topAnchor.constraint(equalTo: container.menuContainerView.topAnchor),
             container.darkView.trailingAnchor.constraint(equalTo: container.menuContainerView.trailingAnchor),
             container.darkView.bottomAnchor.constraint(equalTo: container.menuContainerView.bottomAnchor)
-            ])
+        ])
     }
 }
