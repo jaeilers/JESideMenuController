@@ -68,7 +68,6 @@
 		8930C54625E159D000DD55C2 /* LayoutContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutContainer.swift; sourceTree = "<group>"; };
 		894E9191236EEFC4004F5215 /* JESideMenuController+Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JESideMenuController+Configuration.swift"; sourceTree = "<group>"; };
 		8963949A2364A0C000690C19 /* LayoutBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuilderTests.swift; sourceTree = "<group>"; };
-		8968EDA222EB19C800B4EFB7 /* JESideMenuController.podspec */ = {isa = PBXFileReference; lastKnownFileType = text; path = JESideMenuController.podspec; sourceTree = "<group>"; };
 		8998385B22CD2C7B00F0F8A9 /* SlideOutLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideOutLayoutBuilder.swift; sourceTree = "<group>"; };
 		8998385D22CD384200F0F8A9 /* LayoutBuildingProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutBuildingProtocol.swift; sourceTree = "<group>"; };
 		8998386322CE60FA00F0F8A9 /* SlideInLayoutBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlideInLayoutBuilder.swift; sourceTree = "<group>"; };
@@ -160,7 +159,6 @@
 		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
-				8968EDA222EB19C800B4EFB7 /* JESideMenuController.podspec */,
 				OBJ_6 /* Package.swift */,
 				OBJ_7 /* Sources */,
 				OBJ_10 /* Tests */,

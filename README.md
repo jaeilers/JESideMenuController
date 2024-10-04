@@ -1,5 +1,5 @@
 # JESideMenuController
-![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.10-orange.svg) ![](https://img.shields.io/badge/Xcode-15.4+-blue.svg) ![](https://img.shields.io/badge/iOS-15+-blue.svg) ![](https://img.shields.io/badge/pod-2.0.0-brightgreen.svg) ![](https://img.shields.io/badge/Carthage-✔-brightgreen.svg) ![](https://img.shields.io/badge/Swift%20PM-✔-brightgreen.svg)
+![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-5.10-orange.svg) ![](https://img.shields.io/badge/Xcode-15.4+-blue.svg) ![](https://img.shields.io/badge/iOS-15+-blue.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
@@ -18,22 +18,7 @@ slide out | slide in | slide out inline
 
 ## Installation
 
-### CocoaPods
-To integrate the `JESideMenuController` in your project, add the following line to your `Podfile`:
-
-```
-  pod 'JESideMenuController', '~> 2.0.0'
-```
-
-### Carthage
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager. To integrate the `JESideMenuController` add the following line to your `Cartfile` and follow the instructions to [add the framework to your application](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application):
-
-```
-github "jaeilers/JESideMenuController" ~> 2.0.0
-```
-
-### Swift Package Manager
-[Swift Package Manager](https://github.com/apple/swift-package-manager) is the official dependency manager for Cocoa projects. Xcode 11 directly integrates Swift PM. Add the url of this repository to your dependencies in Xcode or add the following line to your `Package.swift` as a value in `dependencies`:
+[Swift Package Manager](https://github.com/apple/swift-package-manager) is the official dependency manager for Cocoa projects. Swift PM is directly integrated since Xcode 11. Add the url of this repository to your dependencies in Xcode or add the following line to your `Package.swift` as a value in `dependencies`:
 
 ```
 dependencies: [
