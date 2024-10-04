@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DataLoader {
+struct DataLoader: Sendable {
 
     enum DataLoaderError: Error {
         case fileDoesNotExist
