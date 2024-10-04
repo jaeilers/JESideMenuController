@@ -22,14 +22,14 @@ protocol LayoutBuilding: Sendable {
 extension LayoutBuilding {
 
     /// Adds specific constraints depending on the current device (iPhone/iPad)
-    func addDeviceSpecificConstraints(
+    @MainActor func addDeviceSpecificConstraints(
         to view: UIView,
         scrollView: UIScrollView,
         isLeft: Bool,
-        userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        userInterfaceIdiom: @MainActor () -> UIUserInterfaceIdiom = { UIDevice.current.userInterfaceIdiom }
     ) {
         // restrict width for iPad
-        if userInterfaceIdiom == .pad {
+        if userInterfaceIdiom() == .pad {
             scrollView.widthAnchor.constraint(equalToConstant: ipadWidth).isActive = true
         } else if isLeft {
             view.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: spacing).isActive = true
@@ -51,11 +51,11 @@ struct LayoutUtil: LayoutBuilding {
     func layout(in view: UIView?, isLeft: Bool) {}
 
     /// Calculates the width of the scroll view based on a given size and the current device (iPhone/iPad)
-    func getScrollViewWidth(
+    @MainActor func getScrollViewWidth(
         for size: CGSize,
-        userInterfaceIdiom: UIUserInterfaceIdiom = UIDevice.current.userInterfaceIdiom
+        userInterfaceIdiom: @MainActor () -> UIUserInterfaceIdiom = { UIDevice.current.userInterfaceIdiom }
     ) -> CGFloat {
-        if userInterfaceIdiom == .pad {
+        if userInterfaceIdiom() == .pad {
             ipadWidth
         } else {
             size.width - spacing

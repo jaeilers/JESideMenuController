@@ -7,7 +7,7 @@ import XCTest
 @testable import JESideMenuController
 
 @MainActor
-final class JESideMenuControllerTests: XCTestCase {
+final class JESideMenuControllerTests: XCTestCase, Sendable {
 
     func testInitialization() {
         // Given

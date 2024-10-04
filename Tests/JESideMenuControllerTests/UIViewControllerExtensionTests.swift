@@ -7,7 +7,7 @@ import XCTest
 @testable import JESideMenuController
 
 @MainActor
-final class UIViewControllerExtensionTests: XCTestCase {
+final class UIViewControllerExtensionTests: XCTestCase, Sendable {
 
     func testSideMenuControllerExtension() {
         // Given

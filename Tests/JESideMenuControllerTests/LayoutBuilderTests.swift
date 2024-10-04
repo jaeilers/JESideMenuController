@@ -7,7 +7,7 @@ import XCTest
 @testable import JESideMenuController
 
 @MainActor
-final class LayoutBuilderTests: XCTestCase {
+final class LayoutBuilderTests: XCTestCase, Sendable {
 
     private struct Container: LayoutContainer {
         let menuContainerView = UIView()
@@ -148,7 +148,7 @@ final class LayoutBuilderTests: XCTestCase {
         containerView.addSubview(view)
 
         // When
-        util.addDeviceSpecificConstraints(to: view, scrollView: scrollView, isLeft: true, userInterfaceIdiom: .pad)
+        util.addDeviceSpecificConstraints(to: view, scrollView: scrollView, isLeft: true, userInterfaceIdiom: { .pad })
         scrollView.layoutIfNeeded()
 
         // Then
@@ -163,8 +163,8 @@ final class LayoutBuilderTests: XCTestCase {
         let util = LayoutUtil(spacing: spacing, ipadWidth: ipadWidth)
 
         // When
-        let scrollViewWidth = util.getScrollViewWidth(for: size, userInterfaceIdiom: .phone)
-        let ipadScrollViewWidth = util.getScrollViewWidth(for: size, userInterfaceIdiom: .pad)
+        let scrollViewWidth = util.getScrollViewWidth(for: size, userInterfaceIdiom: { .phone })
+        let ipadScrollViewWidth = util.getScrollViewWidth(for: size, userInterfaceIdiom: { .pad })
 
         // Then
         XCTAssertEqual(scrollViewWidth, size.width - spacing)
