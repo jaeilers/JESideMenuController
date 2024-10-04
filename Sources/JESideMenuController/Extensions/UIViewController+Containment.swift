@@ -1,7 +1,4 @@
 //
-//  UIViewController+Containment.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 01.04.19.
 //
 

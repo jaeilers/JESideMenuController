@@ -1,7 +1,4 @@
 //
-//  LayoutBuildingProtocol.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 03.07.19.
 //
 

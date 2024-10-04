@@ -1,7 +1,4 @@
 //
-//  ImageBuilder.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 09.07.19.
 //
 

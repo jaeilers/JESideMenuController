@@ -1,7 +1,4 @@
 //
-//  SlideOutInlineLayoutBuilder.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 06.07.19.
 //
 

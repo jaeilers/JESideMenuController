@@ -1,7 +1,4 @@
 //
-//  JESideMenuControllerTests.swift
-//  JESideMenuControllerTests
-//
 //  Created by Jasmin Eilers on 01.04.19.
 //  Copyright © 2019 JE. All rights reserved.
 //

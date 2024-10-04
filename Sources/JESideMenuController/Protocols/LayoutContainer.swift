@@ -1,7 +1,4 @@
 //
-//  LayoutContainer.swift
-//  JESideMenuController
-//
 //  Created by Jasmin Eilers on 20.02.21.
 //
 
