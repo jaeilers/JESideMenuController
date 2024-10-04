@@ -12,6 +12,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 ### Changed
 - Improved example application.
 - Switched from Travis-CI to github actions.
+- Require minimum target iOS 15
 
 ### Fixed
 - Rewording of description and fix typos in README.
