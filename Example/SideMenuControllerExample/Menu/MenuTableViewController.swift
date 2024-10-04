@@ -35,7 +35,6 @@ final class MenuTableViewController: UIViewController {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.delegate = self
-        tableView.tableFooterView = UIView()
         return tableView
     }()
 
