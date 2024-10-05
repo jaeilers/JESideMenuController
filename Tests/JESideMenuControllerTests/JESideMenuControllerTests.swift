@@ -25,7 +25,7 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
 
     func testStoryboardInitialization() {
         // Given
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle(for: JESideMenuControllerTests.self))
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.module)
 
         // When
         let sideMenuController = storyboard.instantiateInitialViewController() as? JESideMenuController
