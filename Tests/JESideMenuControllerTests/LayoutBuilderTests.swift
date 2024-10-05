@@ -3,11 +3,13 @@
 //  Copyright © 2019 JE. All rights reserved.
 //
 
-import XCTest
+import Testing
+import UIKit
 @testable import JESideMenuController
 
 @MainActor
-final class LayoutBuilderTests: XCTestCase, Sendable {
+@Suite
+struct LayoutBuilderTests {
 
     private struct Container: LayoutContainer {
         let menuContainerView = UIView()
@@ -19,7 +21,8 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         let darkView = UIView()
     }
 
-    func testSlideOutBuilderLeft() {
+    @Test
+    func slideOutBuilderLeft() {
         // Given
         let container = Container()
         let builder = SlideOutLayoutBuilder(
@@ -33,16 +36,17 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(container.menuContainerView.superview === superview)
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertTrue(container.darkView.superview === superview)
-        XCTAssertNotNil(container.containerView.superview)
-        XCTAssertNotNil(container.tapView.superview)
-        XCTAssertNotNil(container.shadowImageView.superview)
-        XCTAssertNotNil(container.gestureContainerView.superview)
+        #expect(container.menuContainerView.superview === superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.darkView.superview === superview)
+        #expect(container.containerView.superview != nil)
+        #expect(container.tapView.superview != nil)
+        #expect(container.shadowImageView.superview != nil)
+        #expect(container.gestureContainerView.superview != nil)
     }
 
-    func testSlideOutBuilderRight() {
+    @Test
+    func slideOutBuilderRight() {
         // Given
         let container = Container()
         let builder = SlideOutLayoutBuilder(spacing: 0, ipadWidth: 0, container: container)
@@ -52,16 +56,17 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: false)
 
         // Then
-        XCTAssertTrue(container.menuContainerView.superview === superview)
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertTrue(container.darkView.superview === superview)
-        XCTAssertNotNil(container.containerView.superview)
-        XCTAssertNotNil(container.tapView.superview)
-        XCTAssertNotNil(container.shadowImageView.superview)
-        XCTAssertNotNil(container.gestureContainerView.superview)
+        #expect(container.menuContainerView.superview === superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.darkView.superview === superview)
+        #expect(container.containerView.superview != nil)
+        #expect(container.tapView.superview != nil)
+        #expect(container.shadowImageView.superview != nil)
+        #expect(container.gestureContainerView.superview != nil)
     }
 
-    func testSlideInBuilderLeft() {
+    @Test
+    func slideInBuilderLeft() {
         // Given
         let container = Container()
         let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, container: container)
@@ -71,15 +76,16 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(container.containerView.superview === superview)
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertTrue(container.tapView.superview === superview)
-        XCTAssertTrue(container.shadowImageView.superview === superview)
-        XCTAssertTrue(container.gestureContainerView.superview === superview)
-        XCTAssertNotNil(container.menuContainerView.superview)
+        #expect(container.containerView.superview === superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.tapView.superview === superview)
+        #expect(container.shadowImageView.superview === superview)
+        #expect(container.gestureContainerView.superview === superview)
+        #expect(container.menuContainerView.superview != nil)
     }
 
-    func testSlideInBuilderRight() {
+    @Test
+    func slideInBuilderRight() {
         // Given
         let container = Container()
         let builder = SlideInLayoutBuilder(spacing: 60, ipadWidth: 320, container: container)
@@ -89,15 +95,16 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: false)
 
         // Then
-        XCTAssertTrue(container.containerView.superview === superview)
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertTrue(container.tapView.superview === superview)
-        XCTAssertTrue(container.shadowImageView.superview === superview)
-        XCTAssertTrue(container.gestureContainerView.superview === superview)
-        XCTAssertNotNil(container.menuContainerView.superview)
+        #expect(container.containerView.superview === superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.tapView.superview === superview)
+        #expect(container.shadowImageView.superview === superview)
+        #expect(container.gestureContainerView.superview === superview)
+        #expect(container.menuContainerView.superview != nil)
     }
 
-    func testSlideOutInlineBuilderLeft() {
+    @Test
+    func slideOutInlineBuilderLeft() {
         // Given
         let container = Container()
         let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, container: container)
@@ -107,14 +114,15 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertNotNil(container.menuContainerView.superview)
-        XCTAssertNotNil(container.containerView.superview)
-        XCTAssertNotNil(container.tapView.superview)
-        XCTAssertNotNil(container.gestureContainerView.superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.menuContainerView.superview != nil)
+        #expect(container.containerView.superview != nil)
+        #expect(container.tapView.superview != nil)
+        #expect(container.gestureContainerView.superview != nil)
     }
 
-    func testSlideOutInlineBuilderRight() {
+    @Test
+    func slideOutInlineBuilderRight() {
         // Given
         let container = Container()
         let builder = SlideOutInlineLayoutBuilder(spacing: 32, ipadWidth: 600, container: container)
@@ -124,13 +132,14 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         builder.layout(in: superview, isLeft: true)
 
         // Then
-        XCTAssertTrue(container.scrollView.superview === superview)
-        XCTAssertNotNil(container.menuContainerView.superview)
-        XCTAssertNotNil(container.containerView.superview)
-        XCTAssertNotNil(container.tapView.superview)
+        #expect(container.scrollView.superview === superview)
+        #expect(container.menuContainerView.superview != nil)
+        #expect(container.containerView.superview != nil)
+        #expect(container.tapView.superview != nil)
     }
 
-    func testDefaultLayoutBuilderDeviceSpecificConstraints() {
+    @Test
+    func defaultLayoutBuilderDeviceSpecificConstraints() {
         // Given
         let spacing: CGFloat = 50.0
         let ipadWidth: CGFloat = 200.0
@@ -152,10 +161,11 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         scrollView.layoutIfNeeded()
 
         // Then
-        XCTAssertEqual(scrollView.frame.width, ipadWidth)
+        #expect(scrollView.frame.width == ipadWidth)
     }
 
-    func testDefaultLayoutBuilderScrollViewWidth() {
+    @Test
+    func defaultLayoutBuilderScrollViewWidth() {
         // Given
         let size = CGSize(width: 320.0, height: 480.0)
         let spacing: CGFloat = 100.0
@@ -167,7 +177,7 @@ final class LayoutBuilderTests: XCTestCase, Sendable {
         let ipadScrollViewWidth = util.getScrollViewWidth(for: size, userInterfaceIdiom: { .pad })
 
         // Then
-        XCTAssertEqual(scrollViewWidth, size.width - spacing)
-        XCTAssertEqual(ipadScrollViewWidth, ipadWidth)
+        #expect(scrollViewWidth == size.width - spacing)
+        #expect(ipadScrollViewWidth == ipadWidth)
     }
 }

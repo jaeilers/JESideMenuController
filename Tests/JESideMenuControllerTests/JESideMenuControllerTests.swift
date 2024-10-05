@@ -3,13 +3,16 @@
 //  Copyright © 2019 JE. All rights reserved.
 //
 
-import XCTest
+import Testing
+import UIKit
 @testable import JESideMenuController
 
 @MainActor
-final class JESideMenuControllerTests: XCTestCase, Sendable {
+@Suite
+struct JESideMenuControllerTests {
 
-    func testInitialization() {
+    @Test
+    func initialization() {
         // Given
         let rootViewController = UIViewController()
         let menuTableViewController = UITableViewController(style: .plain)
@@ -20,10 +23,11 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.setViewController(rootViewController, animated: false)
 
         // Then
-        XCTAssertEqual(sideMenuController.children.count, 2)
+        #expect(sideMenuController.children.count == 2)
     }
 
-    func testStoryboardInitialization() {
+    @Test
+    func storyboardInitialization() {
         // Given
         let storyboard = UIStoryboard(name: "Main", bundle: Bundle.module)
 
@@ -31,15 +35,16 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         let sideMenuController = storyboard.instantiateInitialViewController() as? JESideMenuController
 
         // Then
-        XCTAssertNotNil(sideMenuController)
-        XCTAssertNotNil(sideMenuController?.rootId)
-        XCTAssertNotNil(sideMenuController?.menuId)
+        #expect(sideMenuController != nil)
+        #expect(sideMenuController?.rootId != nil)
+        #expect(sideMenuController?.menuId != nil)
         sideMenuController?.loadViewIfNeeded()
 
-        XCTAssertEqual(sideMenuController?.children.count, 2)
+        #expect(sideMenuController?.children.count == 2)
     }
 
-    func testSettingViewController() {
+    @Test
+    func settingViewController() {
         // Given
         let rootViewController = UIViewController()
         let menuViewController = UITableViewController(style: .plain)
@@ -54,7 +59,7 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.loadViewIfNeeded()
 
         // Then
-        XCTAssertEqual(sideMenuController.children.count, 2)
+        #expect(sideMenuController.children.count == 2)
 
         // Given: set view controller
         let viewController = UIViewController()
@@ -63,10 +68,11 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.setViewController(viewController, animated: false)
 
         // Then
-        XCTAssertEqual(sideMenuController.children.count, 2)
+        #expect(sideMenuController.children.count == 2)
     }
 
-    func testImageBuilder() {
+    @Test
+    func imageBuilder() {
         // Given
         let builder = ImageBuilder()
 
@@ -74,20 +80,21 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         let image = builder.makeShadowImage(isFadingLeft: true)
 
         // Then
-        XCTAssertNotNil(image)
-        XCTAssertTrue(image!.size.width == 12.0)
-        XCTAssertTrue(image!.size.height == 3.0)
+        #expect(image != nil)
+        #expect(image!.size.width == 12.0)
+        #expect(image!.size.height == 3.0)
 
         // When
         let rightImage = builder.makeShadowImage(isFadingLeft: false)
 
         // Then
-        XCTAssertNotNil(rightImage)
-        XCTAssertTrue(rightImage!.size.width == 12.0)
-        XCTAssertTrue(rightImage!.size.height == 3.0)
+        #expect(rightImage != nil)
+        #expect(rightImage!.size.width == 12.0)
+        #expect(rightImage!.size.height == 3.0)
     }
 
-    func testSliderPositionHiddenAtLaunch() {
+    @Test
+    func sliderPositionHiddenAtLaunch() {
         // Given
         let rootController = UIViewController()
         let menuController = UIViewController()
@@ -103,23 +110,24 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.view.layoutIfNeeded()
 
         // Then
-        XCTAssertFalse(sideMenuController.isMenuVisible)
-        XCTAssertTrue(rootController === sideMenuController.visibleViewController)
+        #expect(!sideMenuController.isMenuVisible)
+        #expect(rootController === sideMenuController.visibleViewController)
 
         // When: toggle the menu
         sideMenuController.toggle(animated: false)
 
         // Then
-        XCTAssertTrue(sideMenuController.isMenuVisible)
+        #expect(sideMenuController.isMenuVisible)
 
         // When: Hide menu
         sideMenuController.setMenuHidden(true, animated: false)
 
         // Then
-        XCTAssertFalse(sideMenuController.isMenuVisible)
+        #expect(!sideMenuController.isMenuVisible)
     }
 
-    func testSetViewController() {
+    @Test
+    func setViewController() {
         // Given
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .plain)
@@ -134,7 +142,7 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.setViewController(rootController, animated: false)
 
         // Then
-        XCTAssertTrue(sideMenuController.visibleViewController === rootController)
+        #expect(sideMenuController.visibleViewController === rootController)
 
         // Given: set new root view controller
         let newController = UIViewController()
@@ -143,10 +151,11 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.setViewController(newController, animated: false)
 
         // Then
-        XCTAssertTrue(sideMenuController.visibleViewController === newController)
+        #expect(sideMenuController.visibleViewController === newController)
     }
 
-    func testDisableScrolling() {
+    @Test
+    func disableScrolling() {
         // Given
         let rootController = UIViewController()
         let menuController = UITableViewController(style: .plain)
@@ -157,11 +166,11 @@ final class JESideMenuControllerTests: XCTestCase, Sendable {
         sideMenuController.loadViewIfNeeded()
 
         // Then
-        XCTAssertTrue(sideMenuController.isScrollEnabled)
+        #expect(sideMenuController.isScrollEnabled)
 
         // When: Disable scrolling
         sideMenuController.isScrollEnabled = false
 
-        XCTAssertFalse(sideMenuController.isScrollEnabled)
+        #expect(!sideMenuController.isScrollEnabled)
     }
 }

@@ -16,8 +16,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
+    - name: Select Xcode version
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: '16'
+
     - name: Build and Test
-      run: xcodebuild build test -scheme JESideMenuController -destination 'platform=iOS Simulator,name=iPhone SE (3rd generation)' -enableCodeCoverage YES
+      run: xcodebuild build test -scheme JESideMenuController -destination "platform=iOS Simulator,name=${SIMULATOR_NAME}" -enableCodeCoverage YES
+      env:
+        SIMULATOR_NAME: 'iPhone SE (3rd generation)'
 
     - name: Generate code coverage files for codecov
       uses: sersoft-gmbh/swift-coverage-action@v4

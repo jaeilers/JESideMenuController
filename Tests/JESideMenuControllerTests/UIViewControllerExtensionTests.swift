@@ -3,13 +3,16 @@
 //  Copyright © 2019 JE. All rights reserved.
 //
 
-import XCTest
+import Testing
+import UIKit
 @testable import JESideMenuController
 
 @MainActor
-final class UIViewControllerExtensionTests: XCTestCase, Sendable {
+@Suite
+struct UIViewControllerExtensionTests {
 
-    func testSideMenuControllerExtension() {
+    @Test
+    func sideMenuControllerExtension() {
         // Given
         let rootViewController = UIViewController()
         let menuViewController = UIViewController()
@@ -24,22 +27,23 @@ final class UIViewControllerExtensionTests: XCTestCase, Sendable {
         tabBarController.setViewControllers([viewController], animated: false)
 
         // Then
-        XCTAssertNotNil(viewController.sideMenuController)
-        XCTAssertNotNil(rootViewController.sideMenuController)
-        XCTAssertNotNil(menuViewController.sideMenuController)
+        #expect(viewController.sideMenuController != nil)
+        #expect(rootViewController.sideMenuController != nil)
+        #expect(menuViewController.sideMenuController != nil)
 
-        XCTAssertNil(sideMenuController.sideMenuController)
+        #expect(sideMenuController.sideMenuController == nil)
     }
 
-    func testContainment() {
+    @Test
+    func containment() {
         let parent = UIViewController()
         let viewController = UIViewController()
-        XCTAssertEqual(parent.children.count, 0)
+        #expect(parent.children.count == 0)
 
         parent.add(controller: viewController, toView: parent.view)
-        XCTAssertEqual(parent.children.count, 1)
+        #expect(parent.children.count == 1)
 
         parent.remove(controller: viewController)
-        XCTAssertEqual(parent.children.count, 0)
+        #expect(parent.children.count == 0)
     }
 }

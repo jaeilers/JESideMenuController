@@ -5,6 +5,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 
 ## [Unreleased]
 
+### Changed
+
+- Migrated XCTests to Swift Testing
+
 ### Removed
 
 - Removed Xcode project
@@ -15,7 +19,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 
 - Documenting changes in CHANGELOG file.
 - Increased code coverage.
-- Feature to enable/disable scolling
+- Feature to enable/disable scrolling
 - Added functionality to adjust the side menu configuration. (spacing, iPad menu width, drop shadow image, tintColor etc.)
 - Added Dark Mode support
 
@@ -25,7 +29,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0), 
 - Switched from Travis-CI to github actions.
 - Require minimum target iOS 15
 - Updated example project
-- Added @MainActor annotation and Sendable conformance
+- Added `@MainActor` annotation and Sendable conformance
 - Removed CocoaPods supports
 
 ### Fixed
