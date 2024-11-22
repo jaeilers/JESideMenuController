@@ -1,5 +1,5 @@
 # JESideMenuController
-![CI](https://github.com/jaeilers/JESideMenuController/workflows/CI/badge.svg) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-6.0-orange.svg) ![](https://img.shields.io/badge/Xcode-16+-blue.svg) ![](https://img.shields.io/badge/iOS-15+-blue.svg)
+![CI](https://github.com/jaeilers/JESideMenuController/actions/workflows/ci.yml/badge.svg?branch=main) [![codecov](https://codecov.io/gh/jaeilers/JESideMenuController/branch/main/graph/badge.svg?token=uiHfbQtqm0)](https://codecov.io/gh/jaeilers/JESideMenuController) ![](https://img.shields.io/badge/license-MIT-lightgrey.svg) ![](https://img.shields.io/badge/Swift-6.0-orange.svg) ![](https://img.shields.io/badge/Xcode-16+-blue.svg) ![](https://img.shields.io/badge/iOS-15+-blue.svg)
 
 The `JESideMenuController` is a custom container controller that manages a side menu and the currently selected content. It supports different styles such as: slide-out, slide-in (navigation drawer) and slide-out the menu and content simultaneously. This controller supports initialization via storyboards or in code and is Safe Area compatible.
 
