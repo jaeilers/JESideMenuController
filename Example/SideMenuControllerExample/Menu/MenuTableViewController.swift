@@ -16,6 +16,7 @@ final class MenuTableViewController: UIViewController {
         static let topSpacing: CGFloat = 44.0
     }
 
+    nonisolated
     private struct Item: Hashable, Sendable {
         let image: UIImage?
         let title: String

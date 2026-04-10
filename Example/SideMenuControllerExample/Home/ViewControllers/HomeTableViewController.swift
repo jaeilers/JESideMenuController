@@ -15,6 +15,7 @@ final class HomeTableViewController: UIViewController {
         static let identifier = String(describing: UITableViewCell.self)
     }
 
+    nonisolated
     private struct Item: Hashable, Sendable {
         let text: String
         let hasImage: Bool
