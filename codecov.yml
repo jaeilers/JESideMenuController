@@ -2,7 +2,7 @@ coverage:
   status:
     project:
       default:
-        threshold: 1 # allow coverage decrease up to 1%
+        threshold: 1% # allowed coverage decrease
     patch: off # no status report for PR diff
   ignore:
     - Tests/**/*
